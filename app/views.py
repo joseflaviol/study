@@ -566,7 +566,6 @@ def avaliacao(request):
 def mudaFoto(request):
     if perfil_logado(request):
         img = request.FILES['userimg']
-        print img
         perfil = perfil_logado(request)
         caminho = 'app/static/users/'+perfil.nome+'/'+img.name+'.jpg'
         with open(caminho, 'wb+') as destination:
