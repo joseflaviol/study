@@ -1,0 +1,750 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{{streamer.nome}} - STUDY</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'css/rajdhani.css' %}">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
+  <link rel="icon" href="{% static 'img/logo.ico' %}" type="imagex-icon" />
+  <style type="text/css">
+    body{
+      font-family: 'Rajdhani', sans-serif;
+    }
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #408AFF !important;
+      }
+    }
+
+    html {
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+
+    .btn-study {
+      background-color: #408AFF
+    }
+
+    p {
+      max-width: 15ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    @media only screen and (min-width: 731px) {
+      .card-title {
+        display: inline;
+      }
+    }
+
+    @media only screen and (max-width: 730px) {
+      .card-title {
+        display: none;
+      }
+      #form3 {
+        display: none;
+      }
+      #stream {
+        display: none;
+      }
+    }
+
+    @media only screen and (max-width: 900px) {
+      #form3 {
+        display: none;
+      }
+      #stream {
+        display: none;
+      }
+    }
+
+    @media only screen and (max-width: 730px) {
+      #texto {
+        display: none;
+      }
+      .img-left {
+        margin-left: -4px;
+        margin-top: -13px
+      }
+
+
+    }
+
+    @media only screen and (max-width: 1600px) {
+      iframe {
+        width: 84.5%;
+      }
+    }
+
+    @media only screen and (max-width: 1600px) {
+      iframe {
+        width: 84%;
+      }
+    }
+
+    @media only screen and (max-width: 1540px) {
+      iframe {
+        width: 83%;
+      }
+    }
+
+    @media only screen and (max-width: 1464px) {
+      iframe {
+        width: 82.5%;
+      }
+    }
+
+    @media only screen and (max-width: 1412px) {
+      iframe {
+        width: 82%;
+      }
+    }
+
+    @media only screen and (max-width: 1390px) {
+      iframe {
+        width: 81%;
+      }
+    }
+
+    @media only screen and (max-width: 1324px) {
+      iframe {
+        width: 80.5%;
+      }
+    }
+
+    @media only screen and (max-width: 1308px) {
+      iframe {
+        width: 80.4%;
+      }
+    }
+
+
+    @media only screen and (max-width: 1279px) {
+      iframe {
+        width: 79.5%;
+      }
+    }
+
+    @media only screen and (max-width: 1262px) {
+      iframe {
+        width: 79%;
+      }
+    }
+
+    @media only screen and (max-width: 1248px) {
+      iframe {
+        width: 78.8%;
+      }
+    }
+
+    @media only screen and (min-width: 1181px) {
+      #card2 {
+        display: none;
+      }
+    }
+
+    @media only screen and (max-width: 1180px) {
+      iframe {
+        width: 94%;
+      }
+      #card {
+        display: none;
+      }
+      #card2 {
+        display: inline
+      }
+      ;
+
+    }
+
+    @media only screen and (max-width: 976px) {
+      iframe {
+        width: 93%;
+      }
+    }
+
+    @media only screen and (max-width: 940px) {
+      iframe {
+        width: 93%;
+      }
+    }
+
+    @media only screen and (max-width: 854px) {
+      iframe {
+        width: 92%;
+      }
+    }
+
+    @media only screen and (max-width: 736px) {
+      iframe {
+        width: 91%;
+      }
+    }
+
+    @media only screen and (max-width: 664px) {
+      iframe {
+        width: 90%;
+      }
+    }
+
+
+    @media only screen and (max-width: 578px) {
+      iframe {
+        width: 89%;
+      }
+    }
+
+    @media only screen and (max-width: 540px) {
+      iframe {
+        width: 88%;
+      }
+    }
+
+    @media only screen and (max-width: 494px) {
+      iframe {
+        width: 87%;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      iframe {
+        width: 86.5%;
+      }
+    }
+
+    @media only screen and (max-width: 451px) {
+      iframe {
+        width: 86%;
+      }
+    }
+
+    @media only screen and (max-width: 426px) {
+      iframe {
+        width: 85%;
+      }
+    }
+
+    @media only screen and (max-width: 398px) {
+      iframe {
+        width: 84%;
+      }
+    }
+
+    @media only screen and (max-width: 370px) {
+      iframe {
+        width: 83%;
+      }
+    }
+
+    @media only screen and (max-width: 352px) {
+      iframe {
+        width: 82%;
+      }
+    }
+
+    @media only screen and (max-width: 333px) {
+      iframe {
+        width: 81%;
+      }
+    }
+
+    #fast {
+      font-size: 1.5em;
+    }
+
+    option:hover {
+      background-color: #408aff;
+      color: white;
+      cursor: pointer;
+    }
+
+    input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar mb-4">
+    <!-- Brand -->
+    <a class="navbar-brand" href="{% url 'index' %}">
+          <strong>STUDY</strong>
+        </a>
+
+    <!-- Collapse -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Left -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Home
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" target="">Procurar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Destaque</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Cursos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'streams' %}">Transmissões</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id='drop_more' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Mais</a>
+
+          <div class='dropdown-menu' aria-labelledby='drop_more'>
+            <a class='dropdown-item' id="a" href='#' '><div class='espaço rounded w-100 '>Sobre </div> </a>
+                      <a class='dropdown-item ' href='# '><div class='espaço rounded w-100 '>Desenvolvedores </div></a>
+                      <a class='dropdown-item ' href='# ''>
+              <div class='espaço rounded w-100 '>Segurança </div>
+            </a>
+            <a class='dropdown-item' href='#'>
+              <div class='espaço rounded w-100 '>Termos </div>
+            </a>
+
+          </div>
+
+
+        </li>
+
+      </ul>
+
+      <!-- Right -->
+      <ul class="navbar-nav nav-flex-icons">
+
+        {% if perfil_logado %}
+
+        {% if perfil_status %}
+        <li class='nav-item' id='stream'>
+          <a class='nav-link' data-toggle='modal' data-target='#form3'>
+                                  <i id='fast' class='fa fa-video-camera mr-1'></i>
+                                </a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link border border-light rounded" href="{% url 'encerraStream' %}">Encerrar transmissão</a>
+        </li>
+        {% endif %}
+        <li class='nav-item '>
+          <img src="{% static perfil_logado.imagem_perfil %}" height='40' class='d-inline-block align-top rounded-circle'>
+          <li class='nav-item dropdown ml-1'>
+            <a class='nav-link dropdown-toggle' id='drop_user' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>{{perfil_logado.nome}}</a>
+
+            <div class='dropdown-menu dropdown-menu-right' aria-labelledby='drop_user'>
+              <a class='dropdown-item rounded' href="{% url 'painel' perfil_logado.nome %}">
+                <div class='espaço rounded w-100'> Painel de Controle</div>
+              </a>
+              <a class='dropdown-item rounded' href=''>
+                <div class='espaço rounded w-100'> Canal</div>
+              </a>
+              <a class='dropdown-item rounded' href="{% url 'logout' streamer.nome %}">
+                <div class='espaço rounded w-100'>Sair</div>
+              </a>
+            </div>
+          </li>
+        </li>
+        {% else %}
+        <li class='nav-item'>
+          <a class='nav-link border border-light rounded' data-toggle='modal' data-target='#form'>
+            <i class='fa fa-user-plus mr-2'></i>Cadastrar-se
+          </a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link border border-light rounded ml-2' data-toggle='modal' data-target='#form2'>
+            <i class='fa fa-user mr-2'></i>Login
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+  </nav>
+  <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <div class="modal-content">
+        <form method="POST" action="{% url 'cadastro' streamer.nome %}">
+          {% csrf_token %}
+          <div class="modal-header study white-text">
+            <h4 class="title">
+              <i class="fa fa-pencil"></i> Cadastrar-se
+            </h4>
+            <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="md-form form-sm">
+              <i class="fa fa-user prefix"></i>
+              <input type="text" id="username" name="username" class="form-control form-control-sm">
+              <label for="username" id="lusername" value="0">Usuário</label>
+            </div>
+            <div class="alert alert-warning" style="display: none;border-left: 3px solid #b71c1c !important;width:" id="erroUsername"><i class="fa fa-close mr-2"></i>Usuário ou senha incorretas.</div>
+            <div class="md-form form-sm">
+              <i class="fa fa-lock prefix"></i>
+              <input type="password" id="password" name="password" class="form-control form-control-sm">
+              <label for="password">Senha</label>
+            </div>
+            <div class="md-form form-sm">
+              <i class="fa fa-lock prefix"></i>
+              <input type="password" id="confPass" name="confPass" class="form-control form-control-sm">
+              <label for="confPass" id="lconfPass" value="0">Repita Senha</label>
+            </div>
+            <div class="alert alert-warning" style="display: none;border-left: 3px solid #b71c1c !important;" id="erroSenha"><i class="fa fa-close mr-2"></i>Usuário ou senha incorretas.</div>
+            <div class="md-form form-sm">
+              <i class="fa fa-envelope prefix"></i>
+              <input type="email" id="email" name="email" class="form-control">
+              <label for="email" id="lEmail" value="0">E-mail address</label>
+            </div>
+            <div class="alert alert-warning" style="display: none;border-left: 3px solid #b71c1c !important;" id="erroEmail"><i class="fa fa-close mr-2"></i>Usuário ou senha incorretas.</div>
+            <div class="text-center mt-4 mb-2">
+              <button type="button" name="cadastrar" class="btn btn-outline-primary" id="btnCadastrar">Cadastrar
+                <i class="fa fa-send ml-2"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="form2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-header study white-text">
+          <h4 class="title"><i class="fa fa-pencil"></i> Entrar</h4>
+          <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{% url 'login' streamer.nome %}">
+            {% csrf_token %}
+            <div class="md-form form-sm">
+              <i class="fa fa-user prefix"></i>
+              <input type="text" id="usernameLogin" name="username" class="form-control form-control-sm">
+              <label for="usernameLogin">Usuário</label>
+            </div>
+            <div class="md-form form-sm">
+              <i class="fa fa-lock prefix"></i>
+              <input type="password" id="passwordLogin" name="password" class="form-control form-control-sm">
+              <label for="passwordLogin">Senha</label>
+            </div>
+            <div class="alert alert-danger" style="display: none;border-left: 3px solid #b71c1c !important;width:" id="erroLogin"><i class="fa fa-close mr-2"></i>Usuário ou senha incorretas.</div>
+            <div class="text-center mt-4 mb-2">
+              <button type="button" name="cadastrar" class="btn btn-outline-primary" id="btnLogin">Entrar
+                <i class="fa fa-send ml-2"></i>
+              </button>
+              <input type="submit" name="" id="logar" style="visibility: hidden;">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="form3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <div class="modal-content">
+        <form method="POST" action="{% url 'iniciaStream' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="modal-header study white-text">
+            <h4 class="title"><i class="fa fa-play"></i> Iniciar Transmissão</h4>
+            <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="md-form form-sm">
+              <i class="fa fa-pencil prefix"></i>
+              <input type="text" id="titulo" name="titulo" class="form-control form-control-sm">
+              <label for="titulo">Título</label>
+            </div>
+            <div class="md-form form-sm">
+              <i class="fa fa-book prefix"></i>
+              <input type="search" id="area" name="area" class="form-control form-control-sm dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <label for="area">Área</label>
+              <div id="menu" class="dropdown-menu" aria-labelledby="dropdown" style="width: 94%;">
+                <div id="menuItems">
+                  <ul class="navbar nav" style="background-color: white">
+                    <li class="nav-item border-bottom border-light mt-1" style="width: 100%;">
+                        {% for row in area %}
+                        <option style="font-size: 1.1em" id="{{row.id}}"><img src="{% static row.imagem %}" class="img-left" height="30"> {{row.area}}</option>
+                        {% endfor %}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="md-form form-sm ">
+              <i class="fa fa-file-image-o prefix " aria-hidden="true" style="color: #616161;"></i>
+              <span class="btn btn-sm btn-outline-primary" style="width: 20%; margin-left: 27px;" data-toggle="tooltip" data-placement="right" title="Thumbnail"><i class="fa fa-cloud-upload study-text fa-2x" style="text-align: center;" ></i>
+                <input type="file" name="imagem" id="imagem">
+              </span>
+            </div>
+            <div class="text-center mt-4 mb-2">
+              <button type="button" name="cadastrar" id="iniciaStream" class="btn btn-outline-primary">Iniciar
+                <i class="fa fa-send ml-2"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <main style="height: 100%; position: relative;">
+    <div class="row wow fadeIn mh-100" style="height: 100%">
+      {% if perfil_logado %}
+      <div id="card" class="mh-100 card mt-5" style="width: 250px;">
+        <div class="card-body">
+          <div class="mt-2"></div>
+          {% if transmissao %}
+          <h4 class="card-title study-text" style="font-size: 1.1em;">Canais seguidos</h4>
+          <hr class="study">
+          <ul class="list-group"> {% for row in transmissao %}
+            <a style="margin-bottom: -15px;" href="{% url 'canal' row.streamer %}">
+              <li class="list-group-item d-flex left-content-between align-items-left" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="height: 75%;">
+                <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
+                <div class="align-items-left d-inline-block">
+                  <p style="font-weight: bolder;">{{row.streamer}}</p>
+                  <small><p style="margin-top: -18px">{{row.area}}</p> </small>
+                </div>
+              </li>
+            </a>
+            {% endfor %}
+          </ul>
+          <hr class="study mt-3">
+        </div>
+      </div>
+      {% else %}
+      <h4 class="card-title study-text" style="font-size: 1.1em;">Canais em destaque</h4>
+      <hr class="study">
+      <ul class="list-group">
+        {% for row in destaque %}
+        <a style="margin-bottom: -15px;" href="{% url 'canal' row.streamer %}">
+          <li class="list-group-item d-flex left-content-between align-items-left" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="height: 75%;">
+            <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
+            <div class="align-items-left d-inline-block">
+              <p style="font-weight: bolder;">{{row.streamer}}</p>
+              <small><p style="margin-top: -18px">{{row.area}}</p> </small>
+            </div>
+          </li>
+        </a>
+        {% endfor %}
+      </ul>
+      <hr class="study mt-3">
+    </div>
+    </div>
+    {% endif %}
+    <div id="card2" class="mh-100 card mt-4" style="width: 60px;">
+      <div class="card-body">
+        <i class="fa fa-video-camera study-text fa-2x mt-4" style="border-bottom: 2px solid #408aff "></i>
+        <ul class="list-group" style="width: 80%">
+          <a data-toggle="tooltip" data-placement="right" title="Titulo Stream">
+               <img src="{% static 'img/team/luis.jpg' %}" height="35" width="35" class="img-left rounded mt-2" style="margin-left: -1px;">
+            </a>
+        </ul>
+      </div>
+    </div>
+    {% else %}
+    <div id="card" class="mh-100 card mt-5" style="width: 250px;">
+      <div class="card-body">
+        <div class="mt-2"></div>
+        <h4 class="card-title study-text" style="font-size: 1.1em;">Canais em destaque</h4>
+        <hr class="study">
+        <ul class="list-group">
+          {% for row in destaque %}
+          <a style="margin-bottom: -15px;" href="{% url 'canal' row.streamer %}">
+            <li class="list-group-item d-flex left-content-between align-items-left" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="height: 75%;">
+              <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
+              <div class="align-items-left d-inline-block">
+                <p style="font-weight: bolder;">{{row.streamer}}</p>
+                <small><p style="margin-top: -18px">{{row.area}}</p> </small>
+              </div>
+            </li>
+          </a>
+          {% endfor %}
+        </ul>
+        <hr class="study mt-3">
+        <button type="submit" class="btn study ml-4">Cadastrar-se</button>
+      </div>
+    </div>
+    <div id="card2" class="mh-100 card mt-4" style="width: 60px;">
+      <div class="card-body">
+        <i class="fa fa-video-camera study-text fa-2x mt-4" style="border-bottom: 2px solid #408aff "></i>
+        <ul class="list-group" style="width: 80%">
+          <a data-toggle="tooltip" data-placement="right" title="Titulo Stream">
+               <img src="{% static 'img/team/luis.jpg' %}" height="35" width="35" class="img-left rounded mt-2" style="margin-left: -1px;">
+            </a>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+      <iframe class="embed-responsive-item" src="{% url 'live' streamer.id %}" width="83.8%" name="ajax" style="position: relative"></iframe>
+    </div>
+
+    <!-- <div class="fixed-bottom mb-2 zindex-fixed" style="width: 8%">
+
+      <div class="btn-group-vertical w-25" role="group" aria-label="Vertical button group">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn indigo darken-4"><i class="fa fa-video-camera fa-2x" style="margin-left: -15px"></i></button>
+        </div>
+
+      <div class="btn-group" role="group" >
+          <button id="btnGroupVerticalDrop3" type="button" class="btn btn-study dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <span class="badge badge-danger mt-2" style="position: absolute; z-index: 150">11</span>
+            <i class="fa fa-bell fa-2x "  style="margin-left: -15px"></i><i class="fa fa-caret-up"  style="margin-left: -7px"></i>
+          </button>
+
+          <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop3">
+              <a class="dropdown-item" href="#">Dropdown link</a>
+              <a class="dropdown-item" href="#">Dropdown link</a>
+          </div>
+      </div>
+      <div class="btn-group" role="group">
+          <button id="btnGroupVerticalDrop4" type="button" class="btn btn-study dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="badge badge-danger mt-2" style="position: absolute; z-index: 150">11</span>
+              <i class="fa fa-users fa-2x"  style="margin-left: -15px"></i><i class="fa fa-caret-up "  style="margin-left: -7px"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop4">
+              <a class="dropdown-item" href="#">Dropdown link</a>
+              <a class="dropdown-item" href="#">Dropdown link</a>
+          </div>
+      </div>
+
+      </div>
+    </div>
+    </div>
+    -->
+
+
+
+  </main>
+  <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'js/validaCadastro.js' %}" charset="utf-8"></script>
+  <script src="{% static 'js/validaLogin.js' %}" charset="utf-8"></script>
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <script type="text/javascript">
+    new WOW().init();
+    var nArea = {{nArea}};
+    for(var i=0; i<nArea; i++){
+      var str = "#";
+      var id = i + 1;
+      var numero =  str.concat(id.toString());
+      $(numero).click(function(){
+        var val = $(this).val();
+        $("#area").val(val);
+      });
+    }
+
+    $("#iniciaStream").click(function(){
+      var titulo = $("#titulo").val();
+      var area = $("#area").val();
+      var imagem = $("#imagem").val();
+      if(!(titulo == "" || area == "" || imagem == "")){
+        document.getElementById('iniciaStream').type = "submit";
+        $("#iniciaStream").click();
+      }else{
+        alert("Preencha todos os dados");
+      }
+    });
+  </script>
+
+<!--  <script type="text/javascript">
+  $(function() {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  <script type="text/javascript">
+    $(document).on('click', '#close-preview', function() {
+      $('.image-preview').popover('hide');
+      // Hover befor close the preview
+      $('.image-preview').hover(
+        function() {
+          $('.image-preview').popover('show');
+        },
+        function() {
+          $('.image-preview').popover('hide');
+        }
+      );
+    });
+
+    $(function() {
+      // Create the close button
+      var closebtn = $('<button/>', {
+        type: "button",
+        text: 'x',
+        id: 'close-preview',
+        style: 'font-size: initial;',
+      });
+      closebtn.attr("class", "close pull-right");
+      // Set the popover default content
+      $('.image-preview').popover({
+        trigger: 'manual',
+        html: true,
+        title: "<strong>Preview</strong>" + $(closebtn)[0].outerHTML,
+        content: "There's no image",
+        placement: 'bottom'
+      });
+      // Clear event
+      $('.image-preview-clear').click(function() {
+        $('.image-preview').attr("data-content", "").popover('hide');
+        $('.image-preview-filename').val("");
+        $('.image-preview-clear').hide();
+        $('.image-preview-input input:file').val("");
+        $(".image-preview-input-title").text("Procurar");
+      });
+      // Create the preview image
+      $(".image-preview-input input:file").change(function() {
+        var img = $('<img/>', {
+          id: 'dynamic',
+          width: 250,
+          height: 200
+        });
+        var file = this.files[0];
+        var reader = new FileReader();
+        // Set preview image into the popover data-content
+        reader.onload = function(e) {
+          $(".image-preview-input-title").text("Mudar");
+          $(".image-preview-clear").show();
+          $(".image-preview-filename").val(file.name);
+          img.attr('src', e.target.result);
+          $(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
+        }
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>-->
+
+
+
+</body>
+
+</html>

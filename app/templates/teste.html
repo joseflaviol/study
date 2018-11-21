@@ -1,0 +1,106 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <title>AJAX - Cadastro</title>
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}" charset="utf-8"></script>
+  <style media="screen">
+    #username {
+      position: relative;
+    }
+
+    .form span {}
+  </style>
+</head>
+
+<body>
+  <h1>Formulário de Cadastro com AJAX</h1>
+  {% if perfil_logado %}
+  <p>{{dados.email}}</p>
+  {% endif %}
+  <div class="form">
+    <form class="" action="{% url 'cadastro' 'index' %}" method="post">
+      {% csrf_token %}
+      Nome: <input type="text" name="username" id="username"><span id="erroUsername"></span><br><br>
+      Email: <input type="text" name="email" id="email"><span id="erroEmail"></span><br><br>
+      Senha: <input type="password" name="password" id="password"><span id="erroPassword"></span><br><br>
+      Confirma Senha: <input type="password" name="confPass" id="confPass"><span id="erroConfPass"></span><br><br>
+      <button type="button" name="button" id="enviar">Enviar</button>
+    </form>
+  </div>
+  <script type="text/javascript">
+    $("#username").change(function() {
+      var username = $(this).val();
+      if (username != "") {
+        $.ajax({
+          url: '/ajax/',
+          data: {
+            'username': username
+          },
+          dataType: 'json',
+          success: function(data) {
+            if (data.result) {
+              document.getElementById('erroUsername').innerHTML = data.msg_erro;
+            } else {
+              document.getElementById('erroUsername').innerHTML = "";
+            }
+          }
+        })
+      }
+      else{
+        document.getElementById('erroUsername').innerHTML = "";
+      }
+    });
+    $("#email").keyup(function() {
+      var email = $(this).val();
+      if (email != "") {
+        $.ajax({
+          url: '/ajax/',
+          data: {
+            'email': email
+          },
+          dataType: 'json',
+          success: function(data) {
+            if (data.result) {
+              document.getElementById('erroEmail').innerHTML = data.msg_erro;
+            } else {
+              document.getElementById('erroEmail').innerHTML = "";
+            }
+          }
+        });
+      }
+      else{
+        document.getElementById('erroEmail').innerHTML = "";
+      }
+    });
+    $("#confPass").keyup(function() {
+      var confPass = $(this).val();
+      var password = document.getElementById('password').value;
+      if (confPass != "") {
+        if(confPass != password){
+          document.getElementById('erroConfPass').innerHTML = "Senhas diferentes."
+        }
+        else{
+          document.getElementById('erroConfPass').innerHTML = "";
+        }
+      }
+      else{
+        document.getElementById('erroConfPass').innerHTML = "";
+      }
+    });
+    $("#enviar").click(function(){
+      var erroUsername = document.getElementById('erroUsername').value;
+      if(erroUsername){
+        document.getElementById('enviar').innerHTML = "hj não";
+      }
+      else{
+        document.getElementById('enviar').type = "submit";
+        $("#enviar").click();
+      }
+    });
+  </script>
+</body>
+
+</html>

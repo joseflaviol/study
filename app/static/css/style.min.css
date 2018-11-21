@@ -1,0 +1,43 @@
+.view,body,html{
+	height:100%
+}
+.navbar{
+	background-color: #408AFF ;
+}
+.page-footer,.top-nav-collapse{
+	background-color:#408AFF
+}
+@media only screen and (max-width:768px){
+	.navbar{background-color:#408AFF}
+}
+
+.espaço:hover{
+	background-color: #408AFF
+}
+
+.espaço:hover{
+	color: white
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.btn-circle.btn-xl {
+  width: 80px;
+  height: 80px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 39px;
+}
+
+div.social-float-parent { width: 100%; height: 1000px; background: #f8f8f8; position: relative; }
+div#social-float { width: 200px; position: fixed; left: 10px; bottom: 10px; background: #777; }
+div#footer { width: 100%; height: 200px; background: #eee;

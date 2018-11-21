@@ -1,0 +1,328 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'css/rajdhani.css' %}">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
+  <link href="{% static 'css/video-js.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/rating_star.css' %}">
+  <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'js/rating_star.js' %}" charset="utf-8"></script>
+</head>
+<style type="text/css">
+  body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  #img {
+    height: 45px;
+  }
+
+  a {
+    color: black;
+  }
+
+  .nav {
+    width: 100%;
+    margin: 2px;
+  }
+
+  @media only screen and (max-width: 550px) {
+    #nav {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    #ct {
+      display: inline;
+    }
+  }
+
+  @media only screen and (min-width: 731px) {
+    #ct {
+      display: none;
+    }
+  }
+</style>
+
+<body>
+  <main>
+    <div class="row">
+      <nav id="nav" class="nav ">
+        <a class="nav-link mt-3"><img src="{% static streamer.imagem_perfil %}" id="img" class='d-inline-block rounded-circle'><p id="streamer" class="d-inline">{{streamer.nome}}</p><img src="{% static 'img/svg/logo.svg' %}" height="20" class="ml-1"></a><span class="border-right border-light"></span>
+        <a class="nav-link mt-4">Seguidores: <p class="d-inline-block" style="color: #408aff" id="seguidores">{{seguidores}}</p></a>
+        {% if nota %}
+        <a class="nav-link mt-4">Avaliação: <p class="d-inline-block" style="color: #408aff" id="nota">{{nota}}</p></a>
+        {% else %}
+        <a class="nav-link mt-4">Avaliação: <p class="d-inline-block" style="color: #408aff; display: none;" id="nota">{{nota}}</p></a>
+        {% endif %}
+        {% if perfil_logado %}
+        {% if avaliou %}
+        <small class="ml-auto mt-4"><button type="submit" class="btn study btn-sm" id="muda_avaliar">Mudar Avaliação </button></small>
+        {% else %}
+        <small class="ml-auto mt-4"><button type="submit" class="btn study btn-sm" id="avaliar">Avaliar </button></small>
+        {% endif %}
+        <small class="mt-4">
+          <div class="container" id="div-star" style="display: none;">
+          	<div class="row">
+          	<div class="rating">
+                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">5 stars</label>
+                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Kinda bad">4 stars</label>
+                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Kinda bad">3 stars</label>
+                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Sucks big tim">2 stars</label>
+                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+              </div>
+          	</div>
+          </div>
+        </small>
+        {% if botao_seguir %}
+        <small class="mt-4"><button type="submit" class="btn btn-danger btn-sm" id="unfollow" value="0"><i class="" id="heartUF"></i>Deixar de seguir </button></small>
+        <!--<small class="mt-4"><button type="submit" class="btn study btn-sm">Inscrever-se R$15,00 </button></small>-->
+        {% else %}
+        <small class="mt-4"><button type="submit" class="btn study btn-sm" id="follow" value="0"><i class="fa fa-heart mr-1" id="heart"></i>Seguir </button></small>
+        {% endif %}
+        {% else %}
+
+        {% endif %}
+      </nav>
+      <div class="nav" style="margin-top: -10px">
+        {% if streaming %}
+        <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" poster="img/backg/fundo.jpg" data-setup='{"fluid": true}'>
+          <source src="http://10.10.135.32:8080/hls/{{streamer.key_stream}}.m3u8" type="application/x-mpegURL" id="src"/>
+        </video>
+        {% else %}
+        <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" poster="{% static 'img/404.png' %}" data-setup='{"fluid": true}'>
+          <source src="" type="application/x-mpegURL" id="src"/>
+        </video>
+        {% endif %}
+        <nav id="nav" class="nav ">
+          {% if area %}
+          <img src="{% static area.imagem %}" class="float-left ml-3" height="50" alt="placeholder">
+          <div class=" d-inline-block ml-1">
+            <p class=" text-md-left font-weight-bold text-uppercase">{{stream.titulo}}</p>
+            <a href="">
+              <p class=" text-sm-left ml-2  " style="margin-top: -21px"><i class="fa fa-book study-text mr-1"></i>{{stream.area}}</p>
+            </a>
+          </div>
+          {% else %}
+          <img src="" class="float-left ml-3" height="50" alt="placeholder">
+          <div class=" d-inline-block ml-1">
+            <p class=" text-md-left font-weight-bold text-uppercase">{{stream.titulo}}</p>
+            <a href="">
+              <p class=" text-sm-left ml-2" style="margin-top: -21px"><i class="fa fa-book study-text mr-1"></i>{{stream.area}}</p>
+            </a>
+          </div>
+          {% endif %}
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class="ml-auto"></p>
+          <p class=" ml-auto mt-2"><i class="fa fa-eye red-text"></i>{{stream.views}}</p>
+
+          <small class="ml-auto"><button type="submit" class="btn study btn-sm"><i class="fa fa-share mr-1"></i>Compartilhar </button></small>
+
+          <small class=" mr-1"><button type="submit" class="btn study btn-sm"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> </button></small>
+        </nav>
+        <div id="ct">
+          <div class="row mt-1" style="margin-left: 1px;">
+            <img src="img/team/luis.jpg" class="float-left ml-3" height="50" alt="placeholder">
+            <div class=" d-inline-block ml-1">
+              <p class=" text-md-left font-weight-bold ">Streamer<img src="img/svg/logo.svg" height="20" class="float-right ml-1 mt-1"> </p>
+              <p class=" text-sm-left " style="margin-top: -17px">Titulo</p>
+              <a href="">
+                <p class=" text-sm-left  " style="margin-top: -19px"><i class="fa fa-book study-text mr-1"></i>fys</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <script src="{% static 'js/video.min.js' %}"></script>
+  <script src="{% static 'js/videojs-contrib-hls.min.js' %}"></script>
+  <!--<script src="{% static 'js/videojs-contrib-hls.js' %}"></script>-->
+  <script type="text/javascript">
+    new WOW().init();
+  </script>
+  <script type="text/javascript">
+    let seguindo = false;
+
+    {% if avaliou %}
+      let avaliou = true;
+    {% else %}
+      let avaliou = false;
+    {% endif %}
+    function Avaliacao(nota) {
+      if (nota < 2.5) {
+          document.getElementById('nota').style.color = "red";
+      } else if (nota > 2.5 && nota < 4) {
+        document.getElementById('nota').style.color = "blue";
+      } else {
+        document.getElementById('nota').style.color = "green";
+      }
+    }
+    {% if nota %}
+      let notaAvaliada = {{nota}};
+      Avaliacao(notaAvaliada);
+    {% endif %}
+
+    for (let i=1; i<=5; i++){
+      $("#star"+i.toString()).click(function(event){
+        document.getElementById('div-star').style.display = "none";
+        if (avaliou == false) {
+            document.getElementById('avaliar').innerHTML = "Mudar Avaliação";
+            document.getElementById('avaliar').style.display = "";
+        } else {
+          document.getElementById('muda_avaliar').style.display = "";
+        }
+        $.ajax({
+          url: '/avaliacao/',
+          data: {
+            'nota': i,
+            'streamer': {{streamer.id}}
+          },
+          dataType: 'json',
+          success: function(data) {
+            if (data.result) {
+              let nota = document.getElementById('nota');
+              nota.style.display = "";
+              nota.innerHTML = parseFloat(data.nota);
+              Avaliacao(parseFloat(data.nota));
+            }
+          }
+        });
+      });
+    }
+
+    $("#muda_avaliar").click(function(){
+      document.getElementById('muda_avaliar').style.display = "none";
+      document.getElementById('div-star').style.display = "";
+    });
+    $("#avaliar").click(function(){
+      document.getElementById('avaliar').style.display = "none";
+      document.getElementById('div-star').style.display = "";
+    });
+
+    $("#follow").click(function(){
+      var texto = document.getElementById('follow').value;
+      if(texto == 0){
+        $.ajax({
+          url: '/seguir/',
+          data: {
+            'streamer': "{{streamer.nome}}"
+          },
+          dataType: 'json',
+          success: function(data) {
+            if (data.result) {
+              document.getElementById('seguidores').innerHTML = data.seguidores;
+              $('#follow').removeClass('study');
+              $('#follow').addClass('btn-danger');
+              document.getElementById('follow').innerHTML = "Deixar de seguir";
+              document.getElementById('follow').value = 1;
+          } else {
+              console.log("falhou");
+            }
+          }
+        });
+      }
+      else{
+        $.ajax({
+          url: '/unfollow/',
+          data: {
+            'streamer': "{{streamer.nome}}"
+          },
+          dataType: 'json',
+          success: function(data) {
+            if (data.result) {
+              document.getElementById('seguidores').innerHTML = data.seguidores;
+              $('#follow').removeClass('btn-danger');
+              $('#follow').addClass('study');
+              document.getElementById('follow').innerHTML = "<i class='fa fa-heart mr-1' id='heart'></i> Seguir";
+              document.getElementById('follow').value = 0;
+          } else {
+              console.log("falhou");
+            }
+          }
+        });
+      }
+    });
+
+    $("#unfollow").click(function(){
+      var texto = document.getElementById('unfollow').value;
+      if(texto == 0){
+        $.ajax({
+          url: '/unfollow/',
+          data: {
+            'streamer': "{{streamer.nome}}"
+          },
+          dataType: 'json',
+          success: function(data) {
+            if (data.result) {
+              document.getElementById('seguidores').innerHTML = data.seguidores;
+              $('#unfollow').removeClass('btn-danger');
+              $('#unfollow').addClass('study');
+              $('#heartUF').addClass('fa fa-heart');
+              document.getElementById('unfollow').innerHTML = "<i class='fa fa-heart mr-1' id='heart'></i> Seguir";
+              document.getElementById('unfollow').value = 1;
+          } else {
+              console.log("falha");
+            }
+          }
+        });
+      }
+      else{
+        $.ajax({
+          url: '/seguir/',
+          data: {
+            'streamer': "{{streamer.nome}}"
+          },
+          dataType: 'json',
+          success: function(data) {
+            if (data.result) {
+              document.getElementById('seguidores').innerHTML = data.seguidores;
+              $('#heart').hide();
+              $('#unfollow').removeClass('study');
+              $('#unfollow').addClass('btn-danger');
+              document.getElementById('unfollow').innerHTML = "Deixar de seguir";
+              document.getElementById('unfollow').value = 0;
+          } else {
+              alert("hehe");
+            }
+          }
+        });
+      }
+    });
+
+
+  </script>
+</body>
+
+</html>

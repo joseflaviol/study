@@ -1,0 +1,11 @@
+{% for obj in chat %}
+	{% with msg=obj.username|add:": "|add:obj.message %}
+	{% if obj.username == request.user.perfil.nome %}
+	<li class="text-right list-group-item">{{ msg }}</li>
+	{% else %}
+	<li class="text-left list-group-item">{{ msg }}</li>
+	{% endif %}
+	{% endwith %}						
+	{% empty %}
+	<li class="text-right list-group-item">Nenhuma mensagem.</li>
+{% endfor %}
