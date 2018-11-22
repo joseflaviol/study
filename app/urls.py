@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^userTutorial/$', views.userTutorial, name="userTutorial"),
     url(r'^obsS/$', views.obsS, name="obsS"),
     url(r'^avaliacao/$', views.avaliacao, name="avaliacao"),
-    url(r'^mudaFoto/$', views.mudaFoto, name="mudaFoto")
+    url(r'^mudaFoto/$', views.mudaFoto, name="mudaFoto"),
+    url(r'^atualizaStreamDados/$', views.atualizaDadosStream, name="atualizaStreamDados")
 ]

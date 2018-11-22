@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 import os
 import datetime
 import json
+import glob
 from random import choice
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -298,7 +299,7 @@ def iniciaStream(request):
             for chunk in imagem.chunks():
                 destination.write(chunk)
         caminhoBanco = "users/"+nome+"/stream.jpg"
-        stream = Transmissao(streamer=nome, titulo=titulo, imagem=caminhoBanco, area=area, hrInicio=x, tempoLive=0, streamer_imagem=perfil.imagem_perfil, avaliacao=nota)
+        stream = Transmissao(streamer=nome, titulo=titulo, imagem=caminhoBanco, area=area, hrInicio=x, tempoLive=0, streamer_imagem=perfil.imagem_perfil, views=0, avaliacao=nota)
         stream.save()
         perfil.status = "streaming"
         perfil.save()
@@ -320,9 +321,9 @@ def encerraStream(request):
             c.delete()
         perfil.status = "online"
         perfil.save()
-        return redirect("streams")
+        return redirect("/painel/"+perfil.nome)
     except Exception as e:
-        return redirect("streams")
+        return redirect("/painel/"+perfil.nome)
 
 def seguir(request):
     data = {}
@@ -564,6 +565,7 @@ def avaliacao(request):
     return JsonResponse(data)
 
 def mudaFoto(request):
+    nomeImg = ""
     if perfil_logado(request):
         img = request.FILES['userimg']
         perfil = perfil_logado(request)
@@ -574,7 +576,44 @@ def mudaFoto(request):
         caminhoBanco = "users/"+perfil.nome+'/'+img.name+'.jpg'
         perfil.imagem_perfil = caminhoBanco
         perfil.save()
+        if os.path.isfile(caminho):
+            for CleanUp in glob.glob('app/static/users/'+perfil.nome+'/*'):
+                print CleanUp
+                if not CleanUp.endswith(img.name+'.jpg') and not CleanUp.endswith("stream.jpg"):
+                    os.remove(CleanUp)
+        if Transmissao.objects.filter(streamer=perfil.nome):
+            stream = Transmissao.objects.get(streamer=perfil.nome)
+            stream.streamer_imagem = caminhoBanco
+            stream.save()
         data = {
             "result": True, "caminho": caminhoBanco
         }
         return JsonResponse(data)
+
+def atualizaDadosStream(request):
+    img = None
+    area = None
+    titulo = None
+    perfil = perfil_logado(request)
+    if Transmissao.objects.filter(streamer=perfil.nome):
+        stream = Transmissao.objects.get(streamer=perfil.nome)
+        if 'titulo' in request.POST:
+            titulo = request.POST['titulo']
+            if titulo != "":
+                stream.titulo = titulo
+        if 'imagem' in request.FILES:
+            img = request.FILES['imagem']
+            if img != None:
+                caminho = 'app/static/users/'+perfil.nome+'/stream.jpg'
+                with open(caminho, 'wb+') as destination:
+                    for chunk in img.chunks():
+                        destination.write(chunk)
+                caminhoBanco = "users/"+perfil.nome+'/stream.jpg'
+                stream.imagem = caminhoBanco
+        if 'area' in request.POST:
+            area = request.POST['area']
+            if area != "":
+                stream.area = area
+
+        stream.save()
+    return redirect("/canal/"+perfil.nome)

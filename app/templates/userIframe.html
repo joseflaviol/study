@@ -208,24 +208,34 @@
           </div>
         </div>
         <div class="offer-content">
-           <form method="post" action="{% url 'iniciaStream' %}" enctype="multipart/form-data" target="_top">
+           <form method="post" id="streamForm" action="{% url 'iniciaStream' %}" enctype="multipart/form-data" target="_top">
           {% csrf_token %}
           <div class="lead">
            <h3 class="cab text-white pt-2">Transmissão</h3>
           </div>
             <ul class="list-group w-100">
-    <li class="list-group-item">
+    <li class="list-group-item mt-2">
       <label>Título</label>
-       <input type="text" name="titulo" class="form-control" placeholder="somebody@example.com">
+        {% if stream %}
+        <input type="text" name="titulo" id="titulo" class="form-control" value="{{stream.titulo}}" placeholder="">
+        {% else %}
+        <input type="text" name="titulo" id="titulo" class="form-control" placeholder="">
+       {% endif %}
     </li>
     <li class="list-group-item">
       <label>Área</label>
-      <select name="area" class="browser-default custom-select">
+      <select name="area" id="select-area" class="browser-default custom-select">
+        {% if stream %}
+        <option id="atualArea" value="{{stream.area}}" selected>{{stream.area}}</option>
+        {% else %}
         <option selected>Selecione uma opção</option>
+        {% endif %}
         {% for row in area %}
-        <option value="{{row.area}}">{{row.area}}</option>
+        <option value="{{row.area}}" id="{{row.id}}">{{row.area}}</option>
         {% endfor %}
+        <option id="outro">Outra</option>
       </select>
+      <input type="text" name="area" id="input-area" style="display: none;" class="form-control"><button class="form-control" type="button" id="op" style="display: none;">Opções</button>
     </li>
     <li class="list-group-item">
       <label>Imagem</label>
@@ -239,12 +249,17 @@
 
       <input type="password" id="password_input" class="form-control" value="{{perfil_logado.key_stream}}" placeholder="password" aria-label="Username" aria-describedby="password_visibility" readonly>
     </li>
-    <li class="list-group-item">
-      <label>ATENÇÃO: A sua chave de transmissão é única, portanto, não a repasse para outros usuários. Para iniciar sua trasmissão copiei sua chave que está localizada em Configurações>Chave de Transmissão, pós copiado cole no campo acima.</label>
+ <li class="list-group-item">
+      <label>ATENÇÃO: A sua chave de transmissão é única, portanto, esta será colocada no OBS STUDIO, para iniciar a trsanmissão.</label>
     </li>
+    {% if not_streaming %}
+    <button type="button" id="iniciaStreambtn" class="btn lead1 w-100">Iniciar Transmissão</button>
+    {% else %}
+      <button type="button" id="atualizaStreambtn" class="btn lead3 w-100">Atualiza Dados</button>
+     <a href="{% url 'encerraStream' %}" target="_top"><button type="button" class="btn lead2 w-100">Encerrar Transmissão</button></a>
+    {% endif %}
 
-    <button type="submit" class="btn lead1 w-100">Iniciar Transmissão</button>
-  </ul>
+</ul>
 </form>
         </div>
       </div>
@@ -357,11 +372,6 @@
   <script src="{% static 'js/video.min.js' %}"></script>
   <script src="{% static 'js/videojs-contrib-hls.min.js' %}"></script>
   <script type="text/javascript">
-
-    document.getElementById(#img).hide();
-
-  </script>
-  <script type="text/javascript">
     new WOW().init();
 
   $(function() {
@@ -370,6 +380,49 @@
   </script>
 
   <script type="text/javascript">
+    {% for row in area %}
+      $("#"+{{row.id}}).click(function(){
+        document.getElementById('input-area').value = "{{row.area}}";
+        console.log(document.getElementById('input-area').value);
+      });
+    {% endfor %}
+    $("#atualArea").click(function(){
+      document.getElementById('input-area').value = $(this).val();
+      console.log(document.getElementById('input-area').value);
+    });
+   $("#atualizaStreambtn").click(function(){
+        document.getElementById('streamForm').action = "{% url 'atualizaStreamDados' %}";
+        document.getElementById('atualizaStreambtn').type = "submit";
+        $(this).click();
+    });
+   $("#iniciaStreambtn").click(function(){
+    let area;
+    let titulo = $("#titulo").val();
+    if (document.getElementById('select-area').style.display == "none"){
+      area = $("#input-area").val();
+    } else {
+      area = $("#select-area").val();
+    }
+    let img = $("#img").val();
+    if (!(titulo == "" || area == "" || img == "")){
+      console.log("foi");
+      document.getElementById("iniciaStreambtn").type = "submit";
+      $(this).click();
+    } else {
+      document.getElementById("iniciaStreambtn").type = "button";
+      alert('Há algum campo em branco');
+    }
+   })
+  $("#outro").click(function(){
+    document.getElementById('select-area').style.display = "none";
+    document.getElementById('input-area').style.display = "";
+    document.getElementById('op').style.display = "";
+  });
+  $("#op").click(function(){
+    document.getElementById('input-area').style.display = "none";
+    document.getElementById('op').style.display = "none";
+    document.getElementById('select-area').style.display = "";
+  });
   $("#copy").click(function(){
     let element = document.getElementById('password_input');
     if (element.type == "password") {
