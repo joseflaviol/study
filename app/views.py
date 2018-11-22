@@ -660,6 +660,10 @@ def atualizaDadosUser(request):
         nome = request.POST['nome']
         os.rename('app/static/users/'+perfil.nome,'app/static/users/'+nome)
         perfil.nome = nome
+        caminhoImg = perfil.imagem_perfil
+        caminhoImg = caminhoImg.split('/')
+        imgNome = caminhoImg[2]
+        perfil.imagem_perfil = "users/"+nome+"/"+imgNome
         user.username = nome
     if 'imagem' in request.FILES:
         imagem = request.FILES['imagem']
