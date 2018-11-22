@@ -1,0 +1,750 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>STUDY - Transmissões</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'css/rajdhani.css' %}">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
+  <link href="{% static 'css/video-js.min.css' %}" rel="stylesheet">
+  <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <link rel="icon" href="{% static 'img/logo.ico' %}" type="imagex-icon" />
+  <script type="text/javascript">
+    function ggg() {
+      $("#img").click();
+    }
+  </script>
+  <style type="text/css">
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #408AFF !important;
+      }
+    }
+
+    .sidebar-fixed {
+      height: 100vh;
+      width: 15%;
+      -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+      z-index: 1050;
+      background-color: #fff;
+      padding: 0 1.5rem
+    }
+
+    .sidebar-fixed .list-group .active {
+      -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+      -webkit-border-radius: 5px;
+      border-radius: 5px
+    }
+
+    .sidebar-fixed .logo-wrapper {
+      padding: 2.5rem
+    }
+
+    .sidebar-fixed .logo-wrapper img {
+      max-height: 50px
+    }
+
+    @media (min-width:1200px) {
+
+      .navbar,
+      .page-footer,
+      main {
+        padding-left: 270px
+      }
+    }
+
+    @media (max-width:1199.98px) {
+      .sidebar-fixed {
+        display: none
+      }
+    }
+
+
+    .shape {
+      border-style: solid;
+      border-width: 0 70px 40px 0;
+      float: right;
+      height: 0px;
+      width: 0px;
+      -ms-transform: rotate(360deg);
+      /* IE 9 */
+      -o-transform: rotate(360deg);
+      /* Opera 10.5 */
+      -webkit-transform: rotate(360deg);
+      /* Safari and Chrome */
+      transform: rotate(360deg);
+      z-index: 9999;
+    }
+
+    .offer {
+      background: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      margin: 15px 0;
+      overflow: hidden;
+    }
+
+    .shape {
+      border-color: rgba(255, 255, 255, 0) #d9534f rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+    }
+
+    .offer-radius {
+      border-radius: 7px;
+    }
+
+    .offer-danger {
+      border-color: #d9534f;
+    }
+
+    .offer-danger .shape {
+      border-color: transparent #d9534f transparent transparent;
+    }
+
+    .offer-success {
+      border-color: #5cb85c;
+    }
+
+    .offer-success .shape {
+      border-color: transparent #5cb85c transparent transparent;
+    }
+
+    .offer-default {
+      border-color: #e91e63;
+    }
+
+    .offer-default .shape {
+      border-color: transparent #e91e63 transparent transparent;
+    }
+
+    .offer-primary {
+      border-color: #428bca;
+    }
+
+    .offer-primary .shape {
+      border-color: transparent #428bca transparent transparent;
+    }
+
+    .offer-info {
+      border-color: #5bc0de;
+    }
+
+    .offer-info .shape {
+      border-color: transparent #5bc0de transparent transparent;
+    }
+
+    .offer-warning {
+      border-color: #f0ad4e;
+    }
+
+    .offer-warning .shape {
+      border-color: transparent #f0ad4e transparent transparent;
+    }
+
+
+    .offer-cyan {
+      border-color: #00bfa5;
+    }
+
+    .offer-cyan .shape {
+      border-color: transparent #00bfa5 transparent transparent;
+    }
+
+
+    .offer-purple {
+      border-color: #9c27b0;
+    }
+
+    .offer-purple .shape {
+      border-color: transparent #9c27b0 transparent transparent;
+    }
+
+    .shape-text {
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      position: relative;
+      right: -40px;
+      top: 2px;
+      white-space: nowrap;
+      -ms-transform: rotate(30deg);
+      /* IE 9 */
+      -o-transform: rotate(360deg);
+      /* Opera 10.5 */
+      -webkit-transform: rotate(30deg);
+      /* Safari and Chrome */
+      transform: rotate(30deg);
+    }
+
+    .offer-content {
+      padding: 5px 10px 10px;
+      width: 100%;
+    }
+
+    .lead {
+      background-color: #f0ad4e;
+      width: 65%;
+      height: 6vh;
+      position: absolute;
+      z-index: 9999;
+      border-radius: 2px;
+    }
+
+    .lead2 {
+      background-color: #d9534f;
+      ;
+    }
+
+    .lead3 {
+      background-color: #5cb85c;
+    }
+
+    .state {
+      width: 27%;
+      margin-left: 60%;
+      margin-top: 15%;
+      height: 3vh;
+      position: absolute;
+      z-index: 9999;
+      border-radius: 2px;
+    }
+
+    @media (min-width: 480px) and (max-width: 1024px) {
+      .state {
+        margin-left: 50%;
+      }
+    }
+
+    .cab {
+      font-size: 1.2em;
+      padding-left: 10px;
+    }
+
+    .icons {
+      font-size: 25px;
+
+    }
+
+    .contxx {
+      font-size: 1em;
+
+    }
+
+    .player {
+      z-index: -1;
+      margin-top: 12%;
+    }
+
+    .terms {
+      font-size: 1.4em;
+    }
+
+    .inf {
+      color: #999999;
+    }
+
+    .lead4 {
+      background-color: #f0ad4e;
+    }
+
+    .lead5 {
+      background-color: #999999;
+    }
+
+    .lead6 {
+      background-color: #00bfa5;
+    }
+
+    .space {
+      margin-top: -1%;
+    }
+
+    @media (min-width: 487px) {
+
+      .col-sm-6 {
+        width: 50%;
+      }
+    }
+
+    @media (min-width: 900px) {
+      margin-top: -1% width: 33.33333%;
+    }
+    }
+
+    @media (min-width: 1200px) {
+
+      .col-lg-3 {
+        width: 25%;
+      }
+    }
+    }
+
+
+    .nav-pills .nav-item .nav-link {
+      line-height: 24px;
+      font-size: 12px;
+      font-weight: 500;
+      min-width: 100px;
+      color: #555;
+      transition: all .3s;
+      border-radius: 30px;
+      padding: 10px 15px;
+      text-align: center;
+      border-radius: 4px;
+    }
+
+
+    .nav-pills:not(.flex-column) .nav-item+.nav-item:not(:first-child) {
+      margin-left: 5px;
+    }
+
+    .nav-pills .nav-item .nav-link.active {
+      color: #fff;
+      background-color: #408aff;
+      box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(156, 39, 176, .6);
+    }
+
+    .nav-pills .nav-item .nav-link:not(.active):hover {
+      background-color: rgba(200, 200, 200, .2);
+    }
+
+    .nav-pills .nav-item i {
+      display: inline;
+      font-size: 30px;
+      padding: 15px 0;
+    }
+
+
+    .nav-pills.flex-column .nav-item+.nav-item {
+      margin-top: 5px;
+    }
+
+    .tab-pane {
+      font-weight: 300;
+    }
+
+    .tab-space {
+      padding: 20px 0 50px;
+      font-weight: 300;
+    }
+
+
+    .nav-pills.flex-column .nav-item+.nav-item {
+      margin-top: 5px;
+    }
+
+    .tab-pane {
+      font-weight: 300;
+    }
+
+    .tab-space {
+      padding: 20px 0 50px;
+      font-weight: 300;
+    }
+
+
+
+
+    .nav-pills.nav-pills-rose .nav-item .nav-link.active,
+    .nav-pills.nav-pills-rose .nav-item .nav-link.active:focus,
+    .nav-pills.nav-pills-rose .nav-item .nav-link.active:hover {
+      background-color: #e91e63;
+      box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(233, 30, 99, .6);
+      color: #fff;
+    }
+
+
+    .nav-pills.nav-pills-cyan .nav-item .nav-link.active,
+    .nav-pills.nav-pills-cyan .nav-item .nav-link.active:focus,
+    .nav-pills.nav-pills-cyan .nav-item .nav-link.active:hover {
+      background-color: #00bfa5;
+      box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(233, 30, 99, .6);
+      color: #fff;
+    }
+
+
+    .ncy i {
+      color: #00bfa5;
+    }
+
+    .active.ncy i {
+      color: #fff;
+    }
+
+
+
+
+    .rose {
+      background-color: #e91e63;
+    }
+
+    .img-alt {
+      width: 20%;
+      height: 170px;
+      border-radius: 5%;
+      padding: 5px;
+      background-color: #e91e63;
+      background: -webkit-linear-gradient(to bottom, #DA4453, #89216B, #DA4453);
+      background: linear-gradient(to bottom, #DA4453, #89216B, #DA4453);
+    }
+
+    .img-alt img {
+      width: 100%;
+      height: 100%;
+      border-radius: 5%;
+      border: 5px solid white;
+    }
+
+    .purple {
+      background-color: #9c27b0;
+    }
+
+    .about {
+      width: 50%;
+      height: 250px;
+      border-radius: 3%;
+      padding: 5px;
+      background-color: #ad5389;
+      background: -webkit-linear-gradient(to bottom, #ad5389, ##3c1053, #ad5389);
+      background: linear-gradient(to bottom, #ad5389, ##3c1053, #ad5389);
+    }
+
+    .about img {
+      width: 100%;
+      height: 100%;
+      border-radius: 3%;
+      border: 5px solid white;
+    }
+
+    .followers {
+      width: 40%;
+      height: 100px;
+      border-radius: 2%;
+      padding: 3px;
+      background-color: #00bfa5;
+    }
+
+    .followers img {
+      width: 100%;
+      height: 100%;
+      border-radius: 2%;
+      border: 3px solid white;
+      z-index: -1;
+    }
+
+    .followers .texto {
+      position: absolute;
+      width: 10%;
+      font-size: 1.5em;
+      z-index: 99999;
+      margin-left: 16.5%;
+      margin-top: -15%;
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <div class="row pt-5">
+
+    <h4 class=" pl-4 pt-5">
+      <a href="https://mdbootstrap.com/material-design-for-bootstrap/">Painel de Controle </a>
+      <span>/</span>
+      <span>Configurações</span>
+    </h4>
+  </div>
+
+
+  <div class="row mt-1 pl-2 pr-2">
+
+
+    <div class="col-lg-12 col-md-8 pt-2">
+      <ul class="nav nav-pills  nav-pills-icons" role="tablist">
+        <!--
+                        color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                    -->
+        <li class="nav-item">
+          <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
+            <i class=" fa fa-user"></i>
+            Perfil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab">
+            <i class=" fa fa-info"></i>
+            Sobre
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+            <i class=" fa fa-heart"></i>
+            Seguindo
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content tab-space" style="margin-top: -1.5%">
+        <div class="tab-pane active" id="dashboard-1">
+
+          <div class="offer offer-default">
+            <div class="shape">
+              <div class="shape-text">
+                <i class="fa fa-user"></i>
+              </div>
+            </div>
+            <div class="offer-content">
+              <div class="lead rose">
+                <h3 class="cab text-white pt-2">Perfil</h3>
+              </div>
+              <form action="{% url 'atualizaDadosUser' %}" method="post" enctype="multipart/form-data" id="formReal" target="_top">
+                {% csrf_token %}
+                <ul class="list-group pt-5">
+
+                  <li class="list-group-item">
+                    <label>Alterar imagem</label>
+                    <label for="imgReal" class="pl-3 pt-1"><a class=" btn btn-sm rose text-white"><i class="fa fa-cloud mr-1 text-white"></i>Atualizar</a></label>
+                    <input type="file" name="imagem" id="imgReal" class="form-control" style="display: none"><br>
+                    <div class="row pt-1 pl-3">
+                      <img src="{% static perfil_logado.imagem_perfil %}" id="essaimg" class="img-fluid img-alt">
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <label>Alterar nome de usuário</label>
+                    <input type="text" name="nome" class="form-control" value="{{perfil_logado.nome}}">
+                  </li>
+                  <li class="list-group-item">
+                    <label>Alterar email</label>
+                    <input type="email" name="email" class="form-control" value="{{dados.email}}">
+                  </li>
+
+                  <li class="list-group-item">
+                    <label>Alterar senha</label>
+                    <button class="input-group-addon fa fa-eye btn  btn-sm rose text-white" id="password_visibility" type="button"></button>
+                    <input type="password" name="senha" id="password_input" class="form-control">
+                  </li>
+
+
+                  <li class="list-group-item">
+                    <label>Confirmar nova senha</label>
+                    <button class="input-group-addon fa fa-eye btn  btn-sm rose text-white" id="password_visibility2" type="button"></button>
+                    <input type="password" name="confSenha" id="password_input2" class="form-control">
+                  </li>
+                </ul>
+
+                <button type="submit" name="confirmar" class="form-control btn rose w-100">Confirmar Alterações</button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="tab-pane" id="schedule-1">
+          <div class="offer offer-purple">
+            <div class="shape">
+              <div class="shape-text">
+                <i class="fa fa-quote-right"></i>
+              </div>
+            </div>
+            <div class="offer-content">
+              <div class="lead purple">
+                <h3 class="cab text-white pt-2">Sobre</h3>
+              </div>
+
+              <ul class="list-group pt-5">
+
+                <li class="list-group-item">
+                  <label>Inserir imagem do painel</label>
+                  <label for="img" class="pl-3 pt-1"><a class=" btn btn-sm purple text-white"><i class="fa fa-plus mr-1 text-white"></i>Adicionar</a></label>
+                  <input type="file" name="emailalt" id="img" class="form-control" style="display: none">
+                  <div class="row pl-2">
+                    <img src="{% static 'img/team/luis.jpg' %}" class="img-fluid about">
+                  </div>
+
+                <li class="list-group-item">
+                  <label style="width: 100%">Insira um link no painel
+                    <input type="text" name="link" class=" form-control">
+                    <button class="btn purple w-100">Criar Painel</button>
+                  </label>
+                </li>
+
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tasks-1">
+          <div class="offer offer-cyan">
+            <div class="shape">
+              <div class="shape-text">
+                <i class="fa fa-heart"></i>
+              </div>
+            </div>
+            <div class="offer-content">
+              <div class="lead lead6">
+                <h3 class="cab text-white pt-2">Seguindo</h3>
+              </div>
+
+              <div class="col-lg-6 col-md-12">
+                <div class="row">
+                  <div class="col-md-3">
+                    <ul class="nav nav-pills nav-pills-icons nav-pills-cyan flex-column pt-5" role="tablist">
+                      <!--
+                                color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                            -->
+                      <li class="nav-item">
+                        <a class="nav-link ncy active" style="text-align: center" href="#dashboard-2" role="tab" data-toggle="tab">
+                          <i class="fa fa-film" style="display: block;  "></i>
+                          Canais
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link ncy" href="#schedule-2" style="text-align: center;" role="tab" data-toggle="tab">
+                          <i class="fa fa-book" style="display: block;  "></i>
+                          Áreas
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="tab-content pt-5">
+                      <div class="tab-pane active" id="dashboard-2">
+                        <div class="row pl-2">
+                          <div class=" followers">
+                            <img src="{% static 'img/team/joao.jpg' %}" class="img-fluid">
+                            <div class="texto">
+                              <a href=""><i class="fa fa-heart red-text"></i></a>
+                            </div>
+                          </div>
+
+                          <div class="pl-2"></div>
+                          <div class=" followers">
+                            <img src="{% static 'img/team/joao.jpg' %}" class="img-fluid">
+                            <div class="texto">
+                              <a href=""><i class="fa fa-heart red-text"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="schedule-2">
+                        <div class="row pl-2">
+                          <div class=" followers area">
+                            <img src="{% static 'img/area/natureza.jpg' %}" class="img-fluid">
+                            <div class="texto">
+                              <a href=""><i class="fa fa-heart red-text"></i></a>
+                            </div>
+                          </div>
+
+                          <div class="pl-2"></div>
+
+
+                          <div class=" followers">
+                            <img src="{% static 'img/area/exatas.jpg' %}" class="img-fluid">
+                            <div class="texto">
+                              <a href=""><i class="fa fa-heart red-text"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+  </div>
+  </div>
+  </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  <script src="{% static 'js/validaCadastro.js' %}" charset="utf-8"></script>
+  <script src="{% static 'js/validaLogin.js' %}" charset="utf-8"></script>
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <script src="{% static 'js/video.min.js' %}"></script>
+  <script src="{% static 'js/videojs-contrib-hls.min.js' %}"></script>
+  <script type="text/javascript">
+    new WOW().init();
+  </script>
+
+  <script type="text/javascript">
+    $("#imgReal").change(function() {
+      let form = document.getElementById('formReal');
+      let formData = new FormData(form);
+      $.ajax({
+        url: "/mudaFotoUser/",
+        type: "POST",
+        data: formData,
+        success: function(data) {
+          document.getElementById('essaimg').src = "/static/" + data.caminho;
+        },
+        processData: false, // tell jQuery not to process the data
+        contentType: false
+      })
+    });
+    $(function() {
+      $("#password_visibility").click(function() {
+        var pass_input = document.getElementById("password_input");
+        if (pass_input.type === "password") {
+          pass_input.type = "text";
+          $(this).removeClass("fa-eye").addClass("fa-eye-slash");
+        } else {
+          pass_input.type = "password";
+          $(this).removeClass("fa-eye-slash").addClass("fa-eye")
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function() {
+      $("#password_visibility2").click(function() {
+        var pass_input2 = document.getElementById("password_input2");
+        if (pass_input2.type === "password") {
+          pass_input2.type = "text";
+          $(this).removeClass("fa-eye").addClass("fa-eye-slash");
+        } else {
+          pass_input2.type = "password";
+          $(this).removeClass("fa-eye-slash").addClass("fa-eye")
+        }
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>

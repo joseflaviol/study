@@ -627,3 +627,63 @@ def atualizaDadosStream(request):
 
         stream.save()
     return redirect("/canal/"+perfil.nome)
+
+def config(request):
+    stream = None
+    perfil = perfil_logado(request)
+    return render(request, "config.html", {"perfil_logado": perfil_logado(request), "dados": userDados(request)})
+
+def mudaFotoUser(request):
+    perfil = perfil_logado(request)
+    img = request.FILES['imagem']
+    caminho = 'app/static/users/'+perfil.nome+'/prev.jpg'
+    with open(caminho, 'wb+') as destination:
+        for chunk in img.chunks():
+            destination.write(chunk)
+    caminhoBanco = "users/"+perfil.nome+'/prev.jpg'
+    data = {
+        "caminho": caminhoBanco
+    }
+    return JsonResponse(data)
+
+def atualizaDadosUser(request):
+    imagem = None
+    nome = None
+    email = None
+    senha = None
+    perfil = perfil_logado(request)
+    user = User.objects.get(username=perfil.nome)
+    if 'nome' in request.POST:
+        nome = request.POST['nome']
+        os.rename('app/static/users/'+perfil.nome,'app/static/users/'+nome)
+        perfil.nome = nome
+        user.username = nome
+    if 'imagem' in request.FILES:
+        imagem = request.FILES['imagem']
+        if nome != None:
+            caminho = 'app/static/users/'+nome+'/'+imagem.name+'.jpg'
+            caminhoBanco = "users/"+nome+'/'+imagem.name+'.jpg'
+        else:
+            caminho = 'app/static/users/'+perfil.nome+'/'+imagem.name+'.jpg'
+            caminhoBanco = "users/"+perfil.nome+'/'+imagem.name+'.jpg'
+        with open(caminho, 'wb+') as destination:
+            for chunk in imagem.chunks():
+                destination.write(chunk)
+        if os.path.isfile(caminho):
+            for CleanUp in glob.glob('app/static/users/'+perfil.nome+'/*'):
+                print CleanUp
+                if not CleanUp.endswith(imagem.name+'.jpg') and not CleanUp.endswith("stream.jpg"):
+                    os.remove(CleanUp)
+        perfil.imagem_perfil = caminhoBanco
+    if 'email' in request.POST:
+        email = request.POST['email']
+        user.email = email
+    if 'senha' in request.POST:
+        senha = request.POST['senha']
+        user.set_password(senha)
+    perfil.save()
+    user.save()
+    usuario = authenticate(request, username=nome, password=senha)
+    login(request, usuario)
+
+    return redirect("/painel/"+perfil.nome)

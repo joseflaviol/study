@@ -30,7 +30,10 @@ urlpatterns = [
     url(r'^userIframe/$', views.userIframe, name="userIframe"),
     url(r'^userTutorial/$', views.userTutorial, name="userTutorial"),
     url(r'^obsS/$', views.obsS, name="obsS"),
+    url(r'^config/$', views.config, name="config"),
     url(r'^avaliacao/$', views.avaliacao, name="avaliacao"),
     url(r'^mudaFoto/$', views.mudaFoto, name="mudaFoto"),
-    url(r'^atualizaStreamDados/$', views.atualizaDadosStream, name="atualizaStreamDados")
+    url(r'^mudaFotoUser/$', views.mudaFotoUser, name="mudaFotoUser"),
+    url(r'^atualizaStreamDados/$', views.atualizaDadosStream, name="atualizaStreamDados"),
+    url(r'^atualizaDadosUser/$', views.atualizaDadosUser, name="atualizaDadosUser")
 ]
