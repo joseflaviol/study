@@ -289,7 +289,7 @@
             <div class="player">
 
             <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" poster="img/backg/fundo.jpg" data-setup='{"fluid": true}'>
-              <source src="http://192.168.100.9:8080/hls/{{streamer.key_stream}}.m3u8" type="application/x-mpegURL" id="src"/>
+              <source src="http://10.10.135.51:8080/hls/{{perfil_logado.key_stream}}.m3u8" type="application/x-mpegURL" id="src"/>
             </video>
 
           </div>
@@ -487,7 +487,7 @@
       $('#msg-list-div').on('scroll', function(){
         scrolling = true;
       });
-      //refreshTimer = setInterval(getMessages, 100);
+      refreshTimer = setInterval(getMessages, 100);
     });
 
     // using jQuery

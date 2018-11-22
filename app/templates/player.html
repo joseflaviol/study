@@ -99,7 +99,7 @@
       <div class="nav" style="margin-top: -10px">
         {% if streaming %}
         <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" poster="img/backg/fundo.jpg" data-setup='{"fluid": true}'>
-          <source src="http://10.10.135.32:8080/hls/{{streamer.key_stream}}.m3u8" type="application/x-mpegURL" id="src"/>
+          <source src="http://10.10.135.51:8080/hls/{{streamer.key_stream}}.m3u8" type="application/x-mpegURL" id="src"/>
         </video>
         {% else %}
         <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" poster="{% static 'img/404.png' %}" data-setup='{"fluid": true}'>
@@ -109,21 +109,15 @@
         <nav id="nav" class="nav ">
           {% if area %}
           <img src="{% static area.imagem %}" class="float-left ml-3" height="50" alt="placeholder">
+          {% else %}
+          <img src="https://www.urbanarts.com.br/imagens/produtos/063275/0/Detalhes/uma-flor-amarela.jpg" class="float-left ml-3" height="50" alt="placeholder">
+          {% endif %}
           <div class=" d-inline-block ml-1">
             <p class=" text-md-left font-weight-bold text-uppercase">{{stream.titulo}}</p>
             <a href="">
               <p class=" text-sm-left ml-2  " style="margin-top: -21px"><i class="fa fa-book study-text mr-1"></i>{{stream.area}}</p>
             </a>
           </div>
-          {% else %}
-          <img src="" class="float-left ml-3" height="50" alt="placeholder">
-          <div class=" d-inline-block ml-1">
-            <p class=" text-md-left font-weight-bold text-uppercase">{{stream.titulo}}</p>
-            <a href="">
-              <p class=" text-sm-left ml-2" style="margin-top: -21px"><i class="fa fa-book study-text mr-1"></i>{{stream.area}}</p>
-            </a>
-          </div>
-          {% endif %}
           <p class="ml-auto"></p>
           <p class="ml-auto"></p>
           <p class="ml-auto"></p>
@@ -167,7 +161,7 @@
   <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
   <script src="{% static 'js/video.min.js' %}"></script>
-  <script src="{% static 'js/videojs-contrib-hls.min.js' %}"></script>
+  <script src="{% static 'js/videojs-contrib-hls.js' %}"></script>
   <!--<script src="{% static 'js/videojs-contrib-hls.js' %}"></script>-->
   <script type="text/javascript">
     new WOW().init();

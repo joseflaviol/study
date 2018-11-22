@@ -62,16 +62,16 @@
     }
     .image_inner_container{
         border-radius: 50%;
-        padding: 5px;  
+        padding: 5px;
         height: 140px;
-        width: 140px;    
-        background: -webkit-linear-gradient(to bottom, #2c3e50, #3498db,  #2c3e50); 
+        width: 140px;
+        background: -webkit-linear-gradient(to bottom, #2c3e50, #3498db,  #2c3e50);
         background: linear-gradient(to bottom, #3498db, #3498db,  #2c3e50);
        }
 
        .image_inner_container2{
         border-radius: 50%;
-        padding: 5px;  
+        padding: 5px;
         height: 40px;
         width: 40px;
        }
@@ -83,7 +83,7 @@
        }
 
         .image_inner_container2 img{
-      
+
         border-radius: 50%;
         border: 5px solid white;
        }
@@ -160,7 +160,7 @@
               <a class='dropdown-item rounded' href="{% url 'painel' perfil_logado.nome %}">
                 <div class='espaço rounded w-100'> Painel de Controle</div>
               </a>
-              <a class='dropdown-item rounded' href=''>
+              <a class='dropdown-item rounded' href="{% url 'canal' perfil_logado.nome %}">
                 <div class='espaço rounded w-100'> Canal</div>
               </a>
               <a class='dropdown-item rounded' href="{% url 'logout' 'streams' %}">
@@ -320,7 +320,7 @@
         <div class="sidebar-fixed position-fixed" >
 
             <div class="image_inner_container mt-1">
-            
+
                 <img src="{% static perfil_logado.imagem_perfil %}" id="test" class="img-fluid" alt="">
 
             </div>

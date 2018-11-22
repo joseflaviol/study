@@ -46,12 +46,19 @@ def streams(request):
     return render(request, "streams.html", {"perfil_logado" : perfil_logado(request), "perfil_status": perfil_status(request), "busca":busca, "transmissao": transmissao, "destaque": Transmissao.objects.all(), "area": area, "numeroArea": numeroArea})
 
 def atualizaTempo(request, streams):
+    dia = 0
     for row in streams:
         x = datetime.datetime.strptime(row.hrInicio, '%Y-%m-%d %H:%M:%S.%f')
         diff = datetime.datetime.now() - x
-        diff = datetime.datetime.strptime(str(diff), '%H:%M:%S.%f')
+        try:
+            diff = datetime.datetime.strptime(str(diff), '%H:%M:%S.%f')
+        except Exception as e:
+            diff = datetime.datetime.strptime(str(diff), '%d %H:%M:%S.%f')
+            dia = diff.day
         hora = diff.hour
         min = diff.minute
+        if int(dia) > 0:
+            msg = str(day)+"d e "+str(min)+"min"
         if int(hora) > 0:
             msg = str(hora)+"h e "+str(min)+"min"
         else:
@@ -131,6 +138,7 @@ def player(request, streamer_id):
     contAvaliacao = 0
     nota = None
     avaliou = None
+    area = None
     streamer = Perfil.objects.get(id=streamer_id)
     if Avaliacao.objects.filter(avaliado=streamer.id):
         avaliacao = Avaliacao.objects.filter(avaliado=streamer.id)
@@ -153,24 +161,26 @@ def player(request, streamer_id):
         stream = Transmissao.objects.get(streamer=streamer.nome)
         stream.avaliacao = nota
         stream.save()
-        if  Area.objects.filter(area=streamer.area):
+        if  Area.objects.filter(area=stream.area):
             area = Area.objects.get(area=stream.area)
-        perfil.assistindo = stream.id
-        perfil.save()
-        atualizaViews(request)
         return render(request, "player.html", {"perfil_logado": perfil_logado(request), "avaliou": avaliou, "nota": nota, "streamer": streamer, "stream": stream, "seguidores": numero_seguidores, "botao_seguir": botao_seguir, "area": area, "streaming": streaming})
     except Exception as e:
-        if Transmissao.objects.filter(streamer=streamer.nome) and Area.objects.filter(area=stream.area):
+        if Transmissao.objects.filter(streamer=streamer.nome):
             stream = Transmissao.objects.get(streamer=streamer.nome)
             if nota is not None:
                 stream.avaliacao = nota
             else:
                 stream.avaliacao = "0"
             stream.save()
-            area = Area.objects.get(area=stream.area)
+            perfil.assistindo = stream.id
+            perfil.save()
+            atualizaViews(request)
+            if Area.objects.filter(area=stream.area):
+                area = Area.objects.get(area=stream.area)
+            else:
+                area = None
         else:
             stream = None
-            area = None
         return render(request, "player.html", {"perfil_logado": perfil_logado(request), "avaliou": avaliou, "nota": nota, "streamer": streamer, "stream": stream, "seguidores": numero_seguidores, "botao_seguir": botao_seguir, "area": area, "streaming": streaming})
 
 def perfil_logado(request):
