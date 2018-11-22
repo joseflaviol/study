@@ -520,7 +520,11 @@
                     <label for="imgReal" class="pl-3 pt-1"><a class=" btn btn-sm rose text-white"><i class="fa fa-cloud mr-1 text-white"></i>Atualizar</a></label>
                     <input type="file" name="imagem" id="imgReal" class="form-control" style="display: none"><br>
                     <div class="row pt-1 pl-3">
+                      {% if img %}
+                      <img src="/static/{{img}}" id="essaimg" class="img-fluid img-alt">
+                      {% else %}
                       <img src="{% static perfil_logado.imagem_perfil %}" id="essaimg" class="img-fluid img-alt">
+                      {% endif %}
                     </div>
                   </li>
                   <li class="list-group-item">

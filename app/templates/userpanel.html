@@ -15,6 +15,16 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
   <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
   <link rel="icon" href="{% static 'img/logo.ico' %}" type="imagex-icon" />
+  <script type="text/javascript">
+    let verifyIframe = false;
+    function vi(param){
+      if (param != "config") {
+        verifyIframe = false;
+      } else {
+        verifyIframe = true;
+      }
+    }
+  </script>
   <style type="text/css">
     body{
       font-family: 'Rajdhani', sans-serif;
@@ -331,16 +341,16 @@
 
 
             <div class="list-group list-group-flush pt-3">
-                <a href="{% url 'userIframe' %}" target="frame"  class="list-group-item list-group-item-action waves-effect">
+                <a href="{% url 'userIframe' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
                     <i class="fa fa-home mr-3"></i>Ao vivo
                 </a>
-                <a href="{% url 'userTutorial' %}" target="frame" class="list-group-item list-group-item-action waves-effect">
+                <a href="{% url 'userTutorial' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
                     <i class="fa fa-flag mr-3"></i>Tutorial</a>
 
-                <a href="{% url 'obsS' %}" target="frame" class="list-group-item list-group-item-action waves-effect">
+                <a href="{% url 'obsS' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
                     <i class="fa fa-futbol-o mr-3"></i>OBS Studio</a>
 
-                <a href="{% url 'config' %}" target="frame" class="list-group-item list-group-item-action waves-effect">
+                <a href="{% url 'config' %}" target="frame" id="config" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
                     <i class="fa fa-table mr-3"></i>Configurações</a>
 
             </div>
@@ -348,7 +358,7 @@
         </div>
         <!-- Sidebar -->
 
-          <iframe class="embed-responsive-item" name="frame" src="{% url 'userIframe' %}" frameborder="0" style="height: 100vh; width: 100%; padding-left: 15%;" allowfullscreen>
+          <iframe class="embed-responsive-item" name="frame" id="iframeReal" src="{% url 'userIframe' %}" frameborder="0" style="height: 100vh; width: 100%; padding-left: 15%;" allowfullscreen>
 
 
     </iframe>
@@ -374,6 +384,9 @@
             console.log(data.img);
             document.getElementById('test').src = "/static/".concat(data.caminho);
             document.getElementById('img_perfil').src = "/static/".concat(data.caminho);
+            if (verifyIframe == true) {
+                document.getElementById('iframeReal').src = "/config/?att_img="+data.caminho;
+            }
           }
         },
         processData: false,  // tell jQuery not to process the data

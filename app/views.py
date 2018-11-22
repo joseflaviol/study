@@ -629,9 +629,12 @@ def atualizaDadosStream(request):
     return redirect("/canal/"+perfil.nome)
 
 def config(request):
+    img = None
+    if "att_img" in request.GET:
+        img = request.GET.get('att_img', None)
     stream = None
     perfil = perfil_logado(request)
-    return render(request, "config.html", {"perfil_logado": perfil_logado(request), "dados": userDados(request)})
+    return render(request, "config.html", {"perfil_logado": perfil_logado(request), "dados": userDados(request), "img": img})
 
 def mudaFotoUser(request):
     perfil = perfil_logado(request)
