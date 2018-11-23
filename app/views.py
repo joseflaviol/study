@@ -658,6 +658,26 @@ def mudaFotoUser(request):
     else:
         return None
 
+def validaAtualizaDadosUser(request):
+    data = {
+        'result': False
+    }
+    if 'nome' in request.GET:
+        nome = request.GET.get('nome', None)
+        if Perfil.objects.filter(nome=nome):
+            data['result'] = True
+    if 'email' in request.GET:
+        email = request.GET.get('email', None)
+        if User.objects.filter(email=email):
+            data['result'] = True
+    if 'senhaAtual' in request.GET:
+        senhaAtual = request.GET.get('senhaAtual', None)
+        perfil = perfil_logado(request)
+        user_exists = authenticate(request, username=perfil.nome, password=senhaAtual)
+        if user_exists is None:
+            data['result'] = True
+    return JsonResponse(data)
+
 def atualizaDadosUser(request):
     imagem = None
     nome = None

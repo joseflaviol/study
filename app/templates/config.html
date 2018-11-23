@@ -529,28 +529,34 @@
                   </li>
                   <li class="list-group-item">
                     <label>Alterar nome de usuário</label>
-                    <input type="text" name="nome" class="form-control" value="{{perfil_logado.nome}}">
+                    <input type="text" name="nome" id="nome" class="form-control" value="{{perfil_logado.nome}}">
                   </li>
                   <li class="list-group-item">
                     <label>Alterar email</label>
-                    <input type="email" name="email" class="form-control" value="{{dados.email}}">
+                    <input type="email" name="email" id="email" class="form-control" value="{{dados.email}}">
+                  </li>
+
+                  <li class="list-group-item">
+                    <label>Senha Atual</label>
+                    <button class="input-group-addon fa fa-eye btn  btn-sm rose text-white" id="password_visibility" type="button"></button>
+                    <input type="password" name="senhaAtual" id="password_input" class="form-control">
                   </li>
 
                   <li class="list-group-item">
                     <label>Alterar senha</label>
                     <button class="input-group-addon fa fa-eye btn  btn-sm rose text-white" id="password_visibility" type="button"></button>
-                    <input type="password" name="senha" id="password_input" class="form-control">
+                    <input type="password" name="senha" id="password_input2" class="form-control">
                   </li>
 
 
                   <li class="list-group-item">
                     <label>Confirmar nova senha</label>
                     <button class="input-group-addon fa fa-eye btn  btn-sm rose text-white" id="password_visibility2" type="button"></button>
-                    <input type="password" name="confSenha" id="password_input2" class="form-control">
+                    <input type="password" name="confSenha" id="password_input3" class="form-control">
                   </li>
                 </ul>
 
-                <button type="submit" name="confirmar" class="form-control btn rose w-100">Confirmar Alterações</button>
+                <button type="button" id="btnAltera" name="confirmar" class="form-control btn rose w-100">Confirmar Alterações</button>
 
               </form>
             </div>
@@ -702,6 +708,68 @@
   </script>
 
   <script type="text/javascript">
+    let nome;
+    let email;
+    let senhaAtual;
+    let senha;
+    let confSenha;
+    $("#btnAltera").click(function(){
+      nome = $("#nome").val();
+      email = $("#email").val();
+      senhaAtual = $("#password_input").val();
+      senha = $("#password_input2").val();
+      confSenha = $("#password_input3").val();
+      if (nome == "{{perfil_logado.nome}}") {
+        nome = "";
+      }
+      if (email == "{{dados.email}}") {
+        email = "";
+      }
+      if (senha != "" && confSenha != "") {
+        if (senha == confSenha) {
+          $.ajax({
+            url: "/validaAtualizaDadosUser/",
+            type: "GET",
+            data: {
+              "nome": nome,
+              "email": email,
+              "senhaAtual": senhaAtual,
+            },
+            dataType: "json",
+            success: function(data) {
+              if (data.result) {
+                alert("algo não deu certo...");
+              } else {
+                document.getElementById('btnAltera').type = "submit";
+                console.log(document.getElementById('btnAltera').type);
+                $("#btnAltera").click();
+              }
+            }
+          });
+        } else {
+          alert("senhas estão diferentes...");
+        }
+      } else {
+        $.ajax({
+          url: "/validaAtualizaDadosUser/",
+          type: "GET",
+          data: {
+            "nome": nome,
+            "email": email,
+          },
+          dataType: "json",
+          success: function(data) {
+            if (data.result) {
+              alert("algo não deu certo...");
+            } else {
+              document.getElementById('btnAltera').type = "submit";
+              console.log(document.getElementById('btnAltera').type);
+              $("#btnAltera").click();
+            }
+          }
+        });
+      }
+    });
     $("#imgReal").change(function() {
       let form = document.getElementById('formReal');
       let formData = new FormData(form);
