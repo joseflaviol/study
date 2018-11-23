@@ -630,20 +630,17 @@
                     <div class="tab-content pt-5">
                       <div class="tab-pane active" id="dashboard-2">
                         <div class="row pl-2">
-                          <div class=" followers">
-                            <img src="{% static 'img/team/joao.jpg' %}" class="img-fluid">
-                            <div class="texto">
-                              <a href=""><i class="fa fa-heart red-text"></i></a>
-                            </div>
-                          </div>
-
-                          <div class="pl-2"></div>
-                          <div class=" followers">
-                            <img src="{% static 'img/team/joao.jpg' %}" class="img-fluid">
-                            <div class="texto">
-                              <a href=""><i class="fa fa-heart red-text"></i></a>
-                            </div>
-                          </div>
+                          {% if seguindo %}
+                            {% for row in seguindo %}
+                              <div class="pl-2"></div>
+                              <div class="followers">
+                                <img src="{% static row.imagem_perfil %}" class="img-fluid">
+                                <div class="texto">
+                                  <a href="{% url 'canal' row.nome %}" target="_top"><i class="fa fa-heart red-text"></i></a>
+                                </div>
+                              </div>
+                            {% endfor %}
+                          {% endif %}
                         </div>
                       </div>
                       <div class="tab-pane" id="schedule-2">

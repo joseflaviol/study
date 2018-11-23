@@ -630,24 +630,33 @@ def atualizaDadosStream(request):
 
 def config(request):
     img = None
+    seguindo = []
     if "att_img" in request.GET:
         img = request.GET.get('att_img', None)
     stream = None
     perfil = perfil_logado(request)
-    return render(request, "config.html", {"perfil_logado": perfil_logado(request), "dados": userDados(request), "img": img})
+    if Segue.objects.filter(seguidor=perfil.nome):
+        segue = Segue.objects.filter(seguidor=perfil.nome)
+        for row in segue:
+            perfil = Perfil.objects.get(nome=row.seguindo)
+            seguindo.append(perfil)
+    return render(request, "config.html", {"perfil_logado": perfil_logado(request), "dados": userDados(request), "img": img, "seguindo": seguindo})
 
 def mudaFotoUser(request):
     perfil = perfil_logado(request)
     img = request.FILES['imagem']
-    caminho = 'app/static/users/'+perfil.nome+'/prev.jpg'
-    with open(caminho, 'wb+') as destination:
-        for chunk in img.chunks():
-            destination.write(chunk)
-    caminhoBanco = "users/"+perfil.nome+'/prev.jpg'
-    data = {
-        "caminho": caminhoBanco
-    }
-    return JsonResponse(data)
+    if img != None:
+        caminho = 'app/static/users/'+perfil.nome+'/prev.jpg'
+        with open(caminho, 'wb+') as destination:
+            for chunk in img.chunks():
+                destination.write(chunk)
+        caminhoBanco = "users/"+perfil.nome+'/prev.jpg'
+        data = {
+            "caminho": caminhoBanco
+        }
+        return JsonResponse(data)
+    else:
+        return None
 
 def atualizaDadosUser(request):
     imagem = None
@@ -658,36 +667,41 @@ def atualizaDadosUser(request):
     user = User.objects.get(username=perfil.nome)
     if 'nome' in request.POST:
         nome = request.POST['nome']
-        os.rename('app/static/users/'+perfil.nome,'app/static/users/'+nome)
-        perfil.nome = nome
-        caminhoImg = perfil.imagem_perfil
-        caminhoImg = caminhoImg.split('/')
-        imgNome = caminhoImg[2]
-        perfil.imagem_perfil = "users/"+nome+"/"+imgNome
-        user.username = nome
+        if nome != "":
+            os.rename('app/static/users/'+perfil.nome,'app/static/users/'+nome)
+            perfil.nome = nome
+            caminhoImg = perfil.imagem_perfil
+            caminhoImg = caminhoImg.split('/')
+            imgNome = caminhoImg[2]
+            if imgNome != "user.png":
+                perfil.imagem_perfil = "users/"+nome+"/"+imgNome
+            user.username = nome
     if 'imagem' in request.FILES:
         imagem = request.FILES['imagem']
-        if nome != None:
-            caminho = 'app/static/users/'+nome+'/'+imagem.name+'.jpg'
-            caminhoBanco = "users/"+nome+'/'+imagem.name+'.jpg'
-        else:
-            caminho = 'app/static/users/'+perfil.nome+'/'+imagem.name+'.jpg'
-            caminhoBanco = "users/"+perfil.nome+'/'+imagem.name+'.jpg'
-        with open(caminho, 'wb+') as destination:
-            for chunk in imagem.chunks():
-                destination.write(chunk)
-        if os.path.isfile(caminho):
-            for CleanUp in glob.glob('app/static/users/'+perfil.nome+'/*'):
-                print CleanUp
-                if not CleanUp.endswith(imagem.name+'.jpg') and not CleanUp.endswith("stream.jpg"):
-                    os.remove(CleanUp)
-        perfil.imagem_perfil = caminhoBanco
+        if imagem != None:
+            if nome != None:
+                caminho = 'app/static/users/'+nome+'/'+imagem.name+'.jpg'
+                caminhoBanco = "users/"+nome+'/'+imagem.name+'.jpg'
+            else:
+                caminho = 'app/static/users/'+perfil.nome+'/'+imagem.name+'.jpg'
+                caminhoBanco = "users/"+perfil.nome+'/'+imagem.name+'.jpg'
+            with open(caminho, 'wb+') as destination:
+                for chunk in imagem.chunks():
+                    destination.write(chunk)
+            if os.path.isfile(caminho):
+                for CleanUp in glob.glob('app/static/users/'+perfil.nome+'/*'):
+                    print CleanUp
+                    if not CleanUp.endswith(imagem.name+'.jpg') and not CleanUp.endswith("stream.jpg"):
+                        os.remove(CleanUp)
+            perfil.imagem_perfil = caminhoBanco
     if 'email' in request.POST:
         email = request.POST['email']
-        user.email = email
+        if email != "":
+            user.email = email
     if 'senha' in request.POST:
         senha = request.POST['senha']
-        user.set_password(senha)
+        if senha != "":
+            user.set_password(senha)
     perfil.save()
     user.save()
     usuario = authenticate(request, username=nome, password=senha)
