@@ -16,9 +16,10 @@
   <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
   <link rel="icon" href="{% static 'img/logo.ico' %}" type="imagex-icon" />
   <style type="text/css">
-    body{
+    body {
       font-family: 'Rajdhani', sans-serif;
     }
+
     @media (min-width: 800px) and (max-width: 850px) {
       .navbar:not(.top-nav-collapse) {
         background: #408AFF !important;
@@ -51,9 +52,11 @@
       .card-title {
         display: none;
       }
+
       #form3 {
         display: none;
       }
+
       #stream {
         display: none;
       }
@@ -63,6 +66,7 @@
       #form3 {
         display: none;
       }
+
       #stream {
         display: none;
       }
@@ -72,6 +76,7 @@
       #texto {
         display: none;
       }
+
       .img-left {
         margin-left: -4px;
         margin-top: -13px
@@ -157,12 +162,15 @@
       iframe {
         width: 94%;
       }
+
       #card {
         display: none;
       }
+
       #card2 {
         display: inline
       }
+
       ;
 
     }
@@ -279,33 +287,35 @@
       opacity: 0;
       filter: alpha(opacity=0);
     }
-    .image_inner_container{
-        border-radius: 50%;
-        padding: 5px;  
-        height: 140px;
-        width: 140px;    
-        background: -webkit-linear-gradient(to bottom, #2c3e50, #3498db,  #2c3e50); 
-        background: linear-gradient(to bottom, #3498db, #3498db,  #2c3e50);
-       }
 
-       .image_inner_container2{
-        border-radius: 50%;
-        padding: 5px;  
-        height: 40px;
-        width: 40px;
-       }
-        .image_inner_container img{
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 5px solid white;
-       }
+    .image_inner_container {
+      border-radius: 50%;
+      padding: 5px;
+      height: 140px;
+      width: 140px;
+      background: -webkit-linear-gradient(to bottom, #2c3e50, #3498db, #2c3e50);
+      background: linear-gradient(to bottom, #3498db, #3498db, #2c3e50);
+    }
 
-        .image_inner_container2 img{
-      
-        border-radius: 50%;
-        border: 5px solid white;
-       }
+    .image_inner_container2 {
+      border-radius: 50%;
+      padding: 5px;
+      height: 40px;
+      width: 40px;
+    }
+
+    .image_inner_container img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 5px solid white;
+    }
+
+    .image_inner_container2 img {
+
+      border-radius: 50%;
+      border: 5px solid white;
+    }
   </style>
 
 </head>
@@ -373,20 +383,20 @@
         {% endif %}
         <li class='nav-item '>
           <img src="{% static perfil_logado.imagem_perfil %}" id="img_perfil" class='d-inline-block align-top image_inner_container2'>
-          <li class='nav-item dropdown ml-1'>
-            <a class='nav-link dropdown-toggle' id='drop_user' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>{{perfil_logado.nome}}</a>
-            <div class='dropdown-menu dropdown-menu-right' aria-labelledby='drop_user'>
-              <a class='dropdown-item rounded' href="{% url 'painel' perfil_logado.nome %}">
-                <div class='espaço rounded w-100'> Painel de Controle</div>
-              </a>
-              <a class='dropdown-item rounded' href="{% url 'canal' perfil_logado.nome %}">
-                <div class='espaço rounded w-100'> Canal</div>
-              </a>
-              <a class='dropdown-item rounded' href="{% url 'logout' 'streams' %}">
-                <div class='espaço rounded w-100'>Sair</div>
-              </a>
-            </div>
-          </li>
+        <li class='nav-item dropdown ml-1'>
+          <a class='nav-link dropdown-toggle' id='drop_user' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>{{perfil_logado.nome}}</a>
+          <div class='dropdown-menu dropdown-menu-right' aria-labelledby='drop_user'>
+            <a class='dropdown-item rounded' href="{% url 'painel' perfil_logado.nome %}">
+              <div class='espaço rounded w-100'> Painel de Controle</div>
+            </a>
+            <a class='dropdown-item rounded' href="{% url 'canal' perfil_logado.nome %}">
+              <div class='espaço rounded w-100'> Canal</div>
+            </a>
+            <a class='dropdown-item rounded' href="{% url 'logout' 'streams' %}">
+              <div class='espaço rounded w-100'>Sair</div>
+            </a>
+          </div>
+        </li>
         </li>
         {% else %}
         <li class='nav-item'>
@@ -508,9 +518,9 @@
                 <div id="menuItems">
                   <ul class="navbar nav" style="background-color: white">
                     <li class="nav-item border-bottom border-light mt-1" style="width: 100%;">
-                        {% for row in area %}
-                        <option style="font-size: 1.1em" id="{{row.id}}"><img src="{% static row.imagem %}" class="img-left" height="30"> {{row.area}}</option>
-                        {% endfor %}
+                      {% for row in area %}
+                      <option style="font-size: 1.1em" id="{{row.id}}"><img src="{% static row.imagem %}" class="img-left" height="30"> {{row.area}}</option>
+                      {% endfor %}
                     </li>
                   </ul>
                 </div>
@@ -518,7 +528,7 @@
             </div>
             <div class="md-form form-sm">
               <i class="fa fa-file-image-o prefix " aria-hidden="true" style="color: #616161;"></i>
-              <span class="btn btn-sm btn-outline-primary" style="width: 20%; margin-left: 27px;" data-toggle="tooltip" data-placement="right" title="Thumbnail"><i class="fa fa-cloud-upload study-text fa-2x" style="text-align: center;" ></i>
+              <span class="btn btn-sm btn-outline-primary" style="width: 20%; margin-left: 27px;" data-toggle="tooltip" data-placement="right" title="Thumbnail"><i class="fa fa-cloud-upload study-text fa-2x" style="text-align: center;"></i>
                 <input type="file" name="imagem" id="imagem" value="Enviar" accept="image/*">
               </span>
             </div>
@@ -547,7 +557,9 @@
                 <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
                 <div class="align-items-left d-inline-block">
                   <p style="font-weight: bolder;">{{row.streamer}}</p>
-                  <small><p style="margin-top: -18px">{{row.area}}</p> </small>
+                  <small>
+                    <p style="margin-top: -18px">{{row.area}}</p>
+                  </small>
                 </div>
               </li>
             </a>
@@ -566,7 +578,9 @@
             <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
             <div class="align-items-left d-inline-block">
               <p style="font-weight: bolder;">{{row.streamer}}</p>
-              <small><p style="margin-top: -18px">{{row.area}}</p> </small>
+              <small>
+                <p style="margin-top: -18px">{{row.area}}</p>
+              </small>
             </div>
           </li>
         </a>
@@ -581,8 +595,8 @@
         <i class="fa fa-video-camera study-text fa-2x mt-4" style="border-bottom: 2px solid #408aff "></i>
         <ul class="list-group" style="width: 80%">
           <a data-toggle="tooltip" data-placement="right" title="Titulo Stream">
-               <img src="{% static 'img/team/luis.jpg' %}" height="35" width="35" class="img-left rounded mt-2" style="margin-left: -1px;">
-            </a>
+            <img src="{% static 'img/team/luis.jpg' %}" height="35" width="35" class="img-left rounded mt-2" style="margin-left: -1px;">
+          </a>
         </ul>
       </div>
     </div>
@@ -599,7 +613,9 @@
               <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
               <div class="align-items-left d-inline-block">
                 <p style="font-weight: bolder;">{{row.streamer}}</p>
-                <small><p style="margin-top: -18px">{{row.area}}</p> </small>
+                <small>
+                  <p style="margin-top: -18px">{{row.area}}</p>
+                </small>
               </div>
             </li>
           </a>
@@ -614,14 +630,16 @@
         <i class="fa fa-video-camera study-text fa-2x mt-4" style="border-bottom: 2px solid #408aff "></i>
         <ul class="list-group" style="width: 80%">
           <a data-toggle="tooltip" data-placement="right" title="Titulo Stream">
-               <img src="{% static 'img/team/luis.jpg' %}" height="35" width="35" class="img-left rounded mt-2" style="margin-left: -1px;">
-            </a>
+            <img src="{% static 'img/team/luis.jpg' %}" height="35" width="35" class="img-left rounded mt-2" style="margin-left: -1px;">
+          </a>
         </ul>
       </div>
     </div>
-    {% endif %}<!-- {% if busca %}
+    {% endif %}
+    <!-- {% if busca %}
     <iframe class="embed-responsive-item" id="buscaIFRAME" src="{% url 'miniBusca' busca %}" width="83.8%" name="ajax" style="position: relative"></iframe> {% else %}-->
-    <iframe class="embed-responsive-item" id="iframe" src="{% url 'mini' %}" width="83.8%" name="ajax" style="position: relative"></iframe> <!--{% endif %}-->
+    <iframe class="embed-responsive-item" id="iframe" src="{% url 'mini' %}" width="83.8%" name="ajax" style="position: relative"></iframe>
+    <!--{% endif %}-->
     </div>
 
     <!-- <div class="fixed-bottom mb-2 zindex-fixed" style="width: 8%">
@@ -668,44 +686,47 @@
   <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
   <script type="text/javascript">
     new WOW().init();
-    var numeroArea = {{numeroArea}};
-    for(var i=0; i<numeroArea; i++){
+    var numeroArea = {
+      {
+        numeroArea
+      }
+    };
+    for (var i = 0; i < numeroArea; i++) {
       var str = "#";
       var id = i + 1;
-      var numero =  str.concat(id.toString());
-      $(numero).click(function(){
+      var numero = str.concat(id.toString());
+      $(numero).click(function() {
         var val = $(this).val();
         $("#area").val(val);
       });
     }
 
-    $("#buscar").keyup(function(){
+    $("#buscar").keyup(function() {
       var busca = $(this).val();
-      if(busca==""){
+      if (busca == "") {
         document.getElementById('iframe').src = "/mini/";
-      }
-      else{
+      } else {
         var str = "/mini/".concat(busca);
         document.getElementById('iframe').src = str;
       }
 
     });
 
-    $("#iniciaStream").click(function(){
+    $("#iniciaStream").click(function() {
       var titulo = $("#titulo").val();
       var area = $("#area").val();
       var imagem = $("#imagem").val();
-      if(!(titulo == "" || area == "" || imagem == "")){
+      if (!(titulo == "" || area == "" || imagem == "")) {
         document.getElementById('iniciaStream').type = "submit";
         $("#iniciaStream").click();
-      }else{
+      } else {
         alert("Preencha todos os dados");
       }
     });
   </script>
 
   <script type="text/javascript">
-  $(function() {
+    $(function() {
       $('[data-toggle="tooltip"]').tooltip()
     })
   </script>
