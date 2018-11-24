@@ -117,7 +117,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="" target="ajax">Procurar</a>
+          <a class="nav-link" href="{% url 'streams' %}" target="ajax">Procurar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="">Destaque</a>
@@ -342,16 +342,16 @@
 
             <div class="list-group list-group-flush pt-3">
                 <a href="{% url 'userIframe' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
-                    <i class="fa fa-home mr-3"></i>Ao vivo
+                    <i class="fa fa-play mr-3"></i>Ao vivo
                 </a>
                 <a href="{% url 'userTutorial' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
-                    <i class="fa fa-flag mr-3"></i>Tutorial</a>
+                    <i class="fa fa-tag mr-3"></i>Tutorial</a>
 
                 <a href="{% url 'obsS' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
-                    <i class="fa fa-futbol-o mr-3"></i>OBS Studio</a>
+                    <i class="fa fa-terminal mr-3"></i>OBS Studio</a>
 
                 <a href="{% url 'config' %}" target="frame" id="config" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
-                    <i class="fa fa-table mr-3"></i>Configurações</a>
+                    <i class="fa fa-gear mr-3"></i>Configurações</a>
 
             </div>
 

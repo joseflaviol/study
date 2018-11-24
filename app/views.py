@@ -495,23 +495,29 @@ def atualizaFiltro(request):
     outros = []
     if 'filtro' in request.GET:
         filtro = request.GET.get('filtro', None)
-        if filtro == "Outros":
-            streams = Transmissao.objects.all()
-            for row in streams:
-                if Area.objects.filter(area=row.area):
-                    pass
-                else:
-                    outros.append(row)
-            return render(request, "mini.html", {"streams": outros, "area": area, "nArea": nArea, "filtro": filtro})
-        elif filtro == "Todos":
-            return render(request, "mini.html", {"streams": Transmissao.objects.all(), "area": area, "nArea": nArea, "filtro": filtro})
-        elif filtro == "Avaliacao":
-            return render(request, "mini.html", {"streams": Transmissao.objects.all().order_by('-avaliacao'), "area": area, "nArea": nArea, "filtro": filtro})
+        if filtro == "todas":
+            return render(request, "mini.html", {"streams": Transmissao.objects.all(), "area": area, "nArea": nArea})
         else:
             returnFiltro = Transmissao.objects.filter(area=filtro)
-        return render(request, "mini.html", {"streams": returnFiltro, "area": area, "nArea": nArea, "filtro": filtro})
-    else:
-        return render(request, "mini.html", {"streams": Transmissao.objects.all(), "area": area, "nArea": nArea})
+            return render(request, "mini.html", {"streams": returnFiltro, "area": area, "nArea": nArea, "filtro": filtro})
+    elif 'avaliacao' in request.GET:
+        avaliacao = request.GET.get('avaliacao', None)
+        if avaliacao == "asc":
+            if 'filtroAv' in request.GET:
+                filtro = request.GET.get('filtroAv', None)
+                resultFiltro = Transmissao.objects.filter(area=filtro).order_by('avaliacao')
+                return render(request, "mini.html", {"streams": resultFiltro, "area": area, "filtro": filtro, "nArea": nArea})
+            else:
+                resultFiltro = Transmissao.objects.all().order_by('avaliacao')
+                return render(request, "mini.html", {"streams": resultFiltro, "area": area, "nArea": nArea})
+        else:
+            if 'filtroAv' in request.GET:
+                filtro = request.GET.get('filtroAv', None)
+                resultFiltro = Transmissao.objects.filter(area=filtro).order_by('-avaliacao')
+                return render(request, "mini.html", {"streams": resultFiltro, "area": area, "filtro": filtro, "nArea": nArea})
+            else:
+                resultFiltro = Transmissao.objects.all().order_by('-avaliacao')
+                return render(request, "mini.html", {"streams": resultFiltro, "area": area, "nArea": nArea})
 
 def painel(request, streamer_nome):
     if perfil_logado(request):

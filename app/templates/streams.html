@@ -363,10 +363,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <form action="{% url 'streams' %}" method="post">
-            {% csrf_token %}
             <input class="form-control" type="search" name="buscar" value="" id="buscar" placeholder="Escreva sua busca...">
-          </form>
         </li>
       </ul>
       <ul class="navbar-nav nav-flex-icons">
@@ -686,11 +683,7 @@
   <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
   <script type="text/javascript">
     new WOW().init();
-    var numeroArea = {
-      {
-        numeroArea
-      }
-    };
+    var numeroArea = {{numeroArea}};
     for (var i = 0; i < numeroArea; i++) {
       var str = "#";
       var id = i + 1;
