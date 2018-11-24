@@ -235,6 +235,9 @@ def cadastro(request, page):
 def login_view(request, page):
     try:
         username = request.POST['username']
+        username_space = username.split(' ')
+        if username_space[1] == "":
+            username = username_space[0]
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
@@ -412,15 +415,21 @@ def ajax(request):
         return JsonResponse(data)
 
 def validaCadastro(request):
-    data = {}
+    contSpace = 0
+    data = {
+        "result": False, "tem_espaco": False
+    }
     if 'username' in request.GET:
         username = request.GET.get('username', None)
+        username_space = username.split(' ')
+        for row in username_space:
+            contSpace += 1
+        if contSpace > 1:
+            data['tem_espaco'] = True
         try:
             username_exists = User.objects.filter(username=username).exists()
             if username_exists:
-                data = {
-                    'result': True
-                }
+                data['result'] = True
             return JsonResponse(data)
         except Exception as e:
             data['result'] = False
@@ -439,16 +448,19 @@ def validaCadastro(request):
             return JsonResponse(data)
 
 def validaLogin(request):
-    data = {}
+    data = {
+        "result": False
+    }
     if 'username' in request.POST and 'password' in request.POST:
         username = request.POST['username']
+        username_space = username.split(' ')
+        if username_space[1] == "":
+            username = username_space[0]
         password = request.POST['password']
         try:
             user_exists = authenticate(request, username=username, password=password)
             if user_exists is not None:
-                data = {
-                    'result': True,
-                }
+                data['result'] = True
             return JsonResponse(data)
         except Exception as e:
             data['result'] = False

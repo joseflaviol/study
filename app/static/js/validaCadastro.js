@@ -14,7 +14,11 @@ $("#username").focusout(function(){
           document.getElementById('erroUsername').innerHTML = "Usuário já existe!";
           erroUsername = true;
         }
-        else{
+        else if (data.tem_espaco){
+          document.getElementById('erroUsername').style.display = "";
+          document.getElementById('erroUsername').innerHTML = "Não é permitido o uso de espaço no nome!";
+          erroUsername = true;
+        } else {
           erroUsername = false;
           document.getElementById('erroUsername').style.display = "none"
         }
