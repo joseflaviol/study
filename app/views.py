@@ -233,10 +233,14 @@ def cadastro(request, page):
         raise
 
 def login_view(request, page):
+    contSpace = 0
     try:
         username = request.POST['username']
         username_space = username.split(' ')
-        if username_space[1] == "":
+        for row in username_space:
+            if row != "":
+                contSpace += 1
+        if contSpace == 1:
             username = username_space[0]
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -453,8 +457,12 @@ def validaLogin(request):
     }
     if 'username' in request.POST and 'password' in request.POST:
         username = request.POST['username']
+        contSpace = 0
         username_space = username.split(' ')
-        if username_space[1] == "":
+        for row in username_space:
+            if row != "":
+                contSpace += 1
+        if contSpace == 1:
             username = username_space[0]
         password = request.POST['password']
         try:
