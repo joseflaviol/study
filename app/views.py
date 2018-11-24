@@ -45,21 +45,22 @@ def streams(request):
 
     return render(request, "streams.html", {"perfil_logado" : perfil_logado(request), "perfil_status": perfil_status(request), "busca":busca, "transmissao": transmissao, "destaque": Transmissao.objects.all(), "area": area, "numeroArea": numeroArea})
 
-def atualizaTempo(request, streams):
-    dia = 0
+def atualizaTempo(request):
+    streams = Transmissao.objects.all()
     for row in streams:
+        dia = 0
         x = datetime.datetime.strptime(row.hrInicio, '%Y-%m-%d %H:%M:%S.%f')
         diff = datetime.datetime.now() - x
         try:
             diff = datetime.datetime.strptime(str(diff), '%H:%M:%S.%f')
         except Exception as e:
-            diff = datetime.datetime.strptime(str(diff), '%d %H:%M:%S.%f')
+            diff = datetime.datetime.strptime(str(diff), '%d days, %H:%M:%S.%f')
             dia = diff.day
         hora = diff.hour
         min = diff.minute
         if int(dia) > 0:
-            msg = str(day)+"d e "+str(min)+"min"
-        if int(hora) > 0:
+            msg = str(dia)+"d, "+str(hora)+"h e "+str(min)+"min"
+        elif int(hora) > 0:
             msg = str(hora)+"h e "+str(min)+"min"
         else:
             msg = str(min)+"min"
@@ -71,7 +72,7 @@ def mini(request):
 
     atualizaViews(request)
 
-    atualizaTempo(request, streams)
+    atualizaTempo(request)
 
     area = Area.objects.all()
     nArea = len(area)
