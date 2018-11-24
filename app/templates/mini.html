@@ -286,7 +286,11 @@
                 <li class="filtro">
                   <label>Avaliação</label>
                   <select name="avaliacao" id="avaliacao" class="browser-default custom-select">
+                    {% if avaliacao %}
+                    <option selected value="{{idAva}}" id="atualAv">{{avaliacao}}</option>
+                    {% else %}
                     <option selected value="1">Selecione uma opção</option>
+                    {% endif %}
                     <option value="asc">Crescente</option>
                     <option value="desc">Decrescente</option>
                   </select>
@@ -379,7 +383,11 @@
       event.preventDefault();
       console.log($(this).val());
       if ($(this).val() != 1) {
-        window.location.href = "/atualizaFiltro/?filtro=" + $(this).val();
+        {% if idAva %}
+          window.location.href = "/atualizaFiltro/?filtro=" + $(this).val()+"&avaliacaoFil={{idAva}}";
+        {% else %}
+          window.location.href = "/atualizaFiltro/?filtro=" + $(this).val();
+        {% endif %}
       }
     });
     $("#avaliacao").change(function(event){
