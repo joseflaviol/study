@@ -13,13 +13,16 @@ from app.models import Perfil, Transmissao, Segue, Chat, Area, Avaliacao
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.hashers import make_password
 
+
 def index(request):
-    return render(request, "index.html", {"perfil_logado" : perfil_logado(request)})
+    return render(request, "index.html", {"perfil_logado": perfil_logado(request)})
+
 
 def userDados(request):
     perfil = perfil_logado(request)
     dados = User.objects.get(username__exact=perfil.nome)
     return dados
+
 
 def streams(request):
     busca = None
@@ -43,7 +46,8 @@ def streams(request):
     except Exception as e:
         pass
 
-    return render(request, "streams.html", {"perfil_logado" : perfil_logado(request), "perfil_status": perfil_status(request), "busca":busca, "transmissao": transmissao, "destaque": Transmissao.objects.all(), "area": area, "numeroArea": numeroArea})
+    return render(request, "streams.html", {"perfil_logado": perfil_logado(request), "perfil_status": perfil_status(request), "busca": busca, "transmissao": transmissao, "destaque": Transmissao.objects.all(), "area": area, "numeroArea": numeroArea})
+
 
 def atualizaTempo(request):
     streams = Transmissao.objects.all()
@@ -54,18 +58,20 @@ def atualizaTempo(request):
         try:
             diff = datetime.datetime.strptime(str(diff), '%H:%M:%S.%f')
         except Exception as e:
-            diff = datetime.datetime.strptime(str(diff), '%d days, %H:%M:%S.%f')
+            diff = datetime.datetime.strptime(
+                str(diff), '%d days, %H:%M:%S.%f')
             dia = diff.day
         hora = diff.hour
         min = diff.minute
         if int(dia) > 0:
-            msg = str(dia)+"d, "+str(hora)+"h e "+str(min)+"min"
+            msg = str(dia) + "d, " + str(hora) + "h e " + str(min) + "min"
         elif int(hora) > 0:
-            msg = str(hora)+"h e "+str(min)+"min"
+            msg = str(hora) + "h e " + str(min) + "min"
         else:
-            msg = str(min)+"min"
+            msg = str(min) + "min"
         row.tempoLive = msg
         row.save()
+
 
 def mini(request):
     streams = Transmissao.objects.all()
@@ -79,6 +85,7 @@ def mini(request):
 
     return render(request, "mini.html", {"streams": streams, "nArea": nArea, "area": area})
 
+
 def miniBusca(request, busca):
     buscaResult = None
     area = Area.objects.all()
@@ -89,7 +96,8 @@ def miniBusca(request, busca):
     except Exception as e:
         pass
 
-    return render(request, "mini.html", {"busca" : busca, "streams" : buscaResult, "nArea": nArea, "area": area})
+    return render(request, "mini.html", {"busca": busca, "streams": buscaResult, "nArea": nArea, "area": area})
+
 
 def canal(request, streamer_nome):
     streamer = None
@@ -112,12 +120,14 @@ def canal(request, streamer_nome):
     except Exception as e:
         return render(request, "canal.html", {"perfil_logado": perfil_logado(request), "perfil_status": perfil_status(request), "streamer": streamer, "destaque": Transmissao.objects.all(), "area": area, "nArea": nArea})
 
+
 def live(request, streamer_id):
     try:
         streamer = Perfil.objects.get(id=streamer_id)
         return render(request, "live.html", {"perfil_logado": perfil_logado(request), "streamer": streamer})
     except Exception as e:
         raise
+
 
 def atualizaViews(request):
     streams = Transmissao.objects.all()
@@ -128,6 +138,7 @@ def atualizaViews(request):
             views = views + 1
         row.views = views
         row.save()
+
 
 def player(request, streamer_id):
     stream = None
@@ -145,14 +156,15 @@ def player(request, streamer_id):
         avaliacao = Avaliacao.objects.filter(avaliado=streamer.id)
         for row in avaliacao:
             contAvaliacao += float(row.nota)
-        nota = contAvaliacao/len(avaliacao)
+        nota = contAvaliacao / len(avaliacao)
         if len(str(nota)) > 3:
             nota = round(nota, 1)
     if streamer.status == "streaming":
         streaming = True
     if perfil_logado(request):
         perfil = request.user.perfil
-        botao_seguir = Segue.objects.filter(seguindo=streamer.nome, seguidor=perfil.nome)
+        botao_seguir = Segue.objects.filter(
+            seguindo=streamer.nome, seguidor=perfil.nome)
         if Avaliacao.objects.filter(avaliado=streamer.id, avaliador=perfil.id):
             avaliou = True
     seguidores = Segue.objects.filter(seguindo=streamer.nome)
@@ -162,7 +174,7 @@ def player(request, streamer_id):
         stream = Transmissao.objects.get(streamer=streamer.nome)
         stream.avaliacao = nota
         stream.save()
-        if  Area.objects.filter(area=stream.area):
+        if Area.objects.filter(area=stream.area):
             area = Area.objects.get(area=stream.area)
         return render(request, "player.html", {"perfil_logado": perfil_logado(request), "avaliou": avaliou, "nota": nota, "streamer": streamer, "stream": stream, "seguidores": numero_seguidores, "botao_seguir": botao_seguir, "area": area, "streaming": streaming})
     except Exception as e:
@@ -184,11 +196,13 @@ def player(request, streamer_id):
             stream = None
         return render(request, "player.html", {"perfil_logado": perfil_logado(request), "avaliou": avaliou, "nota": nota, "streamer": streamer, "stream": stream, "seguidores": numero_seguidores, "botao_seguir": botao_seguir, "area": area, "streaming": streaming})
 
+
 def perfil_logado(request):
     if request.user.is_authenticated:
         return request.user.perfil
     else:
         return None
+
 
 def perfil_status(request):
     if request.user.is_authenticated:
@@ -200,12 +214,14 @@ def perfil_status(request):
     else:
         None
 
+
 def gera_senha():
-        caracters = '0123456789abcdefghijlmnopqrstuwvxz'
-        senha = ''
-        for char in range(10):
-                senha += choice(caracters)
-        return  senha
+    caracters = '0123456789abcdefghijlmnopqrstuwvxz'
+    senha = ''
+    for char in range(10):
+        senha += choice(caracters)
+    return senha
+
 
 def cadastro(request, page):
     try:
@@ -218,19 +234,22 @@ def cadastro(request, page):
             return redirect('index')
         else:
             usuario = User.objects.create_user(username, email, password)
-            usuario = authenticate(request, username=username, password=password)
+            usuario = authenticate(
+                request, username=username, password=password)
             login(request, usuario)
-            key_stream = "STUDY"+gera_senha()
-            perfil = Perfil(nome=username, key_stream=key_stream, usuario=usuario, status="online", imagem_perfil="img/icons/user.png")
+            key_stream = "STUDY" + gera_senha()
+            perfil = Perfil(nome=username, key_stream=key_stream, usuario=usuario,
+                            status="online", imagem_perfil="img/icons/user.png")
             perfil.save()
-            os.makedirs("app/static/users/"+username)
+            os.makedirs("app/static/users/" + username)
             if page == "index" or page == "streams":
                 return redirect("streams")
             else:
-                return redirect("/canal/"+page)
+                return redirect("/canal/" + page)
 
     except Exception as e:
         raise
+
 
 def login_view(request, page):
     contSpace = 0
@@ -246,24 +265,25 @@ def login_view(request, page):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            #request.session.set_expiry(30)
+            # request.session.set_expiry(30)
             perfil = request.user.perfil
             perfil.status = "online"
             perfil.save()
             if page == "streams" or page == "index":
                 return redirect("streams")
             else:
-                return redirect("/canal/"+page)
+                return redirect("/canal/" + page)
         else:
             if page == "streams" or page == "index":
                 return redirect("streams")
             else:
-                return redirect("/canal/"+page)
+                return redirect("/canal/" + page)
     except Exception as e:
         if page == "streams" or page == "index":
             return redirect("streams")
         else:
-            return redirect("/canal/"+page)
+            return redirect("/canal/" + page)
+
 
 def logout_view(request, page):
     try:
@@ -279,7 +299,7 @@ def logout_view(request, page):
         elif page == "streams":
             return redirect("streams")
         else:
-            return redirect("/canal/"+page)
+            return redirect("/canal/" + page)
     except Exception as e:
         perfil = request.user.perfil
         perfil.status = "offline"
@@ -291,7 +311,8 @@ def logout_view(request, page):
         elif page == "streams":
             return redirect("streams")
         else:
-            return redirect("/canal/"+page)
+            return redirect("/canal/" + page)
+
 
 def iniciaStream(request):
     contAvaliacao = 0
@@ -307,23 +328,25 @@ def iniciaStream(request):
             avaliacao = Avaliacao.objects.filter(avaliado=perfil.id)
             for row in avaliacao:
                 contAvaliacao += float(row.nota)
-            nota = contAvaliacao/len(avaliacao)
+            nota = contAvaliacao / len(avaliacao)
             if len(str(nota)) > 3:
                 nota = round(nota, 1)
         else:
             nota = 0
-        caminho = 'app/static/users/'+nome+'/stream.jpg'
+        caminho = 'app/static/users/' + nome + '/stream.jpg'
         with open(caminho, 'wb+') as destination:
             for chunk in imagem.chunks():
                 destination.write(chunk)
-        caminhoBanco = "users/"+nome+"/stream.jpg"
-        stream = Transmissao(streamer=nome, titulo=titulo, imagem=caminhoBanco, area=area, hrInicio=x, tempoLive=0, streamer_imagem=perfil.imagem_perfil, views=0, avaliacao=nota)
+        caminhoBanco = "users/" + nome + "/stream.jpg"
+        stream = Transmissao(streamer=nome, titulo=titulo, imagem=caminhoBanco, area=area,
+                             hrInicio=x, tempoLive=0, streamer_imagem=perfil.imagem_perfil, views=0, avaliacao=nota)
         stream.save()
         perfil.status = "streaming"
         perfil.save()
-        return redirect("/canal/"+nome)
+        return redirect("/canal/" + nome)
     except Exception as e:
         raise
+
 
 def encerraStream(request):
     try:
@@ -339,9 +362,10 @@ def encerraStream(request):
             c.delete()
         perfil.status = "online"
         perfil.save()
-        return redirect("/painel/"+perfil.nome)
+        return redirect("/painel/" + perfil.nome)
     except Exception as e:
-        return redirect("/painel/"+perfil.nome)
+        return redirect("/painel/" + perfil.nome)
+
 
 def seguir(request):
     data = {}
@@ -367,6 +391,7 @@ def seguir(request):
         data['result'] = False
         return JsonResponse(data)
 
+
 def unfollow(request):
     data = {}
     seguidores = 0
@@ -389,8 +414,10 @@ def unfollow(request):
             data['result'] = False
             return JsonResponse(data)
 
+
 def teste(request):
     return render(request, "teste.html", {"perfil_logado": perfil_logado(request), "dados": userDados(request)})
+
 
 def ajax(request):
     data = {}
@@ -417,6 +444,7 @@ def ajax(request):
         except Exception as e:
             data['result'] = False
         return JsonResponse(data)
+
 
 def validaCadastro(request):
     contSpace = 0
@@ -451,6 +479,7 @@ def validaCadastro(request):
             data['result'] = False
             return JsonResponse(data)
 
+
 def validaLogin(request):
     data = {
         "result": False
@@ -466,7 +495,8 @@ def validaLogin(request):
             username = username_space[0]
         password = request.POST['password']
         try:
-            user_exists = authenticate(request, username=username, password=password)
+            user_exists = authenticate(
+                request, username=username, password=password)
             if user_exists is not None:
                 data['result'] = True
             return JsonResponse(data)
@@ -474,9 +504,11 @@ def validaLogin(request):
             data['result'] = False
             return JsonResponse(data)
 
+
 def Messages(request, streamer_id):
     c = Chat.objects.filter(streamer_room=streamer_id)
     return render(request, 'messages.html', {'chat': c})
+
 
 def PostMsg(request, streamer_id):
     if request.method == "POST":
@@ -486,10 +518,11 @@ def PostMsg(request, streamer_id):
         c = Chat(username=nome, message=msg, streamer_room=streamer_id)
         if msg != '':
             c.save()
-        msg = nome+": "+msg
-        return JsonResponse({ 'msg': msg, 'user': nome})
+        msg = nome + ": " + msg
+        return JsonResponse({'msg': msg, 'user': nome})
     else:
         return HttpResponse('Request must be POST.')
+
 
 def chat(request, streamer_id):
     stream = None
@@ -499,7 +532,8 @@ def chat(request, streamer_id):
     streamer = Perfil.objects.get(id=streamer_id)
     if perfil_logado(request):
         perfil = request.user.perfil
-        botao_seguir = Segue.objects.filter(seguindo=streamer.nome, seguidor=perfil.nome)
+        botao_seguir = Segue.objects.filter(
+            seguindo=streamer.nome, seguidor=perfil.nome)
     seguidores = Segue.objects.filter(seguindo=streamer.nome)
     for row in seguidores:
         numero_seguidores = numero_seguidores + 1
@@ -509,6 +543,7 @@ def chat(request, streamer_id):
         return render(request, "chat.html", {"perfil_logado": perfil_logado(request), "streamer": streamer, "stream": stream, "seguidores": numero_seguidores, "botao_seguir": botao_seguir, "chat": c})
     except Exception as e:
         return render(request, "chat.html", {"perfil_logado": perfil_logado(request), "streamer": streamer, "stream": stream, "seguidores": numero_seguidores, "botao_seguir": botao_seguir, "chat": c})
+
 
 def atualizaFiltro(request):
     area = Area.objects.all()
@@ -522,10 +557,12 @@ def atualizaFiltro(request):
             if 'avaliacaoFil' in request.GET:
                 avaliacao = request.GET.get('avaliacaoFil', None)
                 if avaliacao == "asc":
-                    returnFiltro = Transmissao.objects.filter(area=filtro).order_by('avaliacao')
+                    returnFiltro = Transmissao.objects.filter(
+                        area=filtro).order_by('avaliacao')
                     return render(request, "mini.html", {"streams": returnFiltro, "area": area, "filtro": filtro, "avaliacao": "Crescente", "idAva": avaliacao})
                 else:
-                    returnFiltro = Transmissao.objects.filter(area=filtro).order_by('-avaliacao')
+                    returnFiltro = Transmissao.objects.filter(
+                        area=filtro).order_by('-avaliacao')
                     return render(request, "mini.html", {"streams": returnFiltro, "area": area, "filtro": filtro, "avaliacao": "Crescente", "idAva": avaliacao})
             else:
                 returnFiltro = Transmissao.objects.filter(area=filtro)
@@ -535,7 +572,8 @@ def atualizaFiltro(request):
         if avaliacao == "asc":
             if 'filtroAv' in request.GET:
                 filtro = request.GET.get('filtroAv', None)
-                resultFiltro = Transmissao.objects.filter(area=filtro).order_by('avaliacao')
+                resultFiltro = Transmissao.objects.filter(
+                    area=filtro).order_by('avaliacao')
                 return render(request, "mini.html", {"streams": resultFiltro, "area": area, "filtro": filtro, "nArea": nArea, "avaliacao": "Crescente", "idAva": avaliacao})
             else:
                 resultFiltro = Transmissao.objects.all().order_by('avaliacao')
@@ -543,39 +581,43 @@ def atualizaFiltro(request):
         else:
             if 'filtroAv' in request.GET:
                 filtro = request.GET.get('filtroAv', None)
-                resultFiltro = Transmissao.objects.filter(area=filtro).order_by('-avaliacao')
-                return render(request, "mini.html", {"streams": resultFiltro, "area": area, "filtro": filtro, "nArea": nArea, "avaliacao":"Decrescente", "idAva": avaliacao})
+                resultFiltro = Transmissao.objects.filter(
+                    area=filtro).order_by('-avaliacao')
+                return render(request, "mini.html", {"streams": resultFiltro, "area": area, "filtro": filtro, "nArea": nArea, "avaliacao": "Decrescente", "idAva": avaliacao})
             else:
                 resultFiltro = Transmissao.objects.all().order_by('-avaliacao')
                 return render(request, "mini.html", {"streams": resultFiltro, "area": area, "nArea": nArea, "avaliacao": "Decrescente", "idAva": avaliacao})
+
 
 def painel(request, streamer_nome):
     if perfil_logado(request):
         perfil = perfil_logado(request)
         if perfil.nome == streamer_nome:
-            return render(request, "userpanel.html", {"perfil_logado" : perfil_logado(request), "perfil_status": perfil_status(request)})
+            return render(request, "userpanel.html", {"perfil_logado": perfil_logado(request), "perfil_status": perfil_status(request)})
         else:
             return redirect("index")
     else:
         return redirect("index")
+
 
 def userIframe(request):
     stream = None
     perfil = perfil_logado(request)
     if Transmissao.objects.filter(streamer=perfil.nome):
         stream = Transmissao.objects.get(streamer=perfil.nome)
-    return render(request, "userIframe.html", {"perfil_logado" : perfil_logado(request), "area": Area.objects.all(), "not_streaming": perfil_status(request), "stream": stream, "seguidores": len(Segue.objects.filter(seguindo=perfil.nome))})
+    return render(request, "userIframe.html", {"perfil_logado": perfil_logado(request), "area": Area.objects.all(), "not_streaming": perfil_status(request), "stream": stream, "seguidores": len(Segue.objects.filter(seguindo=perfil.nome))})
+
 
 def userTutorial(request):
     stream = None
     perfil = perfil_logado(request)
     return render(request, "userTutorial.html")
 
+
 def obsS(request):
     stream = None
     perfil = perfil_logado(request)
     return render(request, "obs.html")
-
 
 
 def avaliacao(request):
@@ -594,7 +636,7 @@ def avaliacao(request):
     avaliacoes = Avaliacao.objects.filter(avaliado=streamer)
     for row in avaliacoes:
         contAvaliacao += float(row.nota)
-    nota = contAvaliacao/len(avaliacoes)
+    nota = contAvaliacao / len(avaliacoes)
     if len(str(nota)) > 3:
         nota = round(nota, 1)
 
@@ -610,22 +652,23 @@ def avaliacao(request):
 
     return JsonResponse(data)
 
+
 def mudaFoto(request):
     nomeImg = ""
     if perfil_logado(request):
         img = request.FILES['userimg']
         perfil = perfil_logado(request)
-        caminho = 'app/static/users/'+perfil.nome+'/'+img.name+'.jpg'
+        caminho = 'app/static/users/' + perfil.nome + '/' + img.name + '.jpg'
         with open(caminho, 'wb+') as destination:
             for chunk in img.chunks():
                 destination.write(chunk)
-        caminhoBanco = "users/"+perfil.nome+'/'+img.name+'.jpg'
+        caminhoBanco = "users/" + perfil.nome + '/' + img.name + '.jpg'
         perfil.imagem_perfil = caminhoBanco
         perfil.save()
         if os.path.isfile(caminho):
-            for CleanUp in glob.glob('app/static/users/'+perfil.nome+'/*'):
+            for CleanUp in glob.glob('app/static/users/' + perfil.nome + '/*'):
                 print CleanUp
-                if not CleanUp.endswith(img.name+'.jpg') and not CleanUp.endswith("stream.jpg"):
+                if not CleanUp.endswith(img.name + '.jpg') and not CleanUp.endswith("stream.jpg"):
                     os.remove(CleanUp)
         if Transmissao.objects.filter(streamer=perfil.nome):
             stream = Transmissao.objects.get(streamer=perfil.nome)
@@ -635,6 +678,7 @@ def mudaFoto(request):
             "result": True, "caminho": caminhoBanco
         }
         return JsonResponse(data)
+
 
 def atualizaDadosStream(request):
     img = None
@@ -650,11 +694,11 @@ def atualizaDadosStream(request):
         if 'imagem' in request.FILES:
             img = request.FILES['imagem']
             if img != None:
-                caminho = 'app/static/users/'+perfil.nome+'/stream.jpg'
+                caminho = 'app/static/users/' + perfil.nome + '/stream.jpg'
                 with open(caminho, 'wb+') as destination:
                     for chunk in img.chunks():
                         destination.write(chunk)
-                caminhoBanco = "users/"+perfil.nome+'/stream.jpg'
+                caminhoBanco = "users/" + perfil.nome + '/stream.jpg'
                 stream.imagem = caminhoBanco
         if 'area' in request.POST:
             area = request.POST['area']
@@ -662,7 +706,8 @@ def atualizaDadosStream(request):
                 stream.area = area
 
         stream.save()
-    return redirect("/canal/"+perfil.nome)
+    return redirect("/canal/" + perfil.nome)
+
 
 def config(request):
     img = None
@@ -678,21 +723,23 @@ def config(request):
             seguindo.append(perfil)
     return render(request, "config.html", {"perfil_logado": perfil_logado(request), "dados": userDados(request), "img": img, "seguindo": seguindo})
 
+
 def mudaFotoUser(request):
     perfil = perfil_logado(request)
     img = request.FILES['imagem']
     if img != None:
-        caminho = 'app/static/users/'+perfil.nome+'/prev.jpg'
+        caminho = 'app/static/users/' + perfil.nome + '/prev.jpg'
         with open(caminho, 'wb+') as destination:
             for chunk in img.chunks():
                 destination.write(chunk)
-        caminhoBanco = "users/"+perfil.nome+'/prev.jpg'
+        caminhoBanco = "users/" + perfil.nome + '/prev.jpg'
         data = {
             "caminho": caminhoBanco
         }
         return JsonResponse(data)
     else:
         return None
+
 
 def validaAtualizaDadosUser(request):
     data = {
@@ -709,10 +756,12 @@ def validaAtualizaDadosUser(request):
     if 'senhaAtual' in request.GET:
         senhaAtual = request.GET.get('senhaAtual', None)
         perfil = perfil_logado(request)
-        user_exists = authenticate(request, username=perfil.nome, password=senhaAtual)
+        user_exists = authenticate(
+            request, username=perfil.nome, password=senhaAtual)
         if user_exists is None:
             data['result'] = True
     return JsonResponse(data)
+
 
 def atualizaDadosUser(request):
     imagem = None
@@ -724,30 +773,31 @@ def atualizaDadosUser(request):
     if 'nome' in request.POST:
         nome = request.POST['nome']
         if nome != "":
-            os.rename('app/static/users/'+perfil.nome,'app/static/users/'+nome)
+            os.rename('app/static/users/' + perfil.nome,
+                      'app/static/users/' + nome)
             perfil.nome = nome
             caminhoImg = perfil.imagem_perfil
             caminhoImg = caminhoImg.split('/')
             imgNome = caminhoImg[2]
             if imgNome != "user.png":
-                perfil.imagem_perfil = "users/"+nome+"/"+imgNome
+                perfil.imagem_perfil = "users/" + nome + "/" + imgNome
             user.username = nome
     if 'imagem' in request.FILES:
         imagem = request.FILES['imagem']
         if imagem != None:
             if nome != None:
-                caminho = 'app/static/users/'+nome+'/'+imagem.name+'.jpg'
-                caminhoBanco = "users/"+nome+'/'+imagem.name+'.jpg'
+                caminho = 'app/static/users/' + nome + '/' + imagem.name + '.jpg'
+                caminhoBanco = "users/" + nome + '/' + imagem.name + '.jpg'
             else:
-                caminho = 'app/static/users/'+perfil.nome+'/'+imagem.name+'.jpg'
-                caminhoBanco = "users/"+perfil.nome+'/'+imagem.name+'.jpg'
+                caminho = 'app/static/users/' + perfil.nome + '/' + imagem.name + '.jpg'
+                caminhoBanco = "users/" + perfil.nome + '/' + imagem.name + '.jpg'
             with open(caminho, 'wb+') as destination:
                 for chunk in imagem.chunks():
                     destination.write(chunk)
             if os.path.isfile(caminho):
-                for CleanUp in glob.glob('app/static/users/'+perfil.nome+'/*'):
+                for CleanUp in glob.glob('app/static/users/' + perfil.nome + '/*'):
                     print CleanUp
-                    if not CleanUp.endswith(imagem.name+'.jpg') and not CleanUp.endswith("stream.jpg"):
+                    if not CleanUp.endswith(imagem.name + '.jpg') and not CleanUp.endswith("stream.jpg"):
                         os.remove(CleanUp)
             perfil.imagem_perfil = caminhoBanco
     if 'email' in request.POST:
@@ -763,4 +813,4 @@ def atualizaDadosUser(request):
     usuario = authenticate(request, username=nome, password=senha)
     login(request, usuario)
 
-    return redirect("/painel/"+perfil.nome)
+    return redirect("/painel/" + perfil.nome)
