@@ -17,7 +17,8 @@
   <link rel="icon" href="{% static 'img/logo.ico' %}" type="imagex-icon" />
   <script type="text/javascript">
     let verifyIframe = false;
-    function vi(param){
+
+    function vi(param) {
       if (param != "config") {
         verifyIframe = false;
       } else {
@@ -26,27 +27,55 @@
     }
   </script>
   <style type="text/css">
-    body{
+    body {
       font-family: 'Rajdhani', sans-serif;
     }
+
     @media (min-width: 800px) and (max-width: 850px) {
       .navbar:not(.top-nav-collapse) {
         background: #408AFF !important;
       }
     }
 
-    .sidebar-fixed
-    {
-      height:100vh;width:15%;-webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);z-index:1050;background-color:#fff;padding:0 1.5rem}
-    .sidebar-fixed .list-group .active
-    {-webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);-webkit-border-radius:5px;border-radius:5px}
-    .sidebar-fixed .logo-wrapper{padding:2.5rem}
-    .sidebar-fixed .logo-wrapper img
-    {max-height:50px}
-    @media (min-width:1200px)
-    {.navbar,.page-footer,main{padding-left:270px}}
-    @media (max-width:1199.98px)
-    {.sidebar-fixed{display:none}}
+    .sidebar-fixed {
+      height: 100vh;
+      width: 15%;
+      -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+      z-index: 1050;
+      background-color: #fff;
+      padding: 0 1.5rem
+    }
+
+    .sidebar-fixed .list-group .active {
+      -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+      -webkit-border-radius: 5px;
+      border-radius: 5px
+    }
+
+    .sidebar-fixed .logo-wrapper {
+      padding: 2.5rem
+    }
+
+    .sidebar-fixed .logo-wrapper img {
+      max-height: 50px
+    }
+
+    @media (min-width:1200px) {
+
+      .navbar,
+      .page-footer,
+      main {
+        padding-left: 270px
+      }
+    }
+
+    @media (max-width:1199.98px) {
+      .sidebar-fixed {
+        display: none
+      }
+    }
 
     html {
       overflow-y: hidden;
@@ -70,33 +99,35 @@
       opacity: 0;
       filter: alpha(opacity=0);
     }
-    .image_inner_container{
-        border-radius: 50%;
-        padding: 5px;
-        height: 140px;
-        width: 140px;
-        background: -webkit-linear-gradient(to bottom, #2c3e50, #3498db,  #2c3e50);
-        background: linear-gradient(to bottom, #3498db, #3498db,  #2c3e50);
-       }
 
-       .image_inner_container2{
-        border-radius: 50%;
-        padding: 5px;
-        height: 40px;
-        width: 40px;
-       }
-        .image_inner_container img{
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 5px solid white;
-       }
+    .image_inner_container {
+      border-radius: 50%;
+      padding: 5px;
+      height: 140px;
+      width: 140px;
+      background: -webkit-linear-gradient(to bottom, #2c3e50, #3498db, #2c3e50);
+      background: linear-gradient(to bottom, #3498db, #3498db, #2c3e50);
+    }
 
-        .image_inner_container2 img{
+    .image_inner_container2 {
+      border-radius: 50%;
+      padding: 5px;
+      height: 40px;
+      width: 40px;
+    }
 
-        border-radius: 50%;
-        border: 5px solid white;
-       }
+    .image_inner_container img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 5px solid white;
+    }
+
+    .image_inner_container2 img {
+
+      border-radius: 50%;
+      border: 5px solid white;
+    }
   </style>
 
 </head>
@@ -164,20 +195,20 @@
         {% endif %}
         <li class='nav-item '>
           <img src="{% static perfil_logado.imagem_perfil %}" id="img_perfil" class='d-inline-block align-top image_inner_container2'>
-          <li class='nav-item dropdown ml-1'>
-            <a class='nav-link dropdown-toggle' id='drop_user' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>{{perfil_logado.nome}}</a>
-            <div class='dropdown-menu dropdown-menu-right' aria-labelledby='drop_user'>
-              <a class='dropdown-item rounded' href="{% url 'painel' perfil_logado.nome %}">
-                <div class='espaço rounded w-100'> Painel de Controle</div>
-              </a>
-              <a class='dropdown-item rounded' href="{% url 'canal' perfil_logado.nome %}">
-                <div class='espaço rounded w-100'> Canal</div>
-              </a>
-              <a class='dropdown-item rounded' href="{% url 'logout' 'streams' %}">
-                <div class='espaço rounded w-100'>Sair</div>
-              </a>
-            </div>
-          </li>
+        <li class='nav-item dropdown ml-1'>
+          <a class='nav-link dropdown-toggle' id='drop_user' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>{{perfil_logado.nome}}</a>
+          <div class='dropdown-menu dropdown-menu-right' aria-labelledby='drop_user'>
+            <a class='dropdown-item rounded' href="{% url 'painel' perfil_logado.nome %}">
+              <div class='espaço rounded w-100'> Painel de Controle</div>
+            </a>
+            <a class='dropdown-item rounded' href="{% url 'canal' perfil_logado.nome %}">
+              <div class='espaço rounded w-100'> Canal</div>
+            </a>
+            <a class='dropdown-item rounded' href="{% url 'logout' 'streams' %}">
+              <div class='espaço rounded w-100'>Sair</div>
+            </a>
+          </div>
+        </li>
         </li>
         {% else %}
         <li class='nav-item'>
@@ -299,9 +330,9 @@
                 <div id="menuItems">
                   <ul class="navbar nav" style="background-color: white">
                     <li class="nav-item border-bottom border-light mt-1" style="width: 100%;">
-                        {% for row in area %}
-                        <option style="font-size: 1.1em" id="{{row.id}}"><img src="{% static row.imagem %}" class="img-left" height="30"> {{row.area}}</option>
-                        {% endfor %}
+                      {% for row in area %}
+                      <option style="font-size: 1.1em" id="{{row.id}}"><img src="{% static row.imagem %}" class="img-left" height="30"> {{row.area}}</option>
+                      {% endfor %}
                     </li>
                   </ul>
                 </div>
@@ -309,7 +340,7 @@
             </div>
             <div class="md-form form-sm">
               <i class="fa fa-file-image-o prefix " aria-hidden="true" style="color: #616161;"></i>
-              <span class="btn btn-sm btn-outline-primary" style="width: 20%; margin-left: 27px;" data-toggle="tooltip" data-placement="right" title="Thumbnail"><i class="fa fa-cloud-upload study-text fa-2x" style="text-align: center;" ></i>
+              <span class="btn btn-sm btn-outline-primary" style="width: 20%; margin-left: 27px;" data-toggle="tooltip" data-placement="right" title="Thumbnail"><i class="fa fa-cloud-upload study-text fa-2x" style="text-align: center;"></i>
                 <input type="file" name="imagem" id="imagem" value="Enviar" accept="image/*">
               </span>
             </div>
@@ -323,45 +354,46 @@
       </div>
     </div>
   </div>
-</div>
-</nav>
+  </div>
+  </nav>
 
-    <!-- Sidebar -->
-        <div class="sidebar-fixed position-fixed" >
+  <!-- Sidebar -->
+  <div class="sidebar-fixed position-fixed">
 
-            <div class="image_inner_container mt-1">
+    <div class="image_inner_container mt-1">
 
-                <img src="{% static perfil_logado.imagem_perfil %}" id="test" class="img-fluid" alt="">
+      <img src="{% static perfil_logado.imagem_perfil %}" id="test" class="img-fluid" alt="">
 
-            </div>
-            <form method="post" id="formReal" enctype="multipart/form-data">
-              {% csrf_token %}
-              <a class="rounded-circle study" style="position: absolute; width: 25px; height: 25px; margin-left: 35%; margin-top: -10%; z-index: 99999"><input type="file" name="userimg" accept="image/png, image/jpeg" id="img"><i class="fa fa-plus text-white" style="margin-left: 25%; margin-top: 20%"></i></a>
-            </form>
-
-
-            <div class="list-group list-group-flush pt-3">
-                <a href="{% url 'userIframe' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
-                    <i class="fa fa-play mr-3"></i>Ao vivo
-                </a>
-                <a href="{% url 'userTutorial' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
-                    <i class="fa fa-tag mr-3"></i>Tutorial</a>
-
-                <a href="{% url 'obsS' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
-                    <i class="fa fa-terminal mr-3"></i>OBS Studio</a>
-
-                <a href="{% url 'config' %}" target="frame" id="config" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
-                    <i class="fa fa-gear mr-3"></i>Configurações</a>
-
-            </div>
-
-        </div>
-        <!-- Sidebar -->
-
-          <iframe class="embed-responsive-item" name="frame" id="iframeReal" src="{% url 'userIframe' %}" frameborder="0" style="height: 100vh; width: 100%; padding-left: 15%;" allowfullscreen>
+    </div>
+    <form method="post" id="formReal" enctype="multipart/form-data">
+      {% csrf_token %}
+      <a class="rounded-circle study" style="position: absolute; width: 25px; height: 25px; margin-left: 35%; margin-top: -10%; z-index: 99999"><input type="file" name="userimg" accept="image/png, image/jpeg" id="img"><i class="fa fa-plus text-white"
+          style="margin-left: 25%; margin-top: 20%"></i></a>
+    </form>
 
 
-    </iframe>
+    <div class="list-group list-group-flush pt-3">
+      <a href="{% url 'userIframe' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
+        <i class="fa fa-play mr-3"></i>Ao vivo
+      </a>
+      <a href="{% url 'userTutorial' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
+        <i class="fa fa-tag mr-3"></i>Tutorial</a>
+
+      <a href="{% url 'obsS' %}" target="frame" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
+        <i class="fa fa-terminal mr-3"></i>OBS Studio</a>
+
+      <a href="{% url 'config' %}" target="frame" id="config" onclick="vi(this.id)" class="list-group-item list-group-item-action waves-effect">
+        <i class="fa fa-gear mr-3"></i>Configurações</a>
+
+    </div>
+
+  </div>
+  <!-- Sidebar -->
+
+  <iframe class="embed-responsive-item" name="frame" id="iframeReal" src="{% url 'userIframe' %}" frameborder="0" style="height: 100vh; width: 100%; padding-left: 15%;" allowfullscreen>
+
+
+  </iframe>
 
   <script src="{% static 'js/validaCadastro.js' %}" charset="utf-8"></script>
   <script src="{% static 'js/validaLogin.js' %}" charset="utf-8"></script>
@@ -371,66 +403,70 @@
   <script type="text/javascript">
     new WOW().init();
     const form = document.getElementById('formReal');
-    $("#img").change(function(){
+    $("#img").change(function() {
       let val = $(this).val();
       let formData = new FormData(form);
-
+      if (document.getElementById('iframeReal').src == "{% url 'userIframe' %}") {
+        document.getElementById('iframeReal').src;
+      }
       $.ajax({
         url: "/mudaFoto/",
         type: "POST",
         data: formData,
-        success: function (data) {
+        success: function(data) {
           if (data.result) {
-            console.log(data.img);
-            document.getElementById('test').src = "/static/".concat(data.caminho);
-            document.getElementById('img_perfil').src = "/static/".concat(data.caminho);
+            if (document.getElementById('iframeReal').src == "") {
+              document.getElementById('iframeReal').src = "{% url 'userIframe' %}";
+            }
+            console.log(data.caminho);
+            document.getElementById('test').src = "/static/" + data.caminho;
+            document.getElementById('img_perfil').src = "/static/" + data.caminho;
             if (verifyIframe == true) {
-                document.getElementById('iframeReal').src = "/config/?att_img="+data.caminho;
+              document.getElementById('iframeReal').src = "/config/?att_img=" + data.caminho;
             }
           }
         },
-        processData: false,  // tell jQuery not to process the data
+        processData: false, // tell jQuery not to process the data
         contentType: false
       })
     });
     var numeroArea = 0;
-    for(var i=0; i<numeroArea; i++){
+    for (var i = 0; i < numeroArea; i++) {
       var str = "#";
       var id = i + 1;
-      var numero =  str.concat(id.toString());
-      $(numero).click(function(){
+      var numero = str.concat(id.toString());
+      $(numero).click(function() {
         var val = $(this).val();
         $("#area").val(val);
       });
     }
 
-    $("#buscar").keyup(function(){
+    $("#buscar").keyup(function() {
       var busca = $(this).val();
-      if(busca==""){
+      if (busca == "") {
         document.getElementById('iframe').src = "/mini/";
-      }
-      else{
+      } else {
         var str = "/mini/".concat(busca);
         document.getElementById('iframe').src = str;
       }
 
     });
 
-    $("#iniciaStream").click(function(){
+    $("#iniciaStream").click(function() {
       var titulo = $("#titulo").val();
       var area = $("#area").val();
       var imagem = $("#imagem").val();
-      if(!(titulo == "" || area == "" || imagem == "")){
+      if (!(titulo == "" || area == "" || imagem == "")) {
         document.getElementById('iniciaStream').type = "submit";
         $("#iniciaStream").click();
-      }else{
+      } else {
         alert("Preencha todos os dados");
       }
     });
   </script>
 
   <script type="text/javascript">
-  $(function() {
+    $(function() {
       $('[data-toggle="tooltip"]').tooltip()
     })
   </script>

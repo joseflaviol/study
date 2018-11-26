@@ -84,7 +84,7 @@
                 <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
               </div>
           	</div>
-          </div>
+</div>
         </small>
         {% if botao_seguir %}
         <small class="mt-4"><button type="submit" class="btn btn-danger btn-sm" id="unfollow" value="0"><i class="" id="heartUF"></i>Deixar de seguir </button></small>
@@ -177,7 +177,7 @@
     function Avaliacao(nota) {
       if (nota < 2.5) {
           document.getElementById('nota').style.color = "red";
-      } else if (nota > 2.5 && nota < 4) {
+      } else if (nota >= 2.5 && nota < 4) {
         document.getElementById('nota').style.color = "blue";
       } else {
         document.getElementById('nota').style.color = "green";
@@ -189,7 +189,8 @@
     {% endif %}
 
     for (let i=1; i<=5; i++){
-      $("#star"+i.toString()).click(function(event){
+      $("#star"+i.toString()).click(function(){
+        console.log(i);
         document.getElementById('div-star').style.display = "none";
         if (avaliou == false) {
             document.getElementById('avaliar').innerHTML = "Mudar Avaliação";

@@ -312,6 +312,7 @@
 
   {% if busca %}
   {% if streams %}
+  <div class="row pl-3">
   {% for stream in streams %}
   <a onclick="window.top.location.href='{% url 'canal' stream.streamer %}'">
     <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
@@ -336,11 +337,14 @@
     </div>
   </a>
   {% endfor %}
+  </div>
   {% else %}
   <p>Nenhum resultado encontrado</p>
   {% endif %}
   {% else %}
-  {% if streams %} {% for stream in streams %}
+  {% if streams %}
+  <div class="row pl-3">
+  {% for stream in streams %}
   <a onclick="window.top.location.href='{% url 'canal' stream.streamer %}'">
     <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
       <img class="card-img-top" height="200" src="{% static stream.imagem %}">
@@ -364,7 +368,8 @@
       </div>
     </div>
   </a>
-  {% endfor %} {% else %}
+  {% endfor %}
+  </div> {% else %}
   <p>Nenhum transmissão ao vivo.</p>
   {% endif %}{% endif %}
 

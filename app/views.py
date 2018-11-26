@@ -37,10 +37,10 @@ def streams(request):
         perfil = perfil_logado(request)
         perfil.assistindo = ""
         perfil.save()
-        segue = Segue.objects.filter(seguidor=perfil.nome)
+        segue = Segue.objects.filter(seguidor=perfil.id)
         for row in segue:
-            stream = Transmissao.objects.filter(streamer=row.seguindo)
-            perfil = Perfil.objects.get(nome=row.seguindo)
+            streamer = Perfil.objects.get(id=row.seguindo)
+            stream = Transmissao.objects.filter(streamer=streamer.nome)
             for campo in stream:
                 transmissao.append(campo)
     except Exception as e:
@@ -111,9 +111,10 @@ def canal(request, streamer_nome):
             s = Transmissao.objects.get(streamer=streamer_nome)
             perfil.assistindo = s.id
             perfil.save()
-        segue = Segue.objects.filter(seguidor=perfil.nome)
+        segue = Segue.objects.filter(seguidor=perfil.id)
         for row in segue:
-            stream = Transmissao.objects.filter(streamer=row.seguindo)
+            streamerSeguido = Perfil.objects.get(id=row.seguindo)
+            stream = Transmissao.objects.filter(streamer=streamerSeguido.id)
             for campo in stream:
                 transmissao.append(campo)
         return render(request, "canal.html", {"perfil_logado": perfil_logado(request), "perfil_status": perfil_status(request), "streamer": streamer, "destaque": Transmissao.objects.all(), "transmissao": transmissao, "area": area, "nArea": nArea})
@@ -163,11 +164,10 @@ def player(request, streamer_id):
         streaming = True
     if perfil_logado(request):
         perfil = request.user.perfil
-        botao_seguir = Segue.objects.filter(
-            seguindo=streamer.nome, seguidor=perfil.nome)
+        botao_seguir = Segue.objects.filter(seguindo=streamer.id, seguidor=perfil.id)
         if Avaliacao.objects.filter(avaliado=streamer.id, avaliador=perfil.id):
             avaliou = True
-    seguidores = Segue.objects.filter(seguindo=streamer.nome)
+    seguidores = Segue.objects.filter(seguindo=streamer.id)
     for row in seguidores:
         numero_seguidores = numero_seguidores + 1
     try:
@@ -216,7 +216,7 @@ def perfil_status(request):
 
 
 def gera_senha():
-    caracters = '0123456789abcdefghijlmnopqrstuwvxz'
+    caracters = '0123456789abcdefghijlmnopqrstuwvxzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     senha = ''
     for char in range(10):
         senha += choice(caracters)
@@ -374,10 +374,10 @@ def seguir(request):
         try:
             streamer_nome = request.GET.get('streamer', None)
             perfil = request.user.perfil
-            nome = perfil.nome
-            segue = Segue(seguindo=streamer_nome, seguidor=nome)
+            streamer = Perfil.objects.get(nome=streamer_nome)
+            segue = Segue(seguindo=streamer.id, seguidor=perfil.id)
             segue.save()
-            nSegue = Segue.objects.filter(seguindo=streamer_nome)
+            nSegue = Segue.objects.filter(seguindo=streamer.id)
             for row in nSegue:
                 seguidores = seguidores + 1
             data = {
@@ -401,9 +401,9 @@ def unfollow(request):
             perfil = request.user.perfil
             nome = perfil.nome
             streamer = Perfil.objects.get(nome=streamer_nome)
-            segue = Segue.objects.filter(seguindo=streamer_nome, seguidor=nome)
+            segue = Segue.objects.filter(seguindo=streamer.id, seguidor=perfil.id)
             segue.delete()
-            nSegue = Segue.objects.filter(seguindo=streamer_nome)
+            nSegue = Segue.objects.filter(seguindo=streamer.id)
             for row in nSegue:
                 seguidores = seguidores + 1
             data = {
@@ -532,9 +532,8 @@ def chat(request, streamer_id):
     streamer = Perfil.objects.get(id=streamer_id)
     if perfil_logado(request):
         perfil = request.user.perfil
-        botao_seguir = Segue.objects.filter(
-            seguindo=streamer.nome, seguidor=perfil.nome)
-    seguidores = Segue.objects.filter(seguindo=streamer.nome)
+        botao_seguir = Segue.objects.filter(seguindo=streamer.id, seguidor=perfil.id)
+    seguidores = Segue.objects.filter(seguindo=streamer.id)
     for row in seguidores:
         numero_seguidores = numero_seguidores + 1
     c = Chat.objects.filter(streamer_room=streamer_id)
@@ -605,7 +604,7 @@ def userIframe(request):
     perfil = perfil_logado(request)
     if Transmissao.objects.filter(streamer=perfil.nome):
         stream = Transmissao.objects.get(streamer=perfil.nome)
-    return render(request, "userIframe.html", {"perfil_logado": perfil_logado(request), "area": Area.objects.all(), "not_streaming": perfil_status(request), "stream": stream, "seguidores": len(Segue.objects.filter(seguindo=perfil.nome))})
+    return render(request, "userIframe.html", {"perfil_logado": perfil_logado(request), "area": Area.objects.all(), "not_streaming": perfil_status(request), "stream": stream, "seguidores": len(Segue.objects.filter(seguindo=perfil.id))})
 
 
 def userTutorial(request):
@@ -716,10 +715,10 @@ def config(request):
         img = request.GET.get('att_img', None)
     stream = None
     perfil = perfil_logado(request)
-    if Segue.objects.filter(seguidor=perfil.nome):
-        segue = Segue.objects.filter(seguidor=perfil.nome)
+    if Segue.objects.filter(seguidor=perfil.id):
+        segue = Segue.objects.filter(seguidor=perfil.id)
         for row in segue:
-            perfil = Perfil.objects.get(nome=row.seguindo)
+            perfil = Perfil.objects.get(id=row.seguindo)
             seguindo.append(perfil)
     return render(request, "config.html", {"perfil_logado": perfil_logado(request), "dados": userDados(request), "img": img, "seguindo": seguindo})
 
@@ -773,14 +772,20 @@ def atualizaDadosUser(request):
     if 'nome' in request.POST:
         nome = request.POST['nome']
         if nome != "":
-            os.rename('app/static/users/' + perfil.nome,
-                      'app/static/users/' + nome)
-            perfil.nome = nome
+            os.rename('app/static/users/' + perfil.nome, 'app/static/users/' + nome)
             caminhoImg = perfil.imagem_perfil
             caminhoImg = caminhoImg.split('/')
             imgNome = caminhoImg[2]
             if imgNome != "user.png":
                 perfil.imagem_perfil = "users/" + nome + "/" + imgNome
+            if Transmissao.objects.filter(streamer=perfil.nome):
+                stream = Transmissao.objects.get(streamer=perfil.nome)
+                stream.streamer = nome
+                if imgNome != "user.png":
+                    stream.streamer_imagem = "users/" + nome + "/" + imgNome
+                stream.imagem = "users/"+nome+"/stream.jpg"
+                stream.save()
+            perfil.nome = nome
             user.username = nome
     if 'imagem' in request.FILES:
         imagem = request.FILES['imagem']
@@ -799,6 +804,10 @@ def atualizaDadosUser(request):
                     print CleanUp
                     if not CleanUp.endswith(imagem.name + '.jpg') and not CleanUp.endswith("stream.jpg"):
                         os.remove(CleanUp)
+            if Transmissao.objects.filter(streamer=perfil.nome):
+                stream = Transmissao.objects.get(streamer=perfil.nome)
+                stream.streamer_imagem = caminhoBanco
+                stream.save()
             perfil.imagem_perfil = caminhoBanco
     if 'email' in request.POST:
         email = request.POST['email']
