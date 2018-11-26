@@ -265,7 +265,7 @@
   <div class="row pt-5">
 
     <h4 class=" pl-4 pt-5">
-      <a href="https://mdbootstrap.com/material-design-for-bootstrap/">Painel de Controle </a>
+      <a href="">Painel de Controle </a>
       <span>/</span>
       <span>Ao vivo</span>
     </h4>
@@ -309,7 +309,7 @@
                   {% endfor %}
                   <option id="outro">Outra</option>
                 </select>
-                <input type="text" name="area" id="input-area" style="display: none;" class="form-control"><button class="form-control" type="button" id="op" style="display: none;">Opções</button>
+                <input type="text" name="areaText" id="input-area" style="display: none;" class="form-control"><button class="form-control" type="button" id="op" style="display: none;">Opções</button>
               </li>
               <li class="list-group-item">
                 <label>Imagem</label>
@@ -385,7 +385,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-      <button type="button" name="button" id="exibirChat">Exibir Chat</button>
+      <button type="button" name="button" class="btn btn-success rounded btn-sm" id="exibirChat">Exibir Chat</button>
       <div class='offer offer-success' id="chatRealDiv"  style="display: none;">
         <div class='shape'>
           <div class='shape-text'>
@@ -446,11 +446,13 @@
     $("#exibirChat").click(function(){
       if (chatVisibility == false) {
         chatVisibility = true;
-        $(this).html("Esconder Chat")
+        $(this).html("Esconder Chat");
+        $(this).removeClass("btn-success").addClass("btn-danger");
         document.getElementById('chatRealDiv').style.display = "";
       } else {
         chatVisibility = false;
-        document.getElementById('exibirChat').innerHTML = "Exibir Chat";
+        $(this).html("Exibir Chat");
+        $(this).removeClass("btn-danger").addClass("btn-success");
         document.getElementById('chatRealDiv').style.display = "none";
       }
     });
@@ -461,7 +463,7 @@
 
   <script type="text/javascript">
     {% for row in area %}
-      $("#" + {{row.id}}).click(function(){
+      $("#"+{{row.id}}).click(function(){
       document.getElementById('input-area').value = "{{row.area}}";
       console.log(document.getElementById('input-area').value);
     });
@@ -494,6 +496,7 @@
       }
     })
     $("#outro").click(function() {
+      console.log("dasuidhyuawghyuwyuas");
       document.getElementById('select-area').style.display = "none";
       document.getElementById('input-area').style.display = "";
       document.getElementById('op').style.display = "";

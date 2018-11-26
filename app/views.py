@@ -322,6 +322,8 @@ def iniciaStream(request):
         nome = perfil.nome
         titulo = request.POST['titulo']
         area = request.POST['area']
+        if area == "":
+            area = request.POST['areaText']
         imagem = request.FILES["imagem"]
         x = datetime.datetime.now()
         if Avaliacao.objects.filter(avaliado=perfil.id):
@@ -701,8 +703,13 @@ def atualizaDadosStream(request):
                 stream.imagem = caminhoBanco
         if 'area' in request.POST:
             area = request.POST['area']
-            if area != "":
+            if area != "" and area != "Outra":
                 stream.area = area
+            else:
+                area = request.POST['areaText']
+                if area != "":
+                    stream.area = area
+
 
         stream.save()
     return redirect("/canal/" + perfil.nome)
