@@ -13,212 +13,301 @@
   <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
   <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
-</head>
-
-<style type="text/css">
+  <style type="text/css">
   body {
-    overflow-x: hidden;
-    font-family: 'Rajdhani', sans-serif;
-  }
+      overflow-x: hidden;
+      font-family: 'Rajdhani', sans-serif;
+    }
 
-  p {
-    max-width: 25ch;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+    p {
+      max-width: 25ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-  a {
-    color: #408aff;
-    text-decoration: none;
-  }
+    a {
+      color: #408aff;
+      text-decoration: none;
+    }
 
-  a:hover {
-    text-decoration: none;
-  }
+    a:hover {
+      text-decoration: none;
+    }
 
-  /*--choice modal1--*/
+    /*--choice modal1--*/
 
-  .openbtn {
-    margin-top: 64px;
-  }
+    .openbtn {
+      margin-top: 64px;
+    }
 
-  .modal-header {
-    padding: 15px;
-    border-bottom: none;
-  }
+    .modal-header {
+      padding: 15px;
+      border-bottom: none;
+    }
 
-  .modal-title {
-    font-weight: bold;
-  }
+    .modal-title {
+      font-weight: bold;
+    }
 
-  .modal-body.choice-modal {
-    position: relative;
-    padding: 0px;
+    .modal-body.choice-modal {
+      position: relative;
+      padding: 0px;
 
-  }
+    }
 
-  .row.inner-scroll {
-    height: 445px;
-    overflow: auto;
-  }
+    .row.inner-scroll {
+      height: 445px;
+      overflow: auto;
+    }
 
-  .mycard-footer {
-    height: 25px;
-    background: #333333;
-    font-size: 15px;
-    text-indent: 10px;
-    /* border-radius: 0 0px 4px 4px;*/
-  }
+    .mycard-footer {
+      height: 25px;
+      background: #333333;
+      font-size: 15px;
+      text-indent: 10px;
+      /* border-radius: 0 0px 4px 4px;*/
+    }
 
-  .gallery-card {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: .25rem;
-    height: 132px;
-    margin-bottom: 14px;
-  }
+    .gallery-card {
+      position: relative;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 1px solid rgba(0, 0, 0, .125);
+      border-radius: .25rem;
+      height: 132px;
+      margin-bottom: 14px;
+    }
 
-  .gallery-card-body {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    /*padding: 1.25rem;*/
-  }
+    .gallery-card-body {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      /*padding: 1.25rem;*/
+    }
 
-  .gallery-card img {
-    height: 100px;
-    width: 100%;
-  }
-
+    .gallery-card img {
+      height: 100px;
+      width: 100%;
+    }
   .shape {
-    border-style: solid;
-    border-width: 0 70px 40px 0;
-    float: right;
-    height: 0px;
-    width: 0px;
-    -ms-transform: rotate(360deg);
-    /* IE 9 */
-    -o-transform: rotate(360deg);
-    /* Opera 10.5 */
-    -webkit-transform: rotate(360deg);
-    /* Safari and Chrome */
-    transform: rotate(360deg);
-    z-index: 9999;
-  }
+      border-style: solid;
+      border-width: 0 70px 40px 0;
+      float: right;
+      height: 0px;
+      width: 0px;
+      -ms-transform: rotate(360deg);
+      /* IE 9 */
+      -o-transform: rotate(360deg);
+      /* Opera 10.5 */
+      -webkit-transform: rotate(360deg);
+      /* Safari and Chrome */
+      transform: rotate(360deg);
+      z-index: 9999;
+    }
 
-  .offer {
-    background: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    margin: 15px 0;
-    overflow: hidden;
-  }
+    .offer {
+      background: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      margin: 15px 0;
+      overflow: hidden;
+    }
 
-  .shape {
-    border-color: rgba(255, 255, 255, 0) #d9534f rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-  }
+    .shape {
+      border-color: rgba(255, 255, 255, 0) #d9534f rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+    }
 
-  .offer-radius {
-    border-radius: 7px;
-  }
+    .offer-radius {
+      border-radius: 7px;
+    }
 
-  .offer-danger {
-    border-color: #d9534f;
-  }
+    .offer-danger {
+      border-color: #d9534f;
+    }
 
-  .offer-danger .shape {
-    border-color: transparent #d9534f transparent transparent;
-  }
+    .offer-danger .shape {
+      border-color: transparent #d9534f transparent transparent;
+    }
 
-  .offer-success {
-    border-color: #5cb85c;
-  }
+    .offer-success {
+      border-color: #5cb85c;
+    }
 
-  .offer-success .shape {
-    border-color: transparent #5cb85c transparent transparent;
-  }
+    .offer-success .shape {
+      border-color: transparent #5cb85c transparent transparent;
+    }
 
-  .offer-default {
-    border-color: #999999;
-  }
+    .offer-default {
+      border-color: #999999;
+    }
 
-  .offer-default .shape {
-    border-color: transparent #999999 transparent transparent;
-  }
+    .offer-default .shape {
+      border-color: transparent #999999 transparent transparent;
+    }
 
-  .offer-primary {
-    border-color: #428bca;
-  }
+    .offer-primary {
+      border-color: #428bca;
+    }
 
-  .offer-primary .shape {
-    border-color: transparent #428bca transparent transparent;
-  }
+    .offer-primary .shape {
+      border-color: transparent #428bca transparent transparent;
+    }
 
-  .offer-info {
-    border-color: #408aff;
-  }
+    .offer-info {
+      border-color: #408aff;
+    }
 
-  .offer-info .shape {
-    border-color: transparent #408aff transparent transparent;
-  }
+    .offer-info .shape {
+      border-color: transparent #408aff transparent transparent;
+    }
 
-  .offer-warning {
-    border-color: #f0ad4e;
-  }
+    .offer-warning {
+      border-color: #f0ad4e;
+    }
 
-  .offer-warning .shape {
-    border-color: transparent #f0ad4e transparent transparent;
-  }
+    .offer-warning .shape {
+      border-color: transparent #f0ad4e transparent transparent;
+    }
 
-  .shape-text {
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    position: relative;
-    right: -40px;
-    top: 2px;
-    white-space: nowrap;
-    -ms-transform: rotate(30deg);
-    /* IE 9 */
-    -o-transform: rotate(360deg);
-    /* Opera 10.5 */
-    -webkit-transform: rotate(30deg);
-    /* Safari and Chrome */
-    transform: rotate(30deg);
-  }
+    .shape-text {
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      position: relative;
+      right: -40px;
+      top: 2px;
+      white-space: nowrap;
+      -ms-transform: rotate(30deg);
+      /* IE 9 */
+      -o-transform: rotate(360deg);
+      /* Opera 10.5 */
+      -webkit-transform: rotate(30deg);
+      /* Safari and Chrome */
+      transform: rotate(30deg);
+    }
 
-  .offer-content {
-    padding: 5px 10px 10px;
-    width: 100%;
-  }
+    .offer-content {
+      padding: 5px 10px 10px;
+      width: 100%;
+    }
 
-  .lead {
-    background-color: #408aff;
-    width: 65%;
-    height: 6vh;
-    position: absolute;
-    z-index: 9999;
-    border-radius: 2px;
-  }
+    .lead {
+      background-color: #408aff;
+      width: 50%;
+      height: 6vh;
+      position: absolute;
+      z-index: 9999;
+      border-radius: 2px;
+    }
 
-  .filtro {
-    list-style-type: none;
-    padding-left: 1%;
-  }
-</style>
+    .lead2 {
+      background-color: #d9534f;
+    }
 
+    .lead h4 {
+      max-width: 25ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-left: 5px;
+    }
+
+    .filtro {
+      list-style-type: none;
+      padding-left: 1%;
+    }
+
+    .player {
+      z-index: -1;
+      margin-top: 12%;
+    }
+
+    .img-alt {
+      width: 95%;
+      height: 200px;
+      border-radius: 5%;
+      padding: 5px;
+      background-color: #d9534f;
+      background: -webkit-linear-gradient(to bottom, #d9534f, #DC281E, #d9534f);
+      background: linear-gradient(to bottom, #d9534f, #DC281E, #d9534f);
+    }
+
+    .img-alt img {
+      width: 100%;
+      height: 100%;
+      border-radius: 5%;
+      border: 5px solid white;
+    }
+
+    .dados {
+      width: 78%;
+      height: 30px;
+      position: absolute;
+      z-index: 999;
+      margin-left: 10px;
+      margin-top: 160px;
+      background-color: rgba(000, 000, 000, 0.5);
+    }
+
+    .dados .row {
+      margin-top: 3px;
+
+    }
+
+    .dados i {
+      color: #d9534f;
+
+    }
+
+    .dados p {
+      color: #fff;
+      font-weight: 400;
+      font-style: bold;
+      z-index: 99999;
+
+    }
+
+    .title {
+      width: 100%;
+      height: auto;
+    }
+
+    .title p {
+      text-transform: uppercase;
+      font-weight: bolder;
+      font-size: 1.2em;
+      max-width: 30ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+
+    .fail {
+      width: 10%;
+      height: auto;
+      position: relative;
+      padding-left: 30%;
+      padding-top: 5%;
+    }
+
+
+    .fail img {
+      width: 100%;
+      position: absolute;
+    }
+  </style>
+</head>
 <body>
 
   <!--<div class="row w-100">
@@ -298,7 +387,8 @@
 
                 <li class="filtro" style="width: 35%">
                   <label>Mais</label>
-                  <input type="text" name="more" class="form-control" placeholder="Usuário e Transmissão" style="width: 100% ">
+                  <input type="text" name="more" class="form-control" id="userANDstream" placeholder="Usuário e Transmissão" style="width: 100%">
+                  <button type="button" class="btn btn-sm btn-primary" id="btnBusc" name="button" style="display: none;">Buscar</button>
                 </li>
               </div>
             </ul>
@@ -308,69 +398,169 @@
     </div>
 
   </div>
-
-
-  {% if busca %}
-  {% if streams %}
-  <div class="row pl-3">
-  {% for stream in streams %}
+  {% if streamsPorStreamer %}
+  <p>Resultado por streamer</p>
+  <div class="row pl-4 pr-3">
+  {% for stream in streamsPorStreamer %}
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 pl-1 ">
   <a onclick="window.top.location.href='{% url 'canal' stream.streamer %}'">
-    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-      <img class="card-img-top" height="200" src="{% static stream.imagem %}">
-      <div class="card-block ml-1">
-        <strong>
-          <p class="card-title h5-responsive">{{stream.titulo}}</p>
-        </strong>
-        <div style="margin-top: -10px;">
-          <div class="meta ml-2">
-            <a href="#"><i class="fa fa-user"></i>{{stream.streamer}}</a>
+      <div class="offer offer-danger">
+        <div class="shape">
+          <div class="shape-text">
+            <i class="fa fa-play-circle"></i>
           </div>
-          <div class="meta ml-3">
-            <a href="#"><i class="fa fa-book"></i>{{stream.area}}</a>
+        </div>
+        <div class="offer-content">
+          <div class="lead lead2">
+            <h4 class="cab text-white pt-2">{{stream.streamer}}</h4>
+          </div>
+          <div class="row pl-3 w-100">
+            <img src="{% static stream.imagem %}" class="img-alt" style="display: inline;">
+            <div class="dados">
+              <div class="row pl-2">
+                <p class="text-uppercase pl-2 pr-4"><i class="fa fa-book mr-1 pt-1"></i>{{stream.area}} </p>
+                <p><i class="fa fa-star pt-1  pr-1"></i>{{stream.avaliacao}}</p>
+                <p class="pl-4"><i class="fa fa-eye mr-1 pt-1"></i>{{stream.views}} </p>
+                <p class="pl-4"><i class="fa fa-clock-o mr-1 pt-1"></i>{{stream.tempoLive}} </p>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-1" style="height: 30px;">
+            <div class="title pl-4">
+              <p>{{stream.titulo}}</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="card-footer">
-        <span class="float-right"><i class="fa fa-clock-o"></i>{{stream.tempoLive}}</span>
-        <span><i class="fa fa-eye"></i>{{stream.views}}</span>
-      </div>
-    </div>
-  </a>
-  {% endfor %}
+    </a>
   </div>
-  {% else %}
-  <p>Nenhum resultado encontrado</p>
+  {% endfor %}
+</div>
+  {% endif %}
+  {% if streamsPorTitulo %}
+  <p>Resultado por Transmissão</p>
+  <div class="row pl-4 pr-3">
+  {% for stream in streamsPorTitulo %}
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 pl-1 ">
+  <a onclick="window.top.location.href='{% url 'canal' stream.streamer %}'">
+      <div class="offer offer-danger">
+        <div class="shape">
+          <div class="shape-text">
+            <i class="fa fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="offer-content">
+          <div class="lead lead2">
+            <h4 class="cab text-white pt-2">{{stream.streamer}}</h4>
+          </div>
+          <div class="row pl-3 w-100">
+            <img src="{% static stream.imagem %}" class="img-alt" style="display: inline;">
+            <div class="dados">
+              <div class="row pl-2">
+                <p class="text-uppercase pl-2 pr-4"><i class="fa fa-book mr-1 pt-1"></i>{{stream.area}} </p>
+                <p><i class="fa fa-star pt-1  pr-1"></i>{{stream.avaliacao}}</p>
+                <p class="pl-4"><i class="fa fa-eye mr-1 pt-1"></i>{{stream.views}} </p>
+                <p class="pl-4"><i class="fa fa-clock-o mr-1 pt-1"></i>{{stream.tempoLive}} </p>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-1" style="height: 30px;">
+            <div class="title pl-4">
+              <p>{{stream.titulo}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+  {% endif %}
+  {% if busca %}
+  {% if streams %}
+  <div class="row pl-4 pr-3">
+  {% for stream in streams %}
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 pl-1 ">
+  <a onclick="window.top.location.href='{% url 'canal' stream.streamer %}'">
+      <div class="offer offer-danger">
+        <div class="shape">
+          <div class="shape-text">
+            <i class="fa fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="offer-content">
+          <div class="lead lead2">
+            <h4 class="cab text-white pt-2">{{stream.streamer}}</h4>
+          </div>
+          <div class="row pl-3 w-100">
+            <img src="{% static stream.imagem %}" class="img-alt" style="display: inline;">
+            <div class="dados">
+              <div class="row pl-2">
+                <p class="text-uppercase pl-2 pr-4"><i class="fa fa-book mr-1 pt-1"></i>{{stream.area}} </p>
+                <p><i class="fa fa-star pt-1  pr-1"></i>{{stream.avaliacao}}</p>
+                <p class="pl-4"><i class="fa fa-eye mr-1 pt-1"></i>{{stream.views}} </p>
+                <p class="pl-4"><i class="fa fa-clock-o mr-1 pt-1"></i>{{stream.tempoLive}} </p>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-1" style="height: 30px;">
+            <div class="title pl-4">
+              <p>{{stream.titulo}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %} {% else %}
+ <div class="fail">
+    <img src="{% static 'img/svg/nostream.svg' %}" data-toggle="tooltip" data-placement="right" title="Nenhum Resultado Encontrado">
+    <!--Nehum Resutaldo-->
+  </div>
   {% endif %}
   {% else %}
   {% if streams %}
-  <div class="row pl-3">
+  <div class="row pl-4 pr-3">
   {% for stream in streams %}
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 pl-1 ">
   <a onclick="window.top.location.href='{% url 'canal' stream.streamer %}'">
-    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-      <img class="card-img-top" height="200" src="{% static stream.imagem %}">
-      <div class="card-block ml-1">
-        <strong>
-          <p class="card-title h5-responsive">{{stream.titulo}}</p>
-        </strong>
-        <div style="margin-top: -10px;">
-          <div class="meta ml-2">
-            <a href="#"><i class="fa fa-user"></i>{{stream.streamer}}</a>
-          </div>
-          <div class="meta ml-3">
-            <a href="#"><i class="fa fa-book"></i>{{stream.area}}</a>
+      <div class="offer offer-danger">
+        <div class="shape">
+          <div class="shape-text">
+            <i class="fa fa-play-circle"></i>
           </div>
         </div>
+        <div class="offer-content">
+          <div class="lead lead2">
+            <h4 class="cab text-white pt-2">{{stream.streamer}}</h4>
+          </div>
+          <div class="row pl-3 w-100">
+            <img src="{% static stream.imagem %}" class="img-alt" style="display: inline;">
+            <div class="dados">
+              <div class="row pl-2">
+                <p class="text-uppercase pl-2 pr-4"><i class="fa fa-book mr-1 pt-1"></i>{{stream.area}} </p>
+                <p><i class="fa fa-star pt-1  pr-1"></i>{{stream.avaliacao}}</p>
+                <p class="pl-4"><i class="fa fa-eye mr-1 pt-1"></i>{{stream.views}} </p>
+                <p class="pl-4"><i class="fa fa-clock-o mr-1 pt-1"></i>{{stream.tempoLive}} </p>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-1" style="height: 30px;">
+            <div class="title pl-4">
+              <p>{{stream.titulo}}</p>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-      <div class="card-footer">
-        <span class="float-right"><i class="fa fa-clock-o"></i>{{stream.tempoLive}}</span>
-        <span><i class="fa fa-eye"></i> {{stream.views}}</span>
-        <span> {{stream.avaliacao}}</span>
-      </div>
-    </div>
-  </a>
-  {% endfor %}
-  </div> {% else %}
-  <p>Nenhum transmissão ao vivo.</p>
+    </a>
+  </div>
+  {% endfor %} {% else %}
+ <div class="fail">
+    <img src="{% static 'img/svg/nostream.svg' %}" data-toggle="tooltip" data-placement="right" title="Nenhum Resultado Encontrado">
+    <!--Nehum Resutaldo-->
+  </div>
   {% endif %}{% endif %}
 
   <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
@@ -379,6 +569,19 @@
   <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
   <script type="text/javascript">
     new WOW().init();
+    $("#userANDstream").keyup(function(event){
+      event.preventDefault();
+      if ($(this).val() != "") {
+        document.getElementById('btnBusc').style.display = "";
+      } else {
+        document.getElementById('btnBusc').style.display = "none";
+      }
+    });
+    $("#btnBusc").click(function(event){
+      event.preventDefault();
+      let busca = $("#userANDstream").val();
+      window.location.href = "/atualizaFiltro/?busca="+busca;
+    });
     $("#area").click(function(event) {
       event.preventDefault();
       document.getElementById('atual').innerHTML = "Selecione uma opção";

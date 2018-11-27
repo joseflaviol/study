@@ -104,8 +104,8 @@ def canal(request, streamer_nome):
     transmissao = []
     area = Area.objects.all()
     nArea = len(area)
+    streamer = Perfil.objects.get(nome=streamer_nome)
     try:
-        streamer = Perfil.objects.get(nome=streamer_nome)
         perfil = perfil_logado(request)
         if streamer.status == "streaming":
             s = Transmissao.objects.get(streamer=streamer_nome)
@@ -114,11 +114,17 @@ def canal(request, streamer_nome):
         segue = Segue.objects.filter(seguidor=perfil.id)
         for row in segue:
             streamerSeguido = Perfil.objects.get(id=row.seguindo)
-            stream = Transmissao.objects.filter(streamer=streamerSeguido.id)
+            stream = Transmissao.objects.filter(streamer=streamerSeguido.nome)
             for campo in stream:
                 transmissao.append(campo)
         return render(request, "canal.html", {"perfil_logado": perfil_logado(request), "perfil_status": perfil_status(request), "streamer": streamer, "destaque": Transmissao.objects.all(), "transmissao": transmissao, "area": area, "nArea": nArea})
     except Exception as e:
+        segue = Segue.objects.filter(seguidor=perfil.id)
+        for row in segue:
+            streamerSeguido = Perfil.objects.get(id=row.seguindo)
+            stream = Transmissao.objects.filter(streamer=streamerSeguido.nome)
+            for campo in stream:
+                transmissao.append(campo)
         return render(request, "canal.html", {"perfil_logado": perfil_logado(request), "perfil_status": perfil_status(request), "streamer": streamer, "destaque": Transmissao.objects.all(), "area": area, "nArea": nArea})
 
 
@@ -582,13 +588,23 @@ def atualizaFiltro(request):
         else:
             if 'filtroAv' in request.GET:
                 filtro = request.GET.get('filtroAv', None)
-                resultFiltro = Transmissao.objects.filter(
-                    area=filtro).order_by('-avaliacao')
+                resultFiltro = Transmissao.objects.filter(area=filtro).order_by('-avaliacao')
                 return render(request, "mini.html", {"streams": resultFiltro, "area": area, "filtro": filtro, "nArea": nArea, "avaliacao": "Decrescente", "idAva": avaliacao})
             else:
                 resultFiltro = Transmissao.objects.all().order_by('-avaliacao')
                 return render(request, "mini.html", {"streams": resultFiltro, "area": area, "nArea": nArea, "avaliacao": "Decrescente", "idAva": avaliacao})
-
+    elif 'busca' in request.GET:
+        busca = request.GET.get('busca', None)
+        if busca != "":
+            streamsPorStreamer = []
+            streamsPorTitulo = []
+            stream = Transmissao.objects.filter(streamer__startswith=busca)
+            for row in stream:
+                streamsPorStreamer.append(row)
+            stream = Transmissao.objects.filter(titulo__startswith=busca)
+            for row in stream:
+                streamsPorTitulo.append(row)
+            return render(request, "mini.html", {"streamsPorStreamer": streamsPorStreamer, "streamsPorTitulo": streamsPorTitulo})
 
 def painel(request, streamer_nome):
     if perfil_logado(request):
