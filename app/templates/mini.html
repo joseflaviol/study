@@ -557,10 +557,16 @@
     </a>
   </div>
   {% endfor %} {% else %}
+  {% if streamsPorStreamer %}
+
+  {% elif streamsPorTitulo %}
+
+  {% else %}
  <div class="fail">
     <img src="{% static 'img/svg/nostream.svg' %}" data-toggle="tooltip" data-placement="right" title="Nenhum Resultado Encontrado">
     <!--Nehum Resutaldo-->
   </div>
+  {% endif %}
   {% endif %}{% endif %}
 
   <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
