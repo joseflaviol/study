@@ -132,7 +132,7 @@
         {% if streaming %}
         <div class="play pl-5">
         <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="" poster="{% static stream.imagem %}" data-setup='{"fluid": true}'>
-          <source src="http://10.10.129.52:8080/hls/{{streamer.key_stream}}.m3u8" type="application/x-mpegURL" id="src"/>
+          <source src="http://192.168.100.14:8080/hls/{{streamer.key_stream}}.m3u8" type="application/x-mpegURL" id="src"/>
         </video>
         {% else %}
         <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" poster="{% static 'img/404.png' %}" data-setup='{"fluid": true}'>
