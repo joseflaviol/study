@@ -22,13 +22,11 @@
   #live {
     width: 70%;
     height: 50%;
-    left: 2%;
   }
 
   #chat {
-    width: 25%;
+    width: 30%;
     height: 50%;
-    left: 2%;
   }
 
   @media (max-width:730px) {
@@ -49,8 +47,8 @@
 </style>
 
 <body>
-  <main class="mt-5">
-    <div class="row mt-5">
+  <main class="">
+    <div class="row w-100">
       <div id="live" class="embed-responsive embed-responsive-4by3 ">
         <iframe class="embed-responsive-item" src="{% url 'player' streamer.id %}"></iframe>
       </div>

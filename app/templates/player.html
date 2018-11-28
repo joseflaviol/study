@@ -24,9 +24,31 @@
     font-family: 'Rajdhani', sans-serif;
   }
 
-  #img {
-    height: 45px;
-  }
+  .image_inner_container {
+     border-radius: 50%;
+     padding: 3px;
+     height: 45px;
+     width: 45px;
+     background-color: #52c234;
+     background: -webkit-linear-gradient(to bottom, #52c234;
+     #061700, #52c234);
+     background: linear-gradient(to bottom, #52c234;
+     #061700, #52c234);
+   }
+
+   .image_inner_container2 {
+     border-radius: 50%;
+     padding: 5px;
+     height: 40px;
+     width: 40px;
+   }
+
+   .image_inner_container img {
+     width: 100%;
+     height: 100%;
+     border-radius: 50%;
+     border: 5px solid white;
+   }
 
   a {
     color: black;
@@ -34,7 +56,11 @@
 
   .nav {
     width: 100%;
-    margin: 2px;
+  }
+
+  .play{
+    width: 94%;
+    height: auto;
   }
 
   @media only screen and (max-width: 550px) {
@@ -47,6 +73,10 @@
     #ct {
       display: inline;
     }
+    .play{
+      padding: 0;
+      width: 100%;
+    }
   }
 
   @media only screen and (min-width: 731px) {
@@ -54,13 +84,15 @@
       display: none;
     }
   }
+
+  
 </style>
 
 <body>
   <main>
-    <div class="row">
+    <div class="row pl-3">
       <nav id="nav" class="nav ">
-        <a class="nav-link mt-3"><img src="{% static streamer.imagem_perfil %}" id="img" class='d-inline-block rounded-circle'><p id="streamer" class="d-inline">{{streamer.nome}}</p><img src="{% static 'img/svg/logo.svg' %}" height="20" class="ml-1"></a><span class="border-right border-light"></span>
+        <a class="nav-link mt-3"><img src="{% static streamer.imagem_perfil %}" id="img" class='d-inline-block image_inner_container'><p id="streamer" class="d-inline">{{streamer.nome}}</p><img src="{% static 'img/svg/logo.svg' %}" height="20" class="ml-1"></a><span class="border-right border-light"></span>
         <a class="nav-link mt-4">Seguidores: <p class="d-inline-block" style="color: #408aff" id="seguidores">{{seguidores}}</p></a>
         {% if nota %}
         <a class="nav-link mt-4">Avaliação: <p class="d-inline-block" style="color: #408aff" id="nota">{{nota}}</p></a>
@@ -96,9 +128,10 @@
 
         {% endif %}
       </nav>
-      <div class="nav" style="margin-top: -10px">
+      <div class="nav">
         {% if streaming %}
-        <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" poster="img/backg/fundo.jpg" data-setup='{"fluid": true}'>
+        <div class="play pl-5">
+        <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="" poster="{% static stream.imagem %}" data-setup='{"fluid": true}'>
           <source src="http://10.10.135.51:8080/hls/{{streamer.key_stream}}.m3u8" type="application/x-mpegURL" id="src"/>
         </video>
         {% else %}
@@ -106,50 +139,33 @@
           <source src="" type="application/x-mpegURL" id="src"/>
         </video>
         {% endif %}
-        <nav id="nav" class="nav ">
+      </div>
+        <nav id="nav" class="nav pl-5 ">
           {% if area %}
-          <img src="{% static area.imagem %}" class="float-left ml-3" height="50" alt="placeholder">
+          <img src="{% static area.imagem %}" class=" materia" height="50" >
           {% else %}
           <img src="https://www.urbanarts.com.br/imagens/produtos/063275/0/Detalhes/uma-flor-amarela.jpg" class="float-left ml-3" height="50" alt="placeholder">
           {% endif %}
-          <div class=" d-inline-block ml-1">
+          <div class=" d-inline-block">
             <p class=" text-md-left font-weight-bold text-uppercase">{{stream.titulo}}</p>
             <a href="">
               <p class=" text-sm-left ml-2  " style="margin-top: -21px"><i class="fa fa-book study-text mr-1"></i>{{stream.area}}</p>
             </a>
           </div>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class="ml-auto"></p>
-          <p class=" ml-auto mt-2"><i class="fa fa-eye red-text"></i>{{stream.views}}</p>
+          
+          <p class=" ml-auto pr-5 mr-3" ><i class="fa fa-eye red-text mr-1"></i>{{stream.views}}</p>
 
-          <small class="ml-auto"><button type="submit" class="btn study btn-sm"><i class="fa fa-share mr-1"></i>Compartilhar </button></small>
-
-          <small class=" mr-1"><button type="submit" class="btn study btn-sm"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> </button></small>
+          
         </nav>
+
         <div id="ct">
           <div class="row mt-1" style="margin-left: 1px;">
-            <img src="img/team/luis.jpg" class="float-left ml-3" height="50" alt="placeholder">
+            <img src="img/team/luis.jpg" class="float-left ml-3" height="50">
             <div class=" d-inline-block ml-1">
-              <p class=" text-md-left font-weight-bold ">Streamer<img src="img/svg/logo.svg" height="20" class="float-right ml-1 mt-1"> </p>
-              <p class=" text-sm-left " style="margin-top: -17px">Titulo</p>
+              <p class=" text-md-left font-weight-bold "><img src="{% static streamer.imagem_perfil %}" height="20" class="float-right ml-1 mt-1"> </p>
+              <p class=" text-sm-left " style="margin-top: -17px">{{stream.titulo}}</p>
               <a href="">
-                <p class=" text-sm-left  " style="margin-top: -19px"><i class="fa fa-book study-text mr-1"></i>fys</p>
+                <p class=" text-sm-left  " style="margin-top: -19px"><i class="fa fa-book study-text mr-1"></i>{{stream.area}}</p>
               </a>
             </div>
           </div>

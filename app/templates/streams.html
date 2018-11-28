@@ -392,11 +392,11 @@
           <ul class="list-group list-group-flush ">
            {% for row in transmissao %}
              <a href="{% url 'canal' row.streamer %}">
-              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}">
+              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="color: rgb(73, 80, 87)">
 
                   <img src="{% static row.streamer_imagem %}" class="image_inner_container">
                 {{row.streamer}}
-                <a class="waves-effect pl-5" style="margin-left: -70px; margin-top: 25px; position: absolute;"><i class=" fa fa-book"></i> {{row.area}}</a>
+                <a class="waves-effect pl-5" style="margin-left: -70px; margin-top: 25px; position: absolute; color: rgb(73, 80, 87)"><i class=" fa fa-book"></i> {{row.area}}</a>
               </li>
             </a>
             {% endfor %}
@@ -408,10 +408,10 @@
           <ul class="list-group list-group-flush ">
           {% for row in destaque %}
              <a href="{% url 'canal' row.streamer %}">
-              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}">
+              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="color: rgb(73, 80, 87)">
                   <img src="{% static row.streamer_imagem %}" class="image_inner_container">
                 {{row.streamer}}
-                <a href="{% url 'canal' row.streamer %}" class="waves-effect pl-5" style="margin-left: -70px; margin-top: 25px; position: absolute;"><i class=" fa fa-book"></i> {{row.area}}</a>
+                <a href="{% url 'canal' row.streamer %}" class="waves-effect pl-5" style="margin-left: -70px; margin-top: 25px; position: absolute; color: rgb(73, 80, 87)"><i class=" fa fa-book"></i> {{row.area}}</a>
               </li>
             </a>
             {% endfor %}
@@ -425,10 +425,10 @@
           <ul class="list-group list-group-flush ">
             {% for row in destaque %}
             <a href="{% url 'canal' row.streamer %}">
-              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}">
+              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="color: rgb(73, 80, 87)">
                   <img src="{% static row.streamer_imagem %}" class="image_inner_container">
                 {{row.streamer}}
-                <a class="waves-effect pl-5" style="margin-left: 100px; margin-top: 25px; position: absolute;"><i class=" fa fa-book"></i> {{row.area}}</a>
+                <a class="waves-effect pl-5" style="margin-left: -70px; margin-top: 25px; position: absolute; color: rgb(73, 80, 87)"><i class=" fa fa-book"></i> {{row.area}}</a>
               </li>
             </a>
             {% endfor %}

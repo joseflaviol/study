@@ -254,7 +254,7 @@
               </div>
               <div class="col-10 mb-2">
                 <h5 class="feature-title font-bold mb-1">Em qualquer lugar</h5>
-                <p class="grey-text mt-2">Assista ou grave suas streams de qualquer localidade! Espaço geográfico não importa!
+                <p class="grey-text mt-2">Assista ou grave suas streams de qualquer localidade! Desde que esteja em rede!
                 </p>
               </div>
             </div>
@@ -328,8 +328,8 @@
                 <i class="fa fa-check fa-2x mb-1 study-text" aria-hidden="true"></i>
               </div>
               <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Certificado</h5>
-                <p class="grey-text mt-2">Moderadores constantemente julgarão os participantes para a obtenção de títulos.
+                <h5 class="feature-title font-bold mb-1">Controle</h5>
+                <p class="grey-text mt-2">Acompanhe o status da conexão e veja suas visualizações, tempo da stream e outros dados.
                 </p>
               </div>
             </div>
@@ -351,7 +351,7 @@
 
         <!--First row-->
         <div class="row features-small mb-5 mt-3 wow fadeIn">
-
+          <br>
           <!--First column-->
           <div class="col-md-4">
             <!--First row-->
@@ -411,11 +411,12 @@
           <!--/First column-->
 
           <!--Second column-->
-          <div class="col-md-4 flex-center">
-            <img src="https://mdbootstrap.com/img/Others/screens.png" alt="MDB Magazine Template displayed on iPhone" class="z-depth-0 img-fluid">
+          <div class="col-md-4 pb-5 flex-center">
+            <img src="{% static 'img/svg/marketingStudy.svg'%}" alt="STUDY" class="z-depth-0 img-fluid">
           </div>
           <!--/Second column-->
 
+          <br>  
           <!--Third column-->
           <div class="col-md-4 mt-2">
             <!--First row-->
@@ -439,7 +440,7 @@
               </div>
               <div class="col-10">
                 <h6 class="feature-title">Consiga seguidores</h6>
-                <p class="grey-text">Receba adsense com base nas suas visualizações e seguidores.</p>
+                <p class="grey-text">Ganhe relevância na plataforma por meio de visualizações e seguidores.</p>
                 <div style="height:15px"></div>
               </div>
             </div>
@@ -451,8 +452,8 @@
                 <i class="fa fa-check-circle fa-2x study-text"></i>
               </div>
               <div class="col-10">
-                <h6 class="feature-title">Crie cursos</h6>
-                <p class="grey-text">Faça cursos para testar o conhecimento de seus alunos.
+                <h6 class="feature-title">Personalize</h6>
+                <p class="grey-text">Altere os dados de sua conta a qualquer momento.
                 </p>
                 <div style="height:15px"></div>
               </div>
@@ -465,8 +466,8 @@
                 <i class="fa fa-check-circle fa-2x study-text"></i>
               </div>
               <div class="col-10">
-                <h6 class="feature-title">Cresça</h6>
-                <p class="grey-text">Receba títulos dos moderadores que o ajudarão a subir na plataforma em relevância e consiga mais seguidores.</p>
+                <h6 class="feature-title">Interaja</h6>
+                <p class="grey-text">Converse com outros usuários que estiverem na mesma página</p>
                 <div style="height:15px"></div>
               </div>
             </div>
@@ -498,36 +499,33 @@
           </ol>
           <!--/.Indicators-->
           <!--Slides-->
-          <div class="carousel-inner" role="listbox">
+          <div class="carousel-inner" role="listbox" style="border-radius: 5px;position:relative;height: 500px">
             <div class="carousel-item active">
               <div class="view">
-                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
+                <img class="img-fluid" src="{% static 'img/grave.jpeg' %}" alt="First slide">
                 <div class="mask rgba-black-light"></div>
               </div>
               <div class="carousel-caption">
-                <h3 class="h3-responsive">Light mask</h3>
-                <p>First text</p>
+                <h3 class="h3-responsive">Grave</h3>
               </div>
             </div>
             <div class="carousel-item">
               <!--Mask color-->
               <div class="view">
-                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
+                <img class="img-fluid" src="{% static 'img/personalize.jpeg' %}" alt="Second slide">
                 <div class="mask rgba-black-strong"></div>
               </div>
               <div class="carousel-caption">
-                <h3 class="h3-responsive">Strong mask</h3>
-                <p>Secondary text</p>
+                <h3 class="h3-responsive">Personalize</h3>
               </div>
             </div>
             <div class="carousel-item">
               <div class="view">
-                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
+                <img class="img-fluid" src="{% static 'img/compartilhe.jpeg' %}" alt="Third slide">
                 <div class="mask rgba-black-slight"></div>
               </div>
               <div class="carousel-caption">
-                <h3 class="h3-responsive">Slight mask</h3>
-                <p>Third text</p>
+                <h3 class="h3-responsive" style="z-index: 0">Compartilhe</h3>
               </div>
             </div>
           </div>
@@ -544,9 +542,9 @@
       <hr class="my-5">
       <section class="text-center my-5" id="team">
 
-        <h2 class="my-5 h3 text-center">Equipe</h2>
+        <h2 class="my-5 h3 text-center"><b>Equipe</b></h2>
         <!-- Section description -->
-        <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.</p>
+        <p class="grey-text w-responsive mx-auto mb-5" style="font-size: 25px">Os seis membros do grupo que fizeram o projeto Study possível.</p>
 
         <!-- Grid row -->
         <div class="row">
@@ -565,11 +563,11 @@
                 <!--Name-->
                 <h4 class="font-weight-bold mb-4">Eduardo Josué</h4>
 
-                <p class="text-uppercase pt-1 blue-text"><strong>Desginer Gráfico</strong></p>
+                <p class="text-uppercase pt-1 blue-text"><strong>Designer Gráfico</strong></p>
 
                 <hr>
                 <!--Quotation-->
-                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit.</p>
+                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Depois de eu carregar o switch nas costas, é bom que dê certo.</p>
 
                 <ul class="list-unstyled mb-0 pt-1">
                   <!-- Facebook -->
@@ -610,7 +608,7 @@
 
                 <hr>
                 <!--Quotation-->
-                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit.</p>
+                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Se o projeto já é bom, por que documentar? Eis a questão.</p>
 
                 <ul class="list-unstyled mb-0 pt-1">
                   <!-- Facebook -->
@@ -651,7 +649,7 @@
 
                 <hr>
                 <!--Quotation-->
-                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit.</p>
+                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Ou você é feliz ou você tem o InksCape no PC. Os dois não dá.</p>
 
                 <ul class="list-unstyled mb-0 pt-1">
                   <!-- Facebook -->
@@ -692,7 +690,7 @@
 
                 <hr>
                 <!--Quotation-->
-                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit.</p>
+                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Muitas coisas nos ajudaram, menos o Chrome.</p>
 
                 <ul class="list-unstyled mb-0 pt-1">
                   <!-- Facebook -->
@@ -733,7 +731,7 @@
 
                 <hr>
                 <!--Quotation-->
-                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit.</p>
+                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Ficar louco de droga é para os fracos. Quero ver ficar louco de HTML.</p>
 
                 <ul class="list-unstyled mb-0 pt-1">
                   <!-- Facebook -->
@@ -760,7 +758,7 @@
                 <h4 class="font-weight-bold mb-4">Eduardo Lima</h4>
                 <p class="text-uppercase pt-1 blue-text"><strong>Professor Orientador</strong></p>
                 <hr>
-                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Lorem ipsum dolor sit amet eos adipisci, consectetur adipisicing elit.</p>
+                <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>Estar aqui foi muito simples. Fazer? Mais ainda.</p>
                 <ul class="list-unstyled mb-0 pt-1">
                   <a class="p-2 fa-lg fb-ic">
                     <i class="fa fa-facebook blue-text"> </i>
@@ -794,7 +792,7 @@
     </div>
     <div class="footer-copyright py-3">
       © 2018 Copyright:
-      <a href="https://mdbootstrap.com/bootstrap-tutorial/" target="_blank"> MDBootstrap.com </a>
+      <b style="color: white">Equipe Study</b>
     </div>
   </footer>
   <script src="{% static 'js/validaCadastro.js' %}" charset="utf-8"></script>

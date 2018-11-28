@@ -119,12 +119,13 @@ def canal(request, streamer_nome):
                 transmissao.append(campo)
         return render(request, "canal.html", {"perfil_logado": perfil_logado(request), "perfil_status": perfil_status(request), "streamer": streamer, "destaque": Transmissao.objects.all(), "transmissao": transmissao, "area": area, "nArea": nArea})
     except Exception as e:
-        segue = Segue.objects.filter(seguidor=perfil.id)
-        for row in segue:
-            streamerSeguido = Perfil.objects.get(id=row.seguindo)
-            stream = Transmissao.objects.filter(streamer=streamerSeguido.nome)
-            for campo in stream:
-                transmissao.append(campo)
+        if perfil_logado(request):
+            segue = Segue.objects.filter(seguidor=perfil.id)
+            for row in segue:
+                streamerSeguido = Perfil.objects.get(id=row.seguindo)
+                stream = Transmissao.objects.filter(streamer=streamerSeguido.nome)
+                for campo in stream:
+                    transmissao.append(campo)
         return render(request, "canal.html", {"perfil_logado": perfil_logado(request), "perfil_status": perfil_status(request), "streamer": streamer, "destaque": Transmissao.objects.all(), "area": area, "nArea": nArea})
 
 

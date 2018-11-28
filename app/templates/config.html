@@ -518,12 +518,7 @@
             Perfil
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab">
-            <i class=" fa fa-info"></i>
-            Sobre
-          </a>
-        </li>
+       
         <li class="nav-item">
           <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
             <i class=" fa fa-heart"></i>
@@ -596,129 +591,6 @@
           </div>
         </div>
 
-        <div class="tab-pane" id="schedule-1">
-          <div class="offer offer-purple">
-            <div class="shape">
-              <div class="shape-text">
-                <i class="fa fa-quote-right"></i>
-              </div>
-            </div>
-            <div class="offer-content">
-              <div class="lead purple">
-                <h3 class="cab text-white pt-2">Sobre</h3>
-              </div>
-
-              <ul class="list-group pt-5">
-
-                <li class="list-group-item">
-                  <label>Painéis</label>
-                  <label id="create" class="pl-3 pt-1"><a class=" btn btn-sm purple text-white"><i class="fa fa-plus mr-1 text-white"></i>Adicionar Painel</a></label>
-                  <input type="file" name="emailalt" id="img2" class="form-control" style="display: none">
-
-
-
-                  <!--Carousel Wrapper-->
-                  <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-                    <!--Controls-->
-                    <div class="controls-top">
-                      <a class="btn-floating prev" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                      <a class="btn-floating next" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-                    </div>
-                    <!--/.Controls-->
-
-                    <!--Indicators-->
-                    <ol class="carousel-indicators">
-                      <li data-target="#multi-item-example" data-slide-to="0" class="active" style="background-color: #ad5389"></li>
-                      <li data-target="#multi-item-example" data-slide-to="1" style="background-color: #ad5389"></li>
-                    </ol>
-                    <!--/.Indicators-->
-
-                    <!--Slides-->
-                    <div class="carousel-inner pl-3" role="listbox">
-
-                      <!--First slide-->
-                      <div class="carousel-item active">
-                        <div class="row pl-5 ">
-
-                          <div class="pl-2">
-                            <img src="{% static 'img/team/luis.jpg' %}" class="img-fluid about">
-                            <div class="acao">
-                              <a href="" id="edit"><i class="fa fa-pencil green-text"></i></a>
-                              <a href="" id="del" data-toggle="modal" data-target="#modalConfirmDelete"><i class="fa fa-close red-text"></i></a>
-                            </div>
-
-                          </div>
-
-
-                          <div class="pl-2">
-                            <img src="{% static 'img/team/luis.jpg' %}" class="img-fluid about">
-                            <div class="acao">
-                              <a href="" id="edit"><i class="fa fa-pencil green-text"></i></a>
-                              <a href="" id="del"><i class="fa fa-close red-text"></i></a>
-                            </div>
-
-                          </div>
-
-
-                          <div class="pl-2">
-                            <img src="{% static 'img/team/luis.jpg' %}" class="img-fluid about">
-                            <div class="acao">
-                              <a href="" id="edit"><i class="fa fa-pencil green-text"></i></a>
-                              <a href="" id="del"><i class="fa fa-close red-text"></i></a>
-                            </div>
-
-                          </div>
-
-                        </div>
-                      </div>
-                      <!--/.First slide-->
-                      <!--Third slide-->
-                      <div class="carousel-item">
-                        <div class="row pl-5">
-
-                          <div class="pl-2">
-                            <img src="{% static 'img/team/luis.jpg' %}" class="img-fluid about">
-                            <div class="acao">
-                              <a href="" id="edit"><i class="fa fa-pencil green-text"></i></a>
-                              <a href="" id="del"><i class="fa fa-close red-text"></i></a>
-                            </div>
-
-                          </div>
-
-                        </div>
-                        <!--/.Third slide-->
-
-                      </div>
-                      <!--/.Slides-->
-
-                    </div>
-                  </div>
-
-                  <!--/.Carousel Wrapper-->
-
-                <li class="list-group-item" id="cretefim" style="display: none;">
-                  <label>Novo Painel</label>
-                  <div class="row pl-2">
-                    <div class="pl-2" id="painel_insert" style="display: none">
-                      <a href=""><label for="img2" style="cursor: "><img src="{% static 'img/team/jose.jpg' %}" class="img-fluid about"></label></a>
-
-                    </div>
-
-                    <label style="width: 100%" class="pl-2">Insira um link no painel
-                      <input type="text" name="link" class=" form-control pl-2">
-                      <button class="btn purple w-100" style="margin-left: -1.2px;">Criar Painel</button>
-                    </label>
-                </li>
-
-                </li>
-              </ul>
-            </div>
-          </div>
-
-
-        </div>
-
         <div class="tab-pane" id="tasks-1">
           <div class="offer offer-cyan">
             <div class="shape">
@@ -744,12 +616,6 @@
                           Canais
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link ncy" href="#schedule-2" style="text-align: center;" role="tab" data-toggle="tab">
-                          <i class="fa fa-book" style="display: block;  "></i>
-                          Áreas
-                        </a>
-                      </li>
                     </ul>
                   </div>
                   <div class="col-md-8">
@@ -769,26 +635,7 @@
                           {% endif %}
                         </div>
                       </div>
-                      <div class="tab-pane" id="schedule-2">
-                        <div class="row pl-2">
-                          <div class=" followers area">
-                            <img src="{% static 'img/area/natureza.jpg' %}" class="img-fluid">
-                            <div class="texto">
-                              <a href=""><i class="fa fa-heart red-text"></i></a>
-                            </div>
-                          </div>
-
-                          <div class="pl-2"></div>
-
-
-                          <div class=" followers">
-                            <img src="{% static 'img/area/exatas.jpg' %}" class="img-fluid">
-                            <div class="texto">
-                              <a href=""><i class="fa fa-heart red-text"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      
 
 
                     </div>
