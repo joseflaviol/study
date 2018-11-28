@@ -205,11 +205,11 @@
           <a class="nav-link dropdown-toggle" id='drop_more' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Mais</a>
 
           <div class='dropdown-menu' aria-labelledby='drop_more'>
-            <a class='dropdown-item' id="a" href="{% url 'sobre' %}" target="ajax">
+            <a class='dropdown-item' id="sobre" href="{% url 'sobre' %}" target="ajax">
               <div class='espaço rounded w-100 '>Sobre </div>
             </a>
 
-            <a class='dropdown-item' href="{% url 'termos' %}" target="ajax">
+            <a class='dropdown-item' id="termos" href="{% url 'termos' %}" target="ajax">
               <div class='espaço rounded w-100 '>Termos </div>
             </a>
 
@@ -217,7 +217,9 @@
 
 
         </li>
-
+        <li class="nav-item" id="voltaCanal" style="display: none;">
+          <a class="nav-link" href="{% url 'live' streamer.id %}" target="ajax">Voltar a transmissão</a>
+        </li>
       </ul>
 
       <!-- Right -->
@@ -523,6 +525,15 @@
   <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
   <script type="text/javascript">
     new WOW().init();
+    $("#sobre").click(function(){
+      $("#voltaCanal").show();
+    });
+    $("#termos").click(function(){
+      $("#voltaCanal").show();
+    });
+    $("#voltaCanal").click(function(){
+      $(this).hide();
+    });
     var nArea = {{nArea}};
     for(var i=0; i<nArea; i++){
       var str = "#";
