@@ -192,8 +192,9 @@ def player(request, streamer_id):
             else:
                 stream.avaliacao = "0"
             stream.save()
-            perfil.assistindo = stream.id
-            perfil.save()
+            if perfil_logado(request):
+                perfil.assistindo = stream.id
+                perfil.save()
             atualizaViews(request)
             if Area.objects.filter(area=stream.area):
                 area = Area.objects.get(area=stream.area)
