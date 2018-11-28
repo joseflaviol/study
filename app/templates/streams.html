@@ -548,7 +548,8 @@
           {% if transmissao %}
           <h4 class="card-title study-text" style="font-size: 1.1em;">Canais seguidos</h4>
           <hr class="study">
-          <ul class="list-group"> {% for row in transmissao %}
+          <ul class="list-group">
+           {% for row in transmissao %}
             <a style="margin-bottom: -15px;" href="{% url 'canal' row.streamer %}">
               <li class="list-group-item d-flex left-content-between align-items-left" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="height: 75%;">
                 <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
