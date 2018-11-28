@@ -143,42 +143,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'index' %}">Home
+          <a class="nav-link" href="{% url 'index' %}">Início
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'streams' %}" target="ajax">Procurar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Destaque</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Cursos</a>
+          <a class="nav-link" href="{% url 'streams' %}">Procurar</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id='drop_more' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Mais</a>
 
           <div class='dropdown-menu' aria-labelledby='drop_more'>
-            <a class='dropdown-item' id="a" href='#'>
+            <a class='dropdown-item' id="a" href="{% url 'sobre' %}" target="frame">
               <div class='espaço rounded w-100 '>Sobre </div>
             </a>
-            <a class='dropdown-item ' href='# '>
-              <div class='espaço rounded w-100 '>Desenvolvedores </div>
-            </a>
-            <a class='dropdown-item ' href='# '>
-              <div class='espaço rounded w-100 '>Segurança </div>
-            </a>
-            <a class='dropdown-item' href='#'>
+            <a class='dropdown-item' href="{% url 'termos' %}" target="frame">
               <div class='espaço rounded w-100 '>Termos </div>
             </a>
           </div>
-        </li>
-        <li class="nav-item">
-          <form action="{% url 'streams' %}" method="post">
-            {% csrf_token %}
-            <input class="form-control" type="search" name="buscar" value="" id="buscar" placeholder="Escreva sua busca...">
-          </form>
         </li>
       </ul>
       <ul class="navbar-nav nav-flex-icons">

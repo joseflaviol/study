@@ -15,298 +15,162 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
   <link rel="icon" href="{% static 'img/logo.ico' %}" type="imagex-icon" />
   <style type="text/css">
-    body{
-      font-family: 'Rajdhani', sans-serif;
-    }
-    @media (min-width: 800px) and (max-width: 850px) {
-      .navbar:not(.top-nav-collapse) {
-        background: #408AFF !important;
-      }
-    }
+   body {
+     font-family: 'Rajdhani', sans-serif;
+   }
 
-    html {
-      overflow-y: hidden;
-      overflow-x: hidden;
-    }
+   @media (min-width: 800px) and (max-width: 850px) {
+     .navbar:not(.top-nav-collapse) {
+       background: #408AFF !important;
+     }
+   }
 
-    .btn-study {
-      background-color: #408AFF
-    }
+   html {
+     overflow-y: hidden;
+     overflow-x: hidden;
+   }
 
-    p {
-      max-width: 15ch;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    @media only screen and (min-width: 731px) {
-      .card-title {
-        display: inline;
-      }
-    }
-
-    @media only screen and (max-width: 730px) {
-      .card-title {
-        display: none;
-      }
-      #form3 {
-        display: none;
-      }
-      #stream {
-        display: none;
-      }
-    }
-
-    @media only screen and (max-width: 900px) {
-      #form3 {
-        display: none;
-      }
-      #stream {
-        display: none;
-      }
-    }
-
-    @media only screen and (max-width: 730px) {
-      #texto {
-        display: none;
-      }
-      .img-left {
-        margin-left: -4px;
-        margin-top: -13px
-      }
+   .btn-study {
+     background-color: #408AFF
+   }
 
 
-    }
+   #fast {
+     font-size: 1.5em;
+   }
 
-    @media only screen and (max-width: 1600px) {
-      iframe {
-        width: 84.5%;
-      }
-    }
+   option:hover {
+     background-color: #408aff;
+     color: white;
+     cursor: pointer;
+   }
 
-    @media only screen and (max-width: 1600px) {
-      iframe {
-        width: 84%;
-      }
-    }
+   input[type=file] {
+     position: absolute;
+     top: 0;
+     right: 0;
+     margin: 0;
+     padding: 0;
+     font-size: 20px;
+     cursor: pointer;
+     opacity: 0;
+     filter: alpha(opacity=0);
+   }
 
-    @media only screen and (max-width: 1540px) {
-      iframe {
-        width: 83%;
-      }
-    }
+   .image_inner_container {
+     border-radius: 50%;
+     padding: 3px;
+     height: 45px;
+     width: 45px;
+     background-color: #52c234;
+     background: -webkit-linear-gradient(to bottom, #52c234;
+     #061700, #52c234);
+     background: linear-gradient(to bottom, #52c234;
+     #061700, #52c234);
+   }
 
-    @media only screen and (max-width: 1464px) {
-      iframe {
-        width: 82.5%;
-      }
-    }
+   .image_inner_container2 {
+     border-radius: 50%;
+     padding: 5px;
+     height: 40px;
+     width: 40px;
+   }
 
-    @media only screen and (max-width: 1412px) {
-      iframe {
-        width: 82%;
-      }
-    }
+   .image_inner_container img {
+     width: 100%;
+     height: 100%;
+     border-radius: 50%;
+     border: 5px solid white;
+   }
 
-    @media only screen and (max-width: 1390px) {
-      iframe {
-        width: 81%;
-      }
-    }
+   .image_inner_container2 img {
 
-    @media only screen and (max-width: 1324px) {
-      iframe {
-        width: 80.5%;
-      }
-    }
+     border-radius: 50%;
+     border: 5px solid white;
+   }
 
-    @media only screen and (max-width: 1308px) {
-      iframe {
-        width: 80.4%;
-      }
-    }
+   iframe {
+     width: 100%;
+     height: 100vh;
+     border: none;
+   }
 
+   .sidebar {
+     height: 100vh;
+     width: 100%;
+     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+     z-index: 1050;
+     background-color: #fff;
+   }
 
-    @media only screen and (max-width: 1279px) {
-      iframe {
-        width: 79.5%;
-      }
-    }
-
-    @media only screen and (max-width: 1262px) {
-      iframe {
-        width: 79%;
-      }
-    }
-
-    @media only screen and (max-width: 1248px) {
-      iframe {
-        width: 78.8%;
-      }
-    }
-
-    @media only screen and (min-width: 1181px) {
-      #card2 {
-        display: none;
-      }
-    }
-
-    @media only screen and (max-width: 1180px) {
-      iframe {
-        width: 94%;
-      }
-      #card {
-        display: none;
-      }
-      #card2 {
-        display: inline
-      }
-      ;
-
-    }
-
-    @media only screen and (max-width: 976px) {
-      iframe {
-        width: 93%;
-      }
-    }
-
-    @media only screen and (max-width: 940px) {
-      iframe {
-        width: 93%;
-      }
-    }
-
-    @media only screen and (max-width: 854px) {
-      iframe {
-        width: 92%;
-      }
-    }
-
-    @media only screen and (max-width: 736px) {
-      iframe {
-        width: 91%;
-      }
-    }
-
-    @media only screen and (max-width: 664px) {
-      iframe {
-        width: 90%;
-      }
-    }
+   .sidebar .list-group .active {
+     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+     -webkit-border-radius: 5px;
+     border-radius: 5px
+   }
 
 
-    @media only screen and (max-width: 578px) {
-      iframe {
-        width: 89%;
-      }
-    }
+   @media only screen and (max-width: 575px) {
+     .col-xs-1 {
+       width: 25%;
+     }
 
-    @media only screen and (max-width: 540px) {
-      iframe {
-        width: 88%;
-      }
-    }
+     .col-xs-11 {
+       width: 75%;
 
-    @media only screen and (max-width: 494px) {
-      iframe {
-        width: 87%;
-      }
-    }
+     }
+   }
 
-    @media only screen and (max-width: 480px) {
-      iframe {
-        width: 86.5%;
-      }
-    }
 
-    @media only screen and (max-width: 451px) {
-      iframe {
-        width: 86%;
-      }
-    }
+   .top-list {
+     font-size: 1.4em;
+     color: #408aff;
+     padding-top: 1.5em;
+   }
 
-    @media only screen and (max-width: 426px) {
-      iframe {
-        width: 85%;
-      }
-    }
+   @media only screen and (max-width: 575px) {
+     .first-list {
+       display: none;
+     }
 
-    @media only screen and (max-width: 398px) {
-      iframe {
-        width: 84%;
-      }
-    }
+     .second-list {
+       display: inline;
+     }
 
-    @media only screen and (max-width: 370px) {
-      iframe {
-        width: 83%;
-      }
-    }
+   }
 
-    @media only screen and (max-width: 352px) {
-      iframe {
-        width: 82%;
-      }
-    }
+   @media only screen and (min-width: 576px) {
+     .first-list {
+       display: inline;
+     }
 
-    @media only screen and (max-width: 333px) {
-      iframe {
-        width: 81%;
-      }
-    }
+     .second-list {
+       display: none;
+     }
 
-    #fast {
-      font-size: 1.5em;
-    }
+   }
 
-    option:hover {
-      background-color: #408aff;
-      color: white;
-      cursor: pointer;
-    }
+   .image_inner_containerR{
+     height: 35px;
+     width: 35px;
+     border-radius: 50%;
+     padding: 3px;
+     margin-left: -7px;
+     background-color: #52c234;
+     background: -webkit-linear-gradient(to bottom, #52c234;
+     #061700, #52c234);
+     background: linear-gradient(to bottom, #52c234;
+     #061700, #52c234);
+   }
 
-    input[type=file] {
-      position: absolute;
-      top: 0;
-      right: 0;
-      margin: 0;
-      padding: 0;
-      font-size: 20px;
-      cursor: pointer;
-      opacity: 0;
-      filter: alpha(opacity=0);
-    }
-
-    .image_inner_container{
-        border-radius: 50%;
-        padding: 5px;  
-        height: 140px;
-        width: 140px;    
-        background: -webkit-linear-gradient(to bottom, #2c3e50, #3498db,  #2c3e50); 
-        background: linear-gradient(to bottom, #3498db, #3498db,  #2c3e50);
-       }
-
-       .image_inner_container2{
-        border-radius: 50%;
-        padding: 5px;  
-        height: 40px;
-        width: 40px;
-       }
-        .image_inner_container img{
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 5px solid white;
-       }
-
-        .image_inner_container2 img{
-      
-        border-radius: 50%;
-        border: 5px solid white;
-       }
-  </style>
+   .image_inner_containerR img{
+     border-radius: 50%;
+     height: 100%;
+     width: 100%;
+   }
+</style>
 
 </head>
 
@@ -330,29 +194,22 @@
       <!-- Left -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'index' %}">Home
+          <a class="nav-link" href="{% url 'index' %}">Início
                 <span class="sr-only">(current)</span>
               </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'streams' %}" target="">Procurar</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Destaque</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Cursos</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id='drop_more' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Mais</a>
 
           <div class='dropdown-menu' aria-labelledby='drop_more'>
-            <a class='dropdown-item' id="a" href='#' '><div class='espaço rounded w-100 '>Sobre </div> </a>
-                      <a class='dropdown-item ' href='# '><div class='espaço rounded w-100 '>Desenvolvedores </div></a>
-                      <a class='dropdown-item ' href='# ''>
-              <div class='espaço rounded w-100 '>Segurança </div>
+            <a class='dropdown-item' id="a" href="{% url 'sobre' %}" target="ajax">
+              <div class='espaço rounded w-100 '>Sobre </div>
             </a>
-            <a class='dropdown-item' href='#'>
+
+            <a class='dropdown-item' href="{% url 'termos' %}" target="ajax">
               <div class='espaço rounded w-100 '>Termos </div>
             </a>
 
@@ -541,134 +398,123 @@
       </div>
     </div>
   </div>
-  <main style="height: 100%; position: relative;">
-    <div class="row wow fadeIn mh-100" style="height: 100%">
-      {% if perfil_logado %}
-      <div id="card" class="mh-100 card mt-5" style="width: 250px;">
-        <div class="card-body">
-          <div class="mt-2"></div>
-          {% if transmissao %}
-          <h4 class="card-title study-text" style="font-size: 1.1em;">Canais seguidos</h4>
-          <hr class="study">
-          <ul class="list-group"> {% for row in transmissao %}
-            <a style="margin-bottom: -15px;" href="{% url 'canal' row.streamer %}">
-              <li class="list-group-item d-flex left-content-between align-items-left" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="height: 75%;">
-                <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
-                <div class="align-items-left d-inline-block">
-                  <p style="font-weight: bolder;">{{row.streamer}}</p>
-                  <small><p style="margin-top: -18px">{{row.area}}</p> </small>
-                </div>
+  <div class="row  pt-5">
+    <div class="col-xs-1 col-sm-4 col-md-3 col-lg-2 first-list ">
+      <div class="sidebar">
+        {% if perfil_logado %}
+        {% if transmissao %}
+      <div class=" list-group list-group-flush pt-3">
+          <a href="" class="list-group-item top-list"><i class="fa fa-heart"></i> Canais Seguidos</a>
+          <ul class="list-group list-group-flush ">
+           {% for row in transmissao %}
+             <a href="{% url 'canal' row.streamer %}">
+              <li class="list-group-item list-group-item-action waves-effect list-live" data-toggle="tooltip" onclick="window.location.href='/canal/{{row.streamer}}'" data-placement="right" title="{{row.titulo}}">
+
+                  <img src="{% static row.streamer_imagem %}" class="image_inner_container">
+                {{row.streamer}}
+                <a class="waves-effect pl-5" style="margin-left: -70px; margin-top: 25px; position: absolute;"><i class=" fa fa-book"></i> {{row.area}}</a>
               </li>
             </a>
             {% endfor %}
           </ul>
-          <hr class="study mt-3">
         </div>
-      </div>
       {% else %}
-      <h4 class="card-title study-text" style="font-size: 1.1em;">Canais em destaque</h4>
-      <hr class="study">
-      <ul class="list-group">
-        {% for row in destaque %}
-        <a style="margin-bottom: -15px;" href="{% url 'canal' row.streamer %}">
-          <li class="list-group-item d-flex left-content-between align-items-left" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="height: 75%;">
-            <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
-            <div class="align-items-left d-inline-block">
-              <p style="font-weight: bolder;">{{row.streamer}}</p>
-              <small><p style="margin-top: -18px">{{row.area}}</p> </small>
-            </div>
-          </li>
-        </a>
-        {% endfor %}
-      </ul>
-      <hr class="study mt-3">
-    </div>
-    </div>
-    {% endif %}
-    <div id="card2" class="mh-100 card mt-4" style="width: 60px;">
-      <div class="card-body">
-        <i class="fa fa-video-camera study-text fa-2x mt-4" style="border-bottom: 2px solid #408aff "></i>
-        <ul class="list-group" style="width: 80%">
-          <a data-toggle="tooltip" data-placement="right" title="Titulo Stream">
-               <img src="{% static 'img/team/luis.jpg' %}" height="35" width="35" class="img-left rounded mt-2" style="margin-left: -1px;">
-            </a>
-        </ul>
-      </div>
-    </div>
-    {% else %}
-    <div id="card" class="mh-100 card mt-5" style="width: 250px;">
-      <div class="card-body">
-        <div class="mt-2"></div>
-        <h4 class="card-title study-text" style="font-size: 1.1em;">Canais em destaque</h4>
-        <hr class="study">
-        <ul class="list-group">
+      <div class=" list-group list-group-flush pt-3">
+        <a href="" target="_top" class="list-group-item  top-list"><i class="fa fa-bookmark"></i> Canais em destaque</a>
+          <ul class="list-group list-group-flush ">
           {% for row in destaque %}
-          <a style="margin-bottom: -15px;" href="{% url 'canal' row.streamer %}">
-            <li class="list-group-item d-flex left-content-between align-items-left" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}" style="height: 75%;">
-              <img src="{% static row.streamer_imagem %}" height="40" class="img-left rounded" style="margin-left: -12px">
-              <div class="align-items-left d-inline-block">
-                <p style="font-weight: bolder;">{{row.streamer}}</p>
-                <small><p style="margin-top: -18px">{{row.area}}</p> </small>
-              </div>
-            </li>
-          </a>
-          {% endfor %}
-        </ul>
-        <hr class="study mt-3">
-        <button type="submit" class="btn study ml-4">Cadastrar-se</button>
-      </div>
-    </div>
-    <div id="card2" class="mh-100 card mt-4" style="width: 60px;">
-      <div class="card-body">
-        <i class="fa fa-video-camera study-text fa-2x mt-4" style="border-bottom: 2px solid #408aff "></i>
-        <ul class="list-group" style="width: 80%">
-          <a data-toggle="tooltip" data-placement="right" title="Titulo Stream">
-               <img src="{% static 'img/team/luis.jpg' %}" height="35" width="35" class="img-left rounded mt-2" style="margin-left: -1px;">
+             <a href="{% url 'canal' row.streamer %}">
+              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}">
+
+                  <img src="{% static row.streamer_imagem %}" class="image_inner_container">
+                {{row.streamer}}
+                <a class="waves-effect pl-5" style="margin-left: -70px; margin-top: 25px; position: absolute;"><i class=" fa fa-book"></i> {{row.area}}</a>
+              </li>
             </a>
-        </ul>
-      </div>
-    </div>
-    {% endif %}
-      <iframe class="embed-responsive-item" src="{% url 'live' streamer.id %}" width="83.8%" name="ajax" style="position: relative"></iframe>
-    </div>
-
-    <!-- <div class="fixed-bottom mb-2 zindex-fixed" style="width: 8%">
-
-      <div class="btn-group-vertical w-25" role="group" aria-label="Vertical button group">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn indigo darken-4"><i class="fa fa-video-camera fa-2x" style="margin-left: -15px"></i></button>
+            {% endfor %}
+          </ul>
         </div>
 
-      <div class="btn-group" role="group" >
-          <button id="btnGroupVerticalDrop3" type="button" class="btn btn-study dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <span class="badge badge-danger mt-2" style="position: absolute; z-index: 150">11</span>
-            <i class="fa fa-bell fa-2x "  style="margin-left: -15px"></i><i class="fa fa-caret-up"  style="margin-left: -7px"></i>
-          </button>
+    {% endif %}
+    {% else %}
+      <div class=" list-group list-group-flush pt-3">
+          <a href="" target="_top" class="list-group-item  top-list pt-5"><i class="fa fa-bookmark"></i> Canais em destaque</a>
+          <ul class="list-group list-group-flush ">
+            {% for row in destaque %}
+            <a href="{% url 'canal' row.streamer %}">
+              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}">
+                  <img src="{% static row.streamer_imagem %}" class="image_inner_container">
+                {{row.streamer}}
+                <a class="waves-effect pl-5" style="margin-left: 100px; margin-top: 25px; position: absolute;"><i class=" fa fa-book"></i> {{row.area}}</a>
+              </li>
+            </a>
+            {% endfor %}
+            <button class="btn btn-study" data-toggle='modal' data-target="#form"><i class="fa fa-user-plus"></i> Cadastrar-se</button>
+          </ul>
+        </div>
+        {% endif %}
 
-          <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop3">
-              <a class="dropdown-item" href="#">Dropdown link</a>
-              <a class="dropdown-item" href="#">Dropdown link</a>
-          </div>
-      </div>
-      <div class="btn-group" role="group">
-          <button id="btnGroupVerticalDrop4" type="button" class="btn btn-study dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="badge badge-danger mt-2" style="position: absolute; z-index: 150">11</span>
-              <i class="fa fa-users fa-2x"  style="margin-left: -15px"></i><i class="fa fa-caret-up "  style="margin-left: -7px"></i>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop4">
-              <a class="dropdown-item" href="#">Dropdown link</a>
-              <a class="dropdown-item" href="#">Dropdown link</a>
-          </div>
+        </div>
       </div>
 
+      <div class="col-xs-1 col-sm-4 col-md-3 col-lg-2 second-list  ">
+      <div class="sidebar">
+        {% if perfil_logado %}
+        {% if transmissao %}
+      <div class="list-group list-group-flush pt-3">
+          <a href="" class="list-group-item top-list"><i class="fa fa-heart"></i></a>
+          <ul class="list-group list-group-flush ">
+           {% for row in transmissao %}
+             <a href="{% url 'canal' row.streamer %}">
+              <li class="list-group-item list-group-item-action waves-effect list-live" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}">
+                <a href="{% url 'canal' row.streamer %}">
+                  <img src="{% static row.streamer_imagem %}" class="image_inner_containerR">
+                </a>
+              </li>
+            </a>
+            {% endfor %}
+          </ul>
+        </div>
+      {% else %}
+      <div class=" list-group list-group-flush pt-3">
+        <a href="" target="_blank" class="list-group-item  top-list"><i class="fa fa-bookmark"></i></a>
+          <ul class="list-group list-group-flush ">
+          {% for row in destaque %}
+             <a href="{% url 'canal' row.streamer %}">
+              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}">
+                <a href="{% url 'canal' row.streamer %}">
+                  <img src="{% static row.streamer_imagem %}" class="image_inner_containerR">
+                </a>
+              </li>
+            </a>
+            {% endfor %}
+          </ul>
+        </div>
+
+    {% endif %}
+    {% else %}
+      <div class=" list-group list-group-flush pt-3">
+          <a href="" target="_blank" class="list-group-item  top-list pt-5"><i class="fa fa-bookmark"></i></a>
+          <ul class="list-group list-group-flush ">
+            {% for row in destaque %}
+            <a href="{% url 'canal' row.streamer %}">
+              <li class="list-group-item list-group-item-action waves-effect list-live" onclick="window.location.href='/canal/{{row.streamer}}'" data-toggle="tooltip" data-placement="right" title="{{row.titulo}}">
+                  <img src="{% static row.streamer_imagem %}" class="image_inner_containerR">
+              </li>
+            </a>
+            {% endfor %}
+            <button class="btn btn-study btn-sm" data-toggle='modal' data-target="#form"><i class="fa fa-user-plus"></i></button>
+          </ul>
+        </div>
+        {% endif %}
+
+        </div>
       </div>
+
+      <div class="col-xs-11 col-sm-8 col-md-9 col-lg-10 ">
+    <iframe class="embed-responsive-item" id="iframe" src="{% url 'live' streamer.id %}" name="ajax" ></iframe>
     </div>
-    </div>
-    -->
-
-
-
-  </main>
+  </div>
   <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
   <script src="{% static 'js/validaCadastro.js' %}" charset="utf-8"></script>
   <script src="{% static 'js/validaLogin.js' %}" charset="utf-8"></script>

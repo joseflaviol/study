@@ -363,7 +363,7 @@
 
           <div class="player">
 
-            <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" poster="img/backg/fundo.jpg" data-setup='{"fluid": true}'>
+            <video allow="fullscreen" class="video-js vjs-default-skin vjs-16-9" controls data-setup='{"fluid": true}'>
               <source src="http://10.10.135.51:8080/hls/{{perfil_logado.key_stream}}.m3u8" type="application/x-mpegURL" id="src" />
             </video>
 
@@ -495,11 +495,13 @@
         alert('Há algum campo em branco');
       }
     })
-    $("#outro").click(function() {
-      console.log("dasuidhyuawghyuwyuas");
-      document.getElementById('select-area').style.display = "none";
+    $("#outro").click(function(event) {
+      event.preventDefault();
+      $("#select-area").hide();
+      $("#input-area").show();
+      /*document.getElementById('select-area').style.display = "none";
       document.getElementById('input-area').style.display = "";
-      document.getElementById('op').style.display = "";
+      document.getElementById('op').style.display = "";*/
     });
     $("#op").click(function() {
       document.getElementById('input-area').style.display = "none";

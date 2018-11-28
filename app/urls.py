@@ -36,5 +36,7 @@ urlpatterns = [
     url(r'^mudaFotoUser/$', views.mudaFotoUser, name="mudaFotoUser"),
     url(r'^atualizaStreamDados/$', views.atualizaDadosStream, name="atualizaStreamDados"),
     url(r'^atualizaDadosUser/$', views.atualizaDadosUser, name="atualizaDadosUser"),
-    url(r'^validaAtualizaDadosUser/$', views.validaAtualizaDadosUser, name="validaAtualizaDadosUser")
+    url(r'^validaAtualizaDadosUser/$', views.validaAtualizaDadosUser, name="validaAtualizaDadosUser"),
+    url(r'^sobre$', views.sobre, name="sobre"),
+    url(r'^termos$', views.termos, name="termos")
 ]

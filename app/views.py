@@ -328,7 +328,7 @@ def iniciaStream(request):
         nome = perfil.nome
         titulo = request.POST['titulo']
         area = request.POST['area']
-        if area == "":
+        if area == "" or area == "Outra":
             area = request.POST['areaText']
         imagem = request.FILES["imagem"]
         x = datetime.datetime.now()
@@ -846,3 +846,9 @@ def atualizaDadosUser(request):
     login(request, usuario)
 
     return redirect("/painel/" + perfil.nome)
+
+def sobre(request):
+    return render(request, "sobre.html")
+
+def termos(request):
+    return render(request, "frameSeguranca.html")
